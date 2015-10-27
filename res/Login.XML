@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StaffLogin>
+    <Staff key="Boss" password ="yourMother">
+		<StaffName>Jonathan</StaffName>
+	</Staff>
+	  <Staff key="LadyBoss" password ="yourFather">
+		<StaffName>Lim</StaffName>
+	</Staff>
+	  <Staff key="SmallBoss" password ="yourself">
+		<StaffName>Jun</StaffName>
+	</Staff>
+	  <Staff key="Bossless" password ="NoYou">
+		<StaffName>Jie</StaffName>
+	</Staff>
+</StaffLogin>

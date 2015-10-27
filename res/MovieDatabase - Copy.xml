@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?> 
+<MovieList>
+    <Ranking>
+        <First sale = "52">
+            Throw Your Father
+        </First>
+        <Second sale = "48">
+            Throw Your Mother
+        </Second>
+        <Third sale = "45">
+            Throw Your Brother
+        </Third>
+        <Fourth sale = "42">
+            Throw Your Sister
+        </Fourth>
+        <Fifth sale = "40">
+            Throw Yourself
+        </Fifth>
+    </Ranking>
+    
+    <Moive>
+        <Title>Throw Your Father</Title>
+    	<Rate>R21</Rate>
+    	<Type>3D</Type>
+    	<ShowTime>9.30am 12.10pm 2.50pm 5.30pm 8.20pm 10.15pm 12am</ShowTime>   
+    	<Status>Now Showing</Status>
+    	<Cinema>AMK CCK CWP J8 Cine Lido DownTown JEM Cathay WM</Cinema>
+    </Moive>
+    <Moive>
+        <Title>Throw Your Mother</Title>
+    	<Rate>R21</Rate>
+    	<Type>3D</Type>
+    	<ShowTime>9.30am 12.10pm 2.50pm 5.30pm 8.20pm 10.15pm 12am</ShowTime>   
+    	<Status>Now Showing</Status>
+    	<Cinema>AMK CCK CWP J8 Cine Lido DownTown JEM Cathay WM</Cinema>
+    </Moive>
+    <Moive>
+        <Title>Throw Your Sister</Title>
+    	<Rate>R21</Rate>
+    	<Type>3D</Type>
+    	<ShowTime>9.30am 12.10pm 2.50pm 5.30pm 8.20pm 10.15pm 12am</ShowTime>   
+    	<Status>Now Showing</Status>
+    	<Cinema>AMK CCK CWP J8 Cine Lido DownTown JEM Cathay WM</Cinema>
+    </Moive>
+    <Moive>
+        <Title>Throw Your Brother</Title>
+    	<Rate>R21</Rate>
+    	<Type>3D</Type>
+    	<ShowTime>9.30am 12.10pm 2.50pm 5.30pm 8.20pm 10.15pm 12am</ShowTime>   
+    	<Status>Now Showing</Status>
+    	<Cinema>AMK CCK CWP J8 Cine Lido DownTown JEM Cathay WM</Cinema>
+    </Moive>
+    <Moive>
+        <Title>Throw Yourself</Title>
+    	<Rate>R21</Rate>
+    	<Type>3D</Type>
+    	<ShowTime>9.30am 12.10pm 2.50pm 5.30pm 8.20pm 10.15pm 12am</ShowTime>   
+    	<Status>Now Showing</Status>
+    	<Cinema>AMK CCK CWP J8 Cine Lido DownTown JEM Cathay WM</Cinema>
+    </Moive>
+    <Moive>
+        <Title>Throw Your Friends</Title>
+    	<Rate>R21</Rate>
+    	<Type>3D</Type>
+    	<ShowTime>9.30am 12.10pm 2.50pm 5.30pm 8.20pm 10.15pm 12am</ShowTime>   
+    	<Status>End Of Show</Status>
+    	<Cinema>AMK CCK CWP J8 Cine Lido DownTown JEM Cathay WM</Cinema>
+    </Moive>
+    <Moive>
+        <Title>Throw Your Thing</Title>
+    	<Rate>R21</Rate>
+    	<Type>3D</Type>
+    	<ShowTime>9.30am 12.10pm 2.50pm 5.30pm 8.20pm 10.15pm 12am</ShowTime>   
+    	<Status>Coming Soon</Status>
+    	<Cinema>AMK CCK CWP J8 Cine Lido DownTown JEM Cathay WM</Cinema>
+    </Moive>
+    <Moive>
+        <Title>Throw Your Dog</Title>
+    	<Rate>R21</Rate>
+    	<Type>3D</Type>
+    	<ShowTime>9.30am 12.10pm 2.50pm 5.30pm 8.20pm 10.15pm 12am</ShowTime>   
+    	<Status>Preview</Status>
+    	<Cinema>AMK CCK CWP J8 Cine Lido DownTown JEM Cathay WM</Cinema>
+    </Moive> 
+</MovieList>

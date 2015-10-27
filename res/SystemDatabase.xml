@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TicketPrice>
+	<Price Time="Day Time" day="Weekday" type="2D">
+		 <Child>6.00</Child>
+		 <Student>7.50</Student>
+		 <Adult>12.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Weekday" type="3D">
+		 <Child>8.00</Child>
+		 <Student>9.50</Student>
+		 <Adult>19.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Weekday" type="iMax">
+		 <Child>7.50</Child>
+		 <Student>8.50</Student>
+		 <Adult>15.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Weekday" type="D-Box">
+		 <Child>12.00</Child>
+		 <Student>14.50</Student>
+		 <Adult>22.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+    <Price Time="MidNight" day="Weekday" type="2D">
+		 <Child>12.00</Child>
+		 <Student>14.50</Student>
+		 <Adult>22.00</Adult>
+		 <SeniorCitizen>12.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Weekday" type="3D">
+		 <Child>18.00</Child>
+		 <Student>19.50</Student>
+		 <Adult>29.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Weekday" type="iMax">
+		 <Child>17.50</Child>
+		 <Student>18.50</Student>
+		 <Adult>25.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Weekday" type="D-Box">
+		 <Child>22.00</Child>
+		 <Student>24.50</Student>
+		 <Adult>32.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>
+	
+	
+	
+	<Price Time="Day Time" day="Weekend" type="2D">
+		 <Child>6.00</Child>
+		 <Student>6.50</Student>
+		 <Adult>12.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Weekend" type="3D">
+		 <Child>8.00</Child>
+		 <Student>9.50</Student>
+		 <Adult>19.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Weekend" type="iMax">
+		 <Child>7.50</Child>
+		 <Student>8.50</Student>
+		 <Adult>15.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Weekend" type="D-Box">
+		 <Child>12.00</Child>
+		 <Student>14.50</Student>
+		 <Adult>22.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+    <Price Time="MidNight" day="Weekend" type="2D">
+		 <Child>12.00</Child>
+		 <Student>14.50</Student>
+		 <Adult>22.00</Adult>
+		 <SeniorCitizen>12.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Weekend" type="3D">
+		 <Child>18.00</Child>
+		 <Student>19.50</Student>
+		 <Adult>29.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Weekend" type="iMax">
+		 <Child>17.50</Child>
+		 <Student>18.50</Student>
+		 <Adult>25.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Weekend" type="D-Box">
+		 <Child>22.00</Child>
+		 <Student>24.50</Student>
+		 <Adult>32.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>
+     
+	
+	
+	<Price Time="Day Time" day="Holiday" type="2D">
+		 <Child>6.00</Child>
+		 <Student>6.50</Student>
+		 <Adult>12.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Holiday" type="3D">
+		 <Child>8.00</Child>
+		 <Student>9.50</Student>
+		 <Adult>19.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Holiday" type="iMax">
+		 <Child>7.50</Child>
+		 <Student>8.50</Student>
+		 <Adult>15.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+	<Price Time="Day Time" day="Holiday" type="D-Box">
+		 <Child>12.00</Child>
+		 <Student>14.50</Student>
+		 <Adult>22.00</Adult>
+		 <SeniorCitizen>4.00</SeniorCitizen>
+	</Price>
+    <Price Time="MidNight" day="Holiday" type="2D">
+		 <Child>12.00</Child>
+		 <Student>14.50</Student>
+		 <Adult>22.00</Adult>
+		 <SeniorCitizen>12.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Holiday" type="3D">
+		 <Child>18.00</Child>
+		 <Student>19.50</Student>
+		 <Adult>29.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Holiday" type="iMax">
+		 <Child>17.50</Child>
+		 <Student>12312423423</Student>
+		 <Adult>25.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>
+	<Price Time="MidNight" day="Holiday" type="D-Box">
+		 <Child>22.00</Child>
+		 <Student>24.50</Student>
+		 <Adult>32.00</Adult>
+		 <SeniorCitizen>14.00</SeniorCitizen>
+	</Price>	        
+		         
+	<Holidays>
+	    <Date>
+	        1 Jan
+	    </Date>
+	    <Date>
+	        19 Feb
+	    </Date>
+	    <Date>
+	        20 Feb
+	    </Date>
+	    <Date>
+	        3 April
+	    </Date>
+	    <Date>
+	        1 May
+	    </Date>
+	    <Date>
+	        1 Jun
+	    </Date>
+	    <Date>
+	        17 Jul
+	    </Date>
+	    <Date>
+	        7 Aug
+	    </Date>
+	    <Date>
+	        9 Aug
+	    </Date>
+	    <Date>
+	        11 Sep
+	    </Date>
+	    <Date>
+	        24 Sep
+	    </Date>
+	    <Date>
+	       10 Nov 
+	    </Date>
+	    <Date>
+	        25 Dec
+	    </Date>
+	</Holidays>
+</TicketPrice>

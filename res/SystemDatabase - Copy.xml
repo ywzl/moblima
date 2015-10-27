@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?> 
+<TicketPrice>
+    <NonMember>
+		<Weekdays>
+		    <Price>
+		        <Day type="2D">
+			        <Child>6</Child>
+			        <Student>6.50</Student>
+			        <Adult>12</Adult>
+		        </Day>
+		        <Day type="3D">
+			        <Child>8</Child>
+			        <Student>9.50</Student>
+			        <Adult>19</Adult>
+		        </Day>
+		        <Day type="iMax">
+			        <Child>7.50</Child>
+			        <Student>8.50</Student>
+			        <Adult>15</Adult>
+		        </Day>
+		        <Day type="D-Box">
+			        <Child>12</Child>
+			        <Student>14.50</Student>
+			        <Adult>22</Adult>
+		        </Day>
+		        
+		        
+		        <Midnight type = "2D">
+		            <Child>13</Child>
+			        <Adult>32</Adult>
+		        </Midnight>
+		         <Midnight type = "3D">
+		            <Child>16</Child>
+			        <Adult>38</Adult>
+		        </Midnight>
+		         <Midnight type = "iMax">
+		            <Child>15</Child>
+			        <Adult>36</Adult>
+		        </Midnight>
+		         <Midnight type = "D-Box">
+		            <Child>24</Child>
+			        <Adult>47</Adult>
+		        </Midnight>
+		    </Price>
+		</Weekdays>
+			
+		<weekEnd>
+		    <Price>
+		        <Day type="2D">
+			        <Child>6</Child>
+			        <Student>6.50</Student>
+			        <Adult>12</Adult>
+		        </Day>
+		        <Day type="3D">
+			        <Child>8</Child>
+			        <Student>9.50</Student>
+			        <Adult>19</Adult>
+		        </Day>
+		        <Day type="iMax">
+			        <Child>7.50</Child>
+			        <Student>8.50</Student>
+			        <Adult>15</Adult>
+		        </Day>
+		        <Day type="D-Box">
+			        <Child>12</Child>
+			        <Student>14.50</Student>
+			        <Adult>22</Adult>
+		        </Day>
+		        
+		        
+		        <Midnight type = "2D">
+		            <Child>13</Child>
+			        <Adult>32</Adult>
+		        </Midnight>
+		         <Midnight type = "3D">
+		            <Child>16</Child>
+			        <Adult>38</Adult>
+		        </Midnight>
+		         <Midnight type = "iMax">
+		            <Child>15</Child>
+			        <Adult>36</Adult>
+		        </Midnight>
+		         <Midnight type = "D-Box">
+		            <Child>24</Child>
+			        <Adult>47</Adult>
+		        </Midnight>
+		    </Price>
+		</weekEnd>
+		
+		<Holiday>
+		    <Price>
+		        <Day type="2D">
+			        <Child>6</Child>
+			        <Student>6.50</Student>
+			        <Adult>12</Adult>
+		        </Day>
+		        <Day type="3D">
+			        <Child>8</Child>
+			        <Student>9.50</Student>
+			        <Adult>19</Adult>
+		        </Day>
+		        <Day type="iMax">
+			        <Child>7.50</Child>
+			        <Student>8.50</Student>
+			        <Adult>15</Adult>
+		        </Day>
+		        <Day type="D-Box">
+			        <Child>12</Child>
+			        <Student>14.50</Student>
+			        <Adult>22</Adult>
+		        </Day>
+		        
+		        
+		        <Midnight type = "2D">
+		            <Child>13</Child>
+			        <Adult>32</Adult>
+		        </Midnight>
+		         <Midnight type = "3D">
+		            <Child>16</Child>
+			        <Adult>38</Adult>
+		        </Midnight>
+		         <Midnight type = "iMax">
+		            <Child>15</Child>
+			        <Adult>36</Adult>
+		        </Midnight>
+		         <Midnight type = "D-Box">
+		            <Child>24</Child>
+			        <Adult>47</Adult>
+		        </Midnight>
+		    </Price>
+		</Holiday>
+	</NonMember>
+</TicketPrice>
+<Holidays>
+    <Date>
+        1 Jan
+    </Date>
+    <Date>
+        19 Feb
+    </Date>
+    <Date>
+        20 Feb
+    </Date>
+    <Date>
+        3 April
+    </Date>
+    <Date>
+        1 May
+    </Date>
+    <Date>
+        1 Jun
+    </Date>
+    <Date>
+        17 Jul
+    </Date>
+    <Date>
+        7 Aug
+    </Date>
+    <Date>
+        9 Aug
+    </Date>
+    <Date>
+        11 Sep
+    </Date>
+    <Date>
+        24 Sep
+    </Date>
+    <Date>
+       10 Nov 
+    </Date>
+    <Date>
+        25 Dec
+    </Date>
+</Holidays>
+
