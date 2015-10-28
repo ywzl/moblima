@@ -5,10 +5,14 @@
  */
 package moblima;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Lloyd
  */
 public class Cineplex {
+    private ArrayList<Cinema> cinemas;
+    private String location;
     
 }
