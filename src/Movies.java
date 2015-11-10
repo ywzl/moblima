@@ -14,9 +14,10 @@ public class Movies implements JSONFile {
     public Movies() {
 //        list = (List<Movie>) load(JSONFile, Movielist);
         list = new ArrayList<Movie>();
-        Movie m = new Movie();
         
         //SPECTRE
+        Movie m = new Movie();
+        m.setMovieId(1);
         m.setTitle("SPECTRE");
         m.setDirector("Sam Mendes");
         m.setSynopsis("In SPECTRE, a cryptic message from Bond’s past sends him on a trail to uncover a sinister organization. While M battles political forces to keep the secret service alive, Bond peels back the layers of deceit to reveal the terrible truth behind SPECTRE.");
@@ -41,6 +42,7 @@ public class Movies implements JSONFile {
         
         //Legend
         m = new Movie();
+        m.setMovieId(2);
         m.setTitle("Legend");
         m.setDirector("Brian Helgeland");
         m.setSynopsis("From Academy Award® winner Brian Helgeland (L.A. Confidential, Mystic River) and Working Title (The Theory of Everything) comes the true story of the rise and fall of London’s most notorious gangsters, Reggie and Ronnie Kray, both portrayed by Tom Hardy in a powerhouse double performance. Together, the Kray Twins take over the city. But as their reign expands, powerstruggles, fierce madness, and a woman diminishes their bond; the weak link that could cause their empire to collapse. Legend is a classic crime thriller taking us into the secret history of the 1960s and the extraordinary events that secured the infamy of the Kray twins.");
@@ -60,6 +62,7 @@ public class Movies implements JSONFile {
         
         //The Martian
         m = new Movie();
+        m.setMovieId(3);
         m.setTitle("The Martian");
         m.setDirector("Ridley Scott");
         m.setSynopsis("During a manned mission to Mars, Astronaut Mark Watney (Matt Damon) is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive. Millions of miles away, NASA and a team of international scientists work tirelessly to bring “the Martian” home, while his crewmates concurrently plot a daring, if not impossible rescue mission. As these stories of incredible bravery unfold, the world comes together to root for Watney’s safe return. Based on a best-selling novel, and helmed by master director Ridley Scott, THE MARTIAN features a star studded cast that includes Jessica Chastain, Kristen Wiig, Kate Mara, Michael Peña, Jeff Daniels, Chiwetel Ejiofor, and Donald Glover.");
@@ -90,6 +93,7 @@ public class Movies implements JSONFile {
         
         //Burnt 
         m = new Movie();
+        m.setMovieId(4);
         m.setTitle("Burnt");
         m.setDirector("John Wells");
         m.setSynopsis("Chef Adam Jones (Bradley Cooper) had it all—and lost it. A two-star Michelin rockstar with the bad habits to match, the former enfant terrible of the Paris restaurant scene did everything different every time out, and only ever cared about the thrill of creating explosions of taste. To land his own kitchen and that third elusive Michelin star though, he’ll need the best of the best on his side, including the beautiful Helene (Sienna Miller). Burnt is a remarkably funny and emotional story about the love of food, the love between two people, and the power of second chances.");
@@ -118,6 +122,16 @@ public class Movies implements JSONFile {
 
     public void addMovie(Movie movie) {
         list.add(movie);
+        save(JSONFile, list);
+    }
+    
+    public void addReviews(int movieId, Review review) {
+        for (Movie movie : list) {
+            if (movie.getMovieId() == movieId) {
+                movie.getReviews().add(review);
+                break;
+            }
+        }
         save(JSONFile, list);
     }
 

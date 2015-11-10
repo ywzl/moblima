@@ -84,6 +84,7 @@ public class Movie {
                 }
     }
 
+    private int movieId;
     private String title;
     private String synopsis;
     private String director;
@@ -96,7 +97,8 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, String synopsis, String director, List<String> casts, String genre, AgeRating ageRating, ShowingStatus showingStatus, List<Review> reviews) {
+    public Movie(int movieId, String title, String synopsis, String director, List<String> casts, String genre, AgeRating ageRating, ShowingStatus showingStatus, List<Review> reviews) {
+        this.movieId = movieId;
         this.title = title;
         this.synopsis = synopsis;
         this.director = director;
@@ -105,8 +107,8 @@ public class Movie {
         this.ageRating = ageRating;
         this.showingStatus = showingStatus;
         this.reviews = reviews;
-    }    
-    
+    }
+
     public void displayMovieDetails() {
         System.out.println(title + " (" + ageRating.name() + ")");
         System.out.println("- DETAILS -");
@@ -258,5 +260,19 @@ public class Movie {
      */
     public void setShowingStatus(ShowingStatus showingStatus) {
         this.showingStatus = showingStatus;
+    }
+
+    /**
+     * @return the movieId
+     */
+    public int getMovieId() {
+        return movieId;
+    }
+
+    /**
+     * @param movieId the movieId to set
+     */
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 }
