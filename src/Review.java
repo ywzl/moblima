@@ -14,12 +14,6 @@ public class Review {
         this.text = text;
     }
     
-//    public void displayReview() {
-//        System.out.println(getMovieGoer());
-//        System.out.println(getRating());
-//        System.out.println(getText());
-//    }
-
     /**
      * @return the movieGoer
      */

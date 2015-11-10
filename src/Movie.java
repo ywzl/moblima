@@ -2,7 +2,14 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class Movie {
-
+    
+    public static void main(String args[]) {
+        Movie m = new Movie();
+        m.setAgeRating(AgeRating.R21);
+        m.setAgeRating(AgeRating.values()[0]);
+        System.out.println(m.ageRating);
+    }
+    
     public enum AgeRating {
         G, PG, PG13, NC16, M18, R21
     }
@@ -29,10 +36,11 @@ public class Movie {
     }
     
     public void displayMovieDetails() {
-        System.out.println(" - DETAILS -");
+        System.out.println(title + " (" + ageRating.name() + ")");
+        System.out.println("- DETAILS -");
         System.out.print("Cast: ");
         String delimiter = "";
-        DecimalFormat df = new DecimalFormat("#.####");
+        DecimalFormat df = new DecimalFormat("#.#");
         for (int i = 0; i < casts.size(); i++) {
             System.out.print(delimiter + casts.get(i));
             delimiter = ", ";
@@ -49,7 +57,9 @@ public class Movie {
         System.out.println("- SYNOPSIS -\n" + synopsis + "\n");
         System.out.println("- REVIEWS -");
         for (Review review : reviews) {
-            System.out.println("Review by: " + review.getMovieGoer() + "\tRating:" + review.getRating() + "/5\n" + review.getText() + "\n");
+            System.out.println("Review by: " + review.getMovieGoer() 
+                    + "\tRating:" + review.getRating() 
+                    + "/5\n" + review.getText() + "\n");
         }
     }
     
