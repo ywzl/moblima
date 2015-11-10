@@ -95,7 +95,7 @@ public class Movie {
 
     public Movie() {
     }
-
+    
     public void displayMovieDetails() {
         System.out.println(title + " (" + ageRating.name() + ")");
         System.out.println("- DETAILS -");
