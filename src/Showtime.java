@@ -20,12 +20,12 @@ public class Showtime {
 		// create booking
 	}
 	
-	public void assignSeat(int row, int col) {
-		getSeat(row, col).assignSeat();
-	}
+//	public void assignSeat(int row, int col) {
+//		getSeat(row, col).assignSeat();
+//	}
 	
-	public boolean seatTaken(int row, int col) {
-		return getSeat(row, col).isTaken();
-	}
+//	public boolean seatTaken(int row, int col) {
+//		return getSeat(row, col).isTaken();
+//	}
 
 }

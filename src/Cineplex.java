@@ -1,47 +1,82 @@
 import java.util.List;
 
 public class Cineplex {
-	private String name;
-	private List<Integer> movieListing;
-	private List<Showtime> showtimes;
-	private List<Cinema> cinemas;
-	
-	public Cineplex() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public void addMovie(Integer index) {
-		movieListing.add(index);
-	}
-	
-	public List<Integer> getMovieListing() {
-		return movieListing;
-	}
-	
-	public void addShowtime(Showtime showtime) {
-		showtimes.add(showtime);
-	}
-	
-	public Showtime getShowtime(int index) {
-		return showtimes.get(index);
-	}
-	
-	public void displayShowtimes() {
-		// prints out all showtime + movie
-	}
-	
-	public void addCinema(Cinema cinema) {
-		cinemas.add(cinema);
-	}
-	
-	public void displayCinemas() {
-		for (int i=0; i<cinemas.size(); i++) {
-			System.out.println(" " + i + ": " + cinemas.get(i).getName());
-		}
-	}
 
-	public String getName() {
-		return name;
-	}
+    private String name;
+    private List<MovieStatus> movieListings;
+    private List<Showtime> showtimes;
+    private List<Cinema> cinemas;
+
+    public Cineplex() {
+    }
+
+    public Cineplex(String name, List<MovieStatus> movieListings, List<Showtime> showtimes, List<Cinema> cinemas) {
+        this.name = name;
+        this.movieListings = movieListings;
+        this.showtimes = showtimes;
+        this.cinemas = cinemas;
+    }
+
+    public void displayCinemas() {
+        for (int i = 0; i < getCinemas().size(); i++) {
+            System.out.println(" " + i + ": " + getCinemas().get(i).getName());
+        }
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the movieListings
+     */
+    public List<MovieStatus> getMovieListings() {
+        return movieListings;
+    }
+
+    /**
+     * @param movieListings the movieListings to set
+     */
+    public void setMovieListings(List<MovieStatus> movieListings) {
+        this.movieListings = movieListings;
+    }
+
+    /**
+     * @return the showtimes
+     */
+    public List<Showtime> getShowtimes() {
+        return showtimes;
+    }
+
+    /**
+     * @param showtimes the showtimes to set
+     */
+    public void setShowtimes(List<Showtime> showtimes) {
+        this.showtimes = showtimes;
+    }
+
+    /**
+     * @return the cinemas
+     */
+    public List<Cinema> getCinemas() {
+        return cinemas;
+    }
+
+    /**
+     * @param cinemas the cinemas to set
+     */
+    public void setCinemas(List<Cinema> cinemas) {
+        this.cinemas = cinemas;
+    }
 
 }
