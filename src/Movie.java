@@ -95,6 +95,17 @@ public class Movie {
 
     public Movie() {
     }
+
+    public Movie(String title, String synopsis, String director, List<String> casts, String genre, AgeRating ageRating, ShowingStatus showingStatus, List<Review> reviews) {
+        this.title = title;
+        this.synopsis = synopsis;
+        this.director = director;
+        this.casts = casts;
+        this.genre = genre;
+        this.ageRating = ageRating;
+        this.showingStatus = showingStatus;
+        this.reviews = reviews;
+    }    
     
     public void displayMovieDetails() {
         System.out.println(title + " (" + ageRating.name() + ")");
