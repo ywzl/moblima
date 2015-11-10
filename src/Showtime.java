@@ -1,31 +1,64 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Showtime {
-	private String movieTitle;
+	private int movieIndex;
 	private Date session;
 	private List<Ticket> ticketTypes;
 	private List<Booking> bookings;
 	private Seat[][] seats;
 	
-	public Showtime(Cinema cinema, String movieTitle, Date session, List<Ticket> ticketTypes) {
+	public Showtime(Cinema cinema, int movieIndex, Date session) {
+		this.movieIndex = movieIndex;
+		this.session = session;
+		this.ticketTypes = new ArrayList<Ticket>();
 		
+		int rows = cinema.getRows();
+		int cols = cinema.getCols();
+		seats = new Seat[rows][cols];
 		
+		for (int i=0; i<rows; i++) {
+			for (int j=0; j<cols; j++) {
+				seats[i][j] = new Seat(i, j);
+			}
+		}
 	}
 	
-	public void addBooking() {
-		// collect relevant details
-		// check if seats taken
-		// assign seats
-		// create booking
+	public int getMovieIndex() {
+		return movieIndex;
 	}
 	
-//	public void assignSeat(int row, int col) {
-//		getSeat(row, col).assignSeat();
-//	}
+	public void addBooking(String name, int mobile, String email, Ticket ticketType, List<Seat> seats) {
+		String XXX = "XXX";
+		Booking booking = new Booking(name, mobile, email, ticketType, seats, XXX);
+		
+		for (Seat seat : seats) {
+			assignSeat(seat.getRow(), seat.getCol());
+		}
+		bookings.add(booking);
+	}
 	
-//	public boolean seatTaken(int row, int col) {
-//		return getSeat(row, col).isTaken();
-//	}
+	public void assignSeat(int row, int col) {
+		seats[row][col].assignSeat();
+	}
+	
+	public boolean seatTaken(int row, int col) {
+		return seats[row][col].isTaken();
+	}
+
+	/**
+	 * @return the ticketTypes
+	 */
+	public List<Ticket> getTicketTypes() {
+		return ticketTypes;
+	}
+
+	/**
+	 * @param ticketTypes the ticketTypes to set
+	 */
+	public void addTicketTypes(Ticket ticket) {
+		ticketTypes.add(ticket);
+	}
 
 }

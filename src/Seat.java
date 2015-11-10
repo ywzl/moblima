@@ -5,8 +5,8 @@ public class Seat {
 	private boolean taken;
 	
 	public Seat(int row, int col) {
-		this.row = row;
-		this.col = col;
+		this.setRow(row);
+		this.setCol(col);
 	}
 	
 	public void assignSeat() {
@@ -15,6 +15,34 @@ public class Seat {
 	
 	public boolean isTaken() {
 		return taken;
+	}
+
+	/**
+	 * @return the row
+	 */
+	public int getRow() {
+		return row;
+	}
+
+	/**
+	 * @param row the row to set
+	 */
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	/**
+	 * @return the col
+	 */
+	public int getCol() {
+		return col;
+	}
+
+	/**
+	 * @param col the col to set
+	 */
+	public void setCol(int col) {
+		this.col = col;
 	}
 
 }

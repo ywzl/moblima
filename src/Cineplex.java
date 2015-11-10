@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cineplex {
@@ -22,6 +23,21 @@ public class Cineplex {
             System.out.println(" " + i + ": " + getCinemas().get(i).getName());
         }
     }
+    
+	public List<Showtime> getShowtimesForMovie(int movieIndex) {
+		List<Showtime> movieShowtimes = new ArrayList<Showtime>();
+		for (int i=0; i<showtimes.size(); i++) {
+			Showtime showtime = showtimes.get(i); 
+			if (showtime.getMovieIndex() == movieIndex) {
+				movieShowtimes.add(showtime);
+			}
+		}
+		return movieShowtimes;
+	}
+	
+	public Showtime getShowtime(int index) {
+		return showtimes.get(index);
+	}
 
     /**
      * @return the name

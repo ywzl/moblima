@@ -1,3 +1,6 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Booking {
@@ -8,8 +11,15 @@ public class Booking {
 	private Ticket ticketType;
 	private List<Seat> seats;
 	
-	public Booking() {
-		// TODO Auto-generated constructor stub
+	public Booking(String name, int mobile, String email, Ticket ticketType, List<Seat> seats, String XXX) {
+		this.name = name;
+		this.mobile = mobile;
+		this.email = email;
+		this.ticketType = ticketType;
+		this.seats = seats;
+		
+		DateFormat df = new SimpleDateFormat("YYYYMMDDhhmm");
+		this.TID = XXX + df.format(new Date());
 	}
 	
 	public int getTotalAmount() {
