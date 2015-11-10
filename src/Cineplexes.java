@@ -11,7 +11,7 @@ public class Cineplexes implements JSONFile{
 	Type Cineplexlist = new TypeToken<ArrayList<Cineplex>>(){}.getType();
 
 	public Cineplexes() {
-		list = (List<Cineplex>) load(JSONFile, Cineplexlist);
+		list = (List<Cineplex>) load(JSONFile, Cineplexlist);		
 	}
 	
 	public void addCineplex(Cineplex cineplex) {

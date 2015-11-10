@@ -27,21 +27,32 @@ public class Admin {
 			int cineplexIndex = choice;
 			Cineplex cineplex = cineplexes.getCineplex(cineplexIndex);
 			
-			System.out.println(cineplex.getName());
-			
-			System.out.println(" 0: Movie Listing");
-			System.out.println(" 1: Showtimes");
-			System.out.println("-1: Exit");
-			System.out.print("Choice: ");
-			choice = sc.nextInt();
-			
-			switch (choice) {
-				case 0:
-					//displayMovieListing(cineplex.getMovieListings(), movies.getList());
-					
-						
-					
-					break;
+			while(choice != -1) {
+				System.out.println("==" + cineplex.getName() + "==");
+				
+				System.out.println(" 0: Movie Listing");
+				System.out.println(" 1: Showtimes");
+				System.out.println("-1: Exit");
+				System.out.print("Choice: ");
+				choice = sc.nextInt();
+				
+				switch (choice) {
+					case 0:
+						while(choice != -1) {
+							displayMovieListing(cineplex.getMovieListings(), movies.getRecentMovies());
+							System.out.println(" 0: Add Movie");
+							System.out.print("Choice: ");
+							choice = sc.nextInt();
+							
+							if (choice == 0) {
+								movies.displayRecentMovies();
+								System.out.print("Choice: ");
+								choice = sc.nextInt();
+								cineplexes.addMovieListing(cineplexIndex, choice);
+							}
+						}
+						break;
+				}
 			}
 			
 			
