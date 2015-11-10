@@ -125,7 +125,7 @@ public class Movies implements JSONFile {
         save(JSONFile, list);
     }
     
-    public void addReviews(int movieId, Review review) {
+    public void addReview(int movieId, Review review) {
         for (Movie movie : list) {
             if (movie.getMovieId() == movieId) {
                 movie.getReviews().add(review);

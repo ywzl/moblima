@@ -41,43 +41,39 @@ public class MOBLIMAUser {
                                     System.out.println("");
                                     Movie m = recentMovies.get(movieOption - 1);
                                     m.displayMovieDetails();
-                                    System.out.print("Press 1 to Add Review else ANY key to go back: ");
+                                    System.out.print("Press 1 to Add Review else press ENTER to go back: ");
 
-                                    int reviewOption = 0;
-                                    try {
-                                        reviewOption = scanner.nextInt();
-                                        if (reviewOption == 1) {
-                                            System.out.println("- NEW REVIEW -");
-                                            String name = "";
-                                            int rating = 0;
-                                            String reviewText = "";
-                                            scanner.nextLine(); //flush
-                                            System.out.print("Enter your name: ");
-                                            name = scanner.nextLine();
-                                            System.out.println("NAME: "+ name);
-                                            do {
-                                                System.out.print("Enter your rating (out of 5): ");
-                                                try {
-                                                    rating = scanner.nextInt();
-                                                } catch (InputMismatchException inputMismatchException) {
-                                                    rating = -1;
-                                                    scanner.next();
-                                                }
-                                                if (rating < 0 || rating > 5) {
-                                                    System.out.println("Please enter a rating within 0 to 5 (inclusive).");
-                                                }
-                                            } while (rating < 0 || rating > 5);
+                                    scanner.nextLine();
+                                    String line = scanner.nextLine();
+                                    if (line.equals("1")) {
+                                        System.out.println("- NEW REVIEW -");
+                                        String name = "";
+                                        int rating = 0;
+                                        String reviewText = "";
+                                        System.out.print("Enter your name: ");
+                                        name = scanner.nextLine();
+                                        System.out.println("NAME: " + name);
+                                        do {
+                                            System.out.print("Enter your rating (out of 5): ");
+                                            try {
+                                                rating = scanner.nextInt();
+                                            } catch (InputMismatchException inputMismatchException) {
+                                                rating = -1;
+                                                scanner.next();
+                                            }
+                                            if (rating < 0 || rating > 5) {
+                                                System.out.println("Please enter a rating within 0 to 5 (inclusive).");
+                                            }
+                                        } while (rating < 0 || rating > 5);
 
-                                            System.out.print("Enter your review: ");
-                                            scanner.nextLine(); //flush
-                                            reviewText = scanner.nextLine();
-                                            System.out.println("REVIEW: " + reviewText);
+                                        System.out.print("Enter your review: ");
+                                        scanner.nextLine(); //flush
+                                        reviewText = scanner.nextLine();
+                                        System.out.println("REVIEW: " + reviewText);
 
-                                            Review review = new Review(name, rating, reviewText);
-                                        }
-                                    } catch (InputMismatchException inputMismatchException) {
-                                        scanner.nextLine();
-                                        break;
+                                        Review review = new Review(name, rating, reviewText);
+                                        movies.addReview(m.getMovieId(), review);
+                                        System.out.println("Thank you " + name + "! Your review has been submitted!");
                                     }
 
                                 } else if (movieOption < 0 || movieOption > recentMovies.size()) {
