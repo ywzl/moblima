@@ -5,17 +5,17 @@ import java.util.List;
 public class Cineplex {
 
     private String name;
-    private List<MovieStatus> movieListings;
+    private List<Integer> movieListings;
     private List<Showtime> showtimes;
     private List<Cinema> cinemas;
 
     public Cineplex() {
     }
 
-    public Cineplex(String name, List<MovieStatus> movieListings, List<Showtime> showtimes, List<Cinema> cinemas) {
+    public Cineplex(String name, List<Cinema> cinemas) {
         this.name = name;
-        this.movieListings = movieListings;
-        this.showtimes = showtimes;
+        this.movieListings = new ArrayList<Integer>();
+        this.showtimes = new ArrayList<Showtime>();
         this.cinemas = cinemas;
     }
 
@@ -34,6 +34,10 @@ public class Cineplex {
             }
         }
         return movieShowtimes;
+    }
+    
+    public void addMovieListing(int movieIndex) {
+    	movieListings.add(movieIndex);
     }
 
     public Showtime getShowtime(int index) {
@@ -57,14 +61,14 @@ public class Cineplex {
     /**
      * @return the movieListings
      */
-    public List<MovieStatus> getMovieListings() {
+    public List<Integer> getMovieListings() {
         return movieListings;
     }
 
     /**
      * @param movieListings the movieListings to set
      */
-    public void setMovieListings(List<MovieStatus> movieListings) {
+    public void setMovieListings(List<Integer> movieListings) {
         this.movieListings = movieListings;
     }
 

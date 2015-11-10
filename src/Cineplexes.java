@@ -22,6 +22,12 @@ public class Cineplexes implements JSONFile{
 		return list.get(index);
 	}
 	
+	public void addMovieListing(int cineplexIndex, int movieIndex) {
+		Cineplex cineplex = list.get(cineplexIndex);
+		cineplex.addMovieListing(movieIndex);
+		save(JSONFile, list);
+	}
+	
 	public void addBooking(int cineplexIndex, int showtimeIndex, String name, int mobile, String email, Ticket ticketType, List<Seat> seats) {
 		Cineplex cineplex = list.get(cineplexIndex);
 		Showtime showtime = cineplex.getShowtime(showtimeIndex);
@@ -33,7 +39,6 @@ public class Cineplexes implements JSONFile{
 		Cineplex cineplex = list.get(cineplexIndex);
 		Showtime showtime = cineplex.getShowtime(showtimeIndex);
 		showtime.addTicketTypes(new Ticket(ticketType, price));
-		
 		save(JSONFile, list);
 	}
 	

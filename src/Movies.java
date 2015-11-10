@@ -22,6 +22,20 @@ public class Movies implements JSONFile {
 		return list.get(index);
 	}
 	
+	public List<Movie> getList() {
+		return list;
+	}
+	
+	public List<Movie> getShowing() {
+		List<Movie> listShowing = new ArrayList<Movie>();
+		for (Movie movie : list) {
+			if (movie.getShowingStatus() != Movie.ShowingStatus.END_OF_SHOWING) {
+				listShowing.add(movie);
+			}
+		}
+		return listShowing;
+	}
+	
 	public void displayList() {
 		for (int i=0; i<list.size(); i++) {
 			System.out.println(" " + i + ": " + list.get(i).getTitle());
