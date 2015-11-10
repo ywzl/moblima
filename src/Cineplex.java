@@ -12,11 +12,11 @@ public class Cineplex {
     public Cineplex() {
     }
 
-    public Cineplex(String name, List<Cinema> cinemas) {
+    public Cineplex(String name) {
         this.name = name;
         this.movieListings = new ArrayList<Integer>();
         this.showtimes = new ArrayList<Showtime>();
-        this.cinemas = cinemas;
+        this.cinemas = new ArrayList<Cinema>();
     }
 
     public void displayCinemas() {
@@ -42,6 +42,14 @@ public class Cineplex {
 
     public Showtime getShowtime(int index) {
         return showtimes.get(index);
+    }
+    
+    public Cinema getCinema(int index) {
+    	return cinemas.get(index);
+    }
+    
+    public void addCinema(String name, int row, int col) {
+    	cinemas.add(new Cinema(name, row, col));
     }
 
     /**
@@ -91,13 +99,6 @@ public class Cineplex {
      */
     public List<Cinema> getCinemas() {
         return cinemas;
-    }
-
-    /**
-     * @param cinemas the cinemas to set
-     */
-    public void setCinemas(List<Cinema> cinemas) {
-        this.cinemas = cinemas;
     }
 
 }
