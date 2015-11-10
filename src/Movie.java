@@ -3,13 +3,6 @@ import java.util.List;
 
 public class Movie {
     
-    public static void main(String args[]) {
-        Movie m = new Movie();
-        m.setAgeRating(AgeRating.R21);
-        m.setAgeRating(AgeRating.values()[0]);
-        System.out.println(m.ageRating);
-    }
-    
     public enum AgeRating {
         G, PG, PG13, NC16, M18, R21
     }
