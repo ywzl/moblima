@@ -21,6 +21,7 @@ public class MOBLIMAUser {
             System.out.print("Select option: ");
             try {
                 option = scanner.nextInt();
+                System.out.println("");
                 switch (option) {
                     case 1:
                         break;
@@ -37,8 +38,10 @@ public class MOBLIMAUser {
                             try {
                                 movieOption = scanner.nextInt();
                                 if (movieOption > 0 && movieOption <= recentMovies.size()) {
+                                    System.out.println("");
                                     recentMovies.get(movieOption-1).displayMovieDetails();
-                                    System.out.print("Press ENTER to continue.");
+                                    System.out.println("Press ENTER to continue.");
+                                    scanner.nextLine();
                                     scanner.nextLine();
                                 } else if (movieOption < 0 || movieOption > recentMovies.size()) {
                                     System.out.println("Invalid option! Please enter a valid movie number.");
@@ -48,6 +51,7 @@ public class MOBLIMAUser {
                                 scanner.next();
                             }
                         } while (movieOption != 0);
+                        System.out.println("");
                         break;
                     case 3:
                         exit = true;

@@ -110,7 +110,7 @@ public class Movie {
     public void displayMovieDetails() {
         System.out.println(title + " (" + ageRating.name() + ")");
         System.out.println("- DETAILS -");
-        System.out.print("Showing status: " + showingStatus.toString());
+        System.out.println("Showing status: " + showingStatus.toString());
         System.out.print("Cast: ");
         String delimiter = "";
         DecimalFormat df = new DecimalFormat("#.#");
@@ -118,7 +118,7 @@ public class Movie {
             System.out.print(delimiter + casts.get(i));
             delimiter = ", ";
         }
-        System.out.println("Director: " + director);
+        System.out.println("\nDirector: " + director);
         System.out.println("Genre: " + genre);
         System.out.print("Overall rating: ");
         if (reviews.size() > 1) {
@@ -127,8 +127,11 @@ public class Movie {
             System.out.print("N/A");
         }
         System.out.println("");
-        System.out.println("- SYNOPSIS -\n" + synopsis + "\n");
+        System.out.println("- SYNOPSIS -\n" + synopsis);
         System.out.println("- REVIEWS -");
+        if (reviews.isEmpty()) {
+            System.out.println("No reviews available.");
+        }
         for (Review review : reviews) {
             System.out.println("Review by: " + review.getMovieGoer()
                     + "\tRating:" + review.getRating()
