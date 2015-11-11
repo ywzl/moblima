@@ -8,6 +8,10 @@ public class Ticket {
 		this.price = price;
 	}
 	
+	public void displayTicket() {
+		System.out.println(type + " - $" + price);
+	}
+	
 	public String getType() {
 		return type;
 	}

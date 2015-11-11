@@ -1,6 +1,5 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -59,19 +58,23 @@ public class Showtime {
 	public boolean seatTaken(int row, int col) {
 		return seats[row][col].isTaken();
 	}
+	
+	public void displayTicketTypes() {
+		for (int i=0; i<ticketTypes.size(); i++) {
+			System.out.print((i+1) + ". ");
+			ticketTypes.get(i).displayTicket();
+		}
+	}
+	
+	public Ticket getTicket(int ticketIndex) {
+		return ticketTypes.get(ticketIndex);
+	}
 
 	/**
 	 * @return the ticketTypes
 	 */
 	public List<Ticket> getTicketTypes() {
 		return ticketTypes;
-	}
-
-	/**
-	 * @param ticketTypes the ticketTypes to set
-	 */
-	public void addTicketTypes(Ticket ticket) {
-		ticketTypes.add(ticket);
 	}
 
 }

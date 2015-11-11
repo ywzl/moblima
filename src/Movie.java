@@ -94,9 +94,6 @@ public class Movie {
     private ShowingStatus showingStatus;
     private List<Review> reviews;
 
-    public Movie() {
-    }
-
     public Movie(int movieId, String title, String synopsis, String director, List<String> casts, String genre, AgeRating ageRating, ShowingStatus showingStatus, List<Review> reviews) {
         this.movieId = movieId;
         this.title = title;
@@ -149,6 +146,7 @@ public class Movie {
         overallRating = overallRating / reviews.size();
         return overallRating;
     }
+    
 
     /**
      * @return the title

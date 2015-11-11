@@ -31,9 +31,9 @@ public class MOBLIMAAdmin {
         do {
             System.out.println("- MOBLIMA Admin -");
             System.out.println("Select an option below: ");
-            System.out.println("1. Add new movie");
-            System.out.println("2. Cineplex Listing");
-            System.out.println("3. Holiday Listing");
+            System.out.println("1. Movies");
+            System.out.println("2. Cineplexes");
+            System.out.println("3. Holidays");
             System.out.println("4. Exit");
             System.out.print("Select option: ");
             try {
@@ -42,47 +42,161 @@ public class MOBLIMAAdmin {
                 
                 switch (option) {
                     case 1:
-                    	int newMovieId = movies.getNewMovieId();
-                    	scanner.nextLine();
-                    	System.out.println();
-                    	
-                    	System.out.print("Title: ");
-                    	String title = scanner.nextLine();
-                    	
-                    	System.out.print("Synopsis: ");
-                    	String synopsis = scanner.nextLine();
-                    	
-                    	System.out.print("Director: ");
-                    	String director = scanner.nextLine();
-                    	
-                    	System.out.print("Genre: ");
-                    	String genre = scanner.nextLine();
-                    	
-                		System.out.println("Cast(separate by , ): ");
-                		List<String> casts = Arrays.asList(scanner.nextLine().split(","));
-                		
-                		// For enum, need to use capitals and _ for spaces. Not sure how to solve this
-                		System.out.print("Rating (");
-                		for (Movie.AgeRating rating : Movie.AgeRating.values()) {
-                		    System.out.print(rating + " ");
-                		}
-                		System.out.print("): ");
-                		Movie.AgeRating rating = Movie.AgeRating.valueOf(scanner.nextLine());
-                		
-                		System.out.print("Showing Status (");
-                		for (Movie.ShowingStatus status : Movie.ShowingStatus.values()) {
-                		    System.out.print(status + " ");
-                		}
-                		System.out.print("): ");
-                		Movie.ShowingStatus status = Movie.ShowingStatus.valueOf(scanner.nextLine());
-                		
-                		List<Review> reviews = new ArrayList<Review>();
-                		
-                		Movie newMovie = new Movie(newMovieId, title, synopsis, director, casts, genre, rating, status, reviews);
-                    	movies.addMovie(newMovie);
+                    	int movieOption = -1;
+                    	do {
+                    		System.out.println("- Movies Options -");                    		
+                    		System.out.println("1. list All Movies");
+                    		System.out.println("2. List [Now Showing]");
+                    		System.out.println("3. List [End of Showing]");
+                    		System.out.println("4. Add Movie");
+                    		System.out.println("5. Edit Movie");
+                            System.out.print("Select option (0 to go back): ");
+                            movieOption = scanner.nextInt();
+                            System.out.println();
+                            List<Movie.ShowingStatus> statuses;
+                            
+                            switch (movieOption) {
+                            	case 1:
+                            		System.out.println("- All Movies -");
+                            		movies.displayListStatus();
+                            		break;
+                            		
+                            	case 2:
+                            		System.out.println("- Now Showing -");
+                            		statuses = new ArrayList<Movie.ShowingStatus>();
+                            		statuses.add(Movie.ShowingStatus.NOW_SHOWING);
+                            		movies.displayFilteredList(statuses);
+                            		break;
+                            		
+                            	case 3:
+                            		statuses = new ArrayList<Movie.ShowingStatus>();
+                            		statuses.add(Movie.ShowingStatus.END_OF_SHOWING);
+                            		System.out.println("- End of Showing -");
+                            		movies.displayFilteredList(statuses);
+                            		break;
+                            		
+                            	case 4:
+                                	int newMovieId = movies.getNewMovieId();
+                                	scanner.nextLine();
+                                	
+                                	System.out.print("Title: ");
+                                	String title = scanner.nextLine();
+                                	
+                                	System.out.print("Synopsis: ");
+                                	String synopsis = scanner.nextLine();
+                                	
+                                	System.out.print("Director: ");
+                                	String director = scanner.nextLine();
+                                	
+                                	System.out.print("Genre: ");
+                                	String genre = scanner.nextLine();
+                                	
+                            		System.out.println("Cast(separate by , ): ");
+                            		List<String> casts = Arrays.asList(scanner.nextLine().split(","));
+                            		
+                            		// For enum, need to use capitals and _ for spaces. Not sure how to solve this
+                            		System.out.print("Rating (");
+                            		for (Movie.AgeRating rating : Movie.AgeRating.values()) {
+                            		    System.out.print(rating + " ");
+                            		}
+                            		System.out.print("): ");
+                            		Movie.AgeRating rating = Movie.AgeRating.valueOf(scanner.nextLine());
+                            		
+                            		System.out.print("Showing Status (");
+                            		for (Movie.ShowingStatus status : Movie.ShowingStatus.values()) {
+                            		    System.out.print(status + " ");
+                            		}
+                            		System.out.print("): ");
+                            		Movie.ShowingStatus status = Movie.ShowingStatus.valueOf(scanner.nextLine());
+                            		
+                            		List<Review> reviews = new ArrayList<Review>();
+                            		
+                            		Movie newMovie = new Movie(newMovieId, title, synopsis, director, casts, genre, rating, status, reviews);
+                                	movies.addMovie(newMovie);
+                                	break;
+                                
+                            	case 5:
+                            		System.out.println("- Edit Movie -");
+                            		movies.displayListStatus();
+                            		System.out.print("Select Movie to edit: ");
+                            		int movieIndex = scanner.nextInt()-1;
+                            		Movie movie = movies.getMovie(movieIndex);
+                            		int editOption = -1;
+                            		do {
+                            			System.out.println("- Editing: " + movie.getTitle() + " -");
+                                		System.out.println("1. Title: " + movie.getTitle());
+                                		System.out.println("2. Status: " + movie.getShowingStatus());
+                                		System.out.println("3. Rating: " + movie.getAgeRating());
+                                		System.out.println("4. Cast: " + movie.getCasts());
+                                		System.out.println("5. Director: " + movie.getDirector());
+                                		System.out.println("6. Synopsis: " + movie.getSynopsis());
+                                		System.out.print("Item to edit (0 to go back): ");
+                                		editOption = scanner.nextInt();
+                                		scanner.nextLine();
+                                		
+                                		switch (editOption) {
+                                			case 1:
+                                				System.out.print("New Title: ");
+                                				String newTitle = scanner.nextLine();
+                                				movie.setTitle(newTitle);
+                                				movies.updateMovie(movieIndex, movie);
+                                				break;
+                                				
+                                			case 2:
+                                				Movie.ShowingStatus newStatus = chooseStatus();
+                                				movie.setShowingStatus(newStatus);
+                                				movies.updateMovie(movieIndex, movie);
+                                				break;
+                                				
+                                			case 3:
+                                				Movie.AgeRating newRating = chooseRating();
+                                				movie.setAgeRating(newRating);
+                                				movies.updateMovie(movieIndex, movie);
+                                				break;
+                                				
+                                			case 4:
+                                        		System.out.println("Cast(separate by , ): ");
+                                        		List<String> newCast = Arrays.asList(scanner.nextLine().split(","));
+                                        		movie.setCasts(newCast);
+                                        		movies.updateMovie(movieIndex, movie);
+                                        		break;
+                                        		
+                                			case 5:
+                                				System.out.print("New Director: ");
+                                				String newDirector = scanner.nextLine();
+                                				movie.setTitle(newDirector);
+                                				movies.updateMovie(movieIndex, movie);
+                                				break;
+                                				
+                                			case 6:
+                                				System.out.print("New Synopsis: ");
+                                				String newSynopsis = scanner.nextLine();
+                                				movie.setTitle(newSynopsis);
+                                				movies.updateMovie(movieIndex, movie);
+                                				break;
+                                				
+                                			case 0:
+                                				break;
+                                				
+                                			default:
+                                                System.out.println("Invalid option! Please select again!");
+                                				break;
+                                		}
+                            			
+                            		} while (editOption != 0);
+                            		System.out.println();
+                            		break;
+                            		
+                            	case 0:
+                    				break;
+                    			default:
+                                    System.out.println("Invalid option! Please select again!");
+                    				break;
+                            }
+
+                    	} while (movieOption != 0);
                     	break;
-                        
-                        
+
                     case 2:
                     	int cineplexChoice = -1;
                     	int movieId;
@@ -113,7 +227,7 @@ public class MOBLIMAAdmin {
                                         	switch(cineplexOption) {
                                         		case 1:
                                         			System.out.println("- Movie Listing for " + cineplex.getName() + " -");
-                                        			int movieOption = -1;
+                                        			movieOption = -1;
                                         			do {
                                         				movieList = getMovieList(cineplex.getMovieListings());
                                         				displayMovieList(movieList);
@@ -283,8 +397,6 @@ public class MOBLIMAAdmin {
                                             scanner.next();
                                         }
                                         
-                                        
-                                        
                                 	} while (cineplexOption != 0);
                                 	
                                 	
@@ -347,14 +459,13 @@ public class MOBLIMAAdmin {
                             	System.out.println("Invalid Date");
 							}
                     	} while (holidaysOption != 0);
-                    	
-                    	
                     	break;
                     	
                     case 4:
                         exit = true;
                         System.out.println("Thanks for using MOBLIMA!");
                         break;
+                        
                     default:
                         System.out.println("Invalid option! Please select again!");
                         break;
@@ -392,6 +503,99 @@ public class MOBLIMAAdmin {
     		Movie movie = movies.getMovieById(showtime.getMovieId());
     		System.out.println((i+1) + ". " + showtime.getSession() + " " + movie.getTitle() + " " + showtime.getCinemaName());
     	}
+    }
+    
+    public static Movie.ShowingStatus chooseStatus() {
+        Scanner scanner = new Scanner(System.in);
+    	Movie.ShowingStatus status = null;
+    	System.out.println("Select Status: ");
+    	System.out.println("1. Coming Soon");
+    	System.out.println("2. Preview");
+    	System.out.println("3. Now Showing");
+    	System.out.println("4. End of Showing");
+    	System.out.print("Choice: ");
+    	
+    	try {
+    		int choice = scanner.nextInt();
+        	switch (choice) {
+        		case 1:
+        			status = Movie.ShowingStatus.COMING_SOON;
+        			break;
+        			
+        		case 2:
+        			status = Movie.ShowingStatus.PREVIEW;
+        			break;
+        		
+        		case 3:
+        			status = Movie.ShowingStatus.NOW_SHOWING;
+        			break;
+        			
+        		case 4:
+        			status = Movie.ShowingStatus.END_OF_SHOWING;
+        			break;
+        			
+        		default:
+                    System.out.println("Invalid option! Please select again!");
+        			break;
+        	}
+    	} catch (InputMismatchException inputMismatchException) {
+            System.out.println("Invalid input! Please enter a number!");
+            scanner.next();
+        }
+    	scanner.close();
+    	return status;
+    }
+    
+
+    public static Movie.AgeRating chooseRating() {
+        Scanner scanner = new Scanner(System.in);
+    	Movie.AgeRating rating = null;
+    	System.out.println("Select Status: ");
+    	System.out.println("1. G");
+    	System.out.println("2. PG");
+    	System.out.println("3. PG13");
+    	System.out.println("4. NC16");
+    	System.out.println("5. M18");
+    	System.out.println("6. R21");
+    	System.out.print("Choice: ");
+    	
+    	try {
+    		int choice = scanner.nextInt();
+        	switch (choice) {
+        		case 1:
+        			rating = Movie.AgeRating.G;
+        			break;
+        			
+        		case 2:
+        			rating = Movie.AgeRating.PG;
+        			break;
+        		
+        		case 3:
+        			rating = Movie.AgeRating.PG13;
+        			break;
+        			
+        		case 4:
+        			rating = Movie.AgeRating.NC16;
+        			break;
+
+        		case 5:
+        			rating = Movie.AgeRating.M18;
+        			break;
+
+        		case 6:
+        			rating = Movie.AgeRating.R21;
+        			break;
+        			
+        		default:
+                    System.out.println("Invalid option! Please select again!");
+        			break;
+        	}
+    	} catch (InputMismatchException inputMismatchException) {
+            System.out.println("Invalid input! Please enter a number!");
+            scanner.next();
+        }
+    	scanner.close();
+    	return rating;
     }
     
 }
