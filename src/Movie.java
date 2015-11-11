@@ -93,6 +93,7 @@ public class Movie {
     private AgeRating ageRating;
     private ShowingStatus showingStatus;
     private List<Review> reviews;
+    private int ticketsSold; 
 
     public Movie(int movieId, String title, String synopsis, String director, List<String> casts, String genre, AgeRating ageRating, ShowingStatus showingStatus, List<Review> reviews) {
         this.movieId = movieId;
@@ -104,6 +105,7 @@ public class Movie {
         this.ageRating = ageRating;
         this.showingStatus = showingStatus;
         this.reviews = reviews;
+        this.ticketsSold = 0;
     }
 
     public void displayMovieDetails() {
@@ -145,6 +147,14 @@ public class Movie {
         }
         overallRating = overallRating / reviews.size();
         return overallRating;
+    }
+    
+    public void incrementSales() {
+    	ticketsSold++;
+    }
+    
+    public int getTicketsSold() {
+    	return ticketsSold;
     }
     
 

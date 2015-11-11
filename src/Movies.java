@@ -2,6 +2,8 @@
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
@@ -69,7 +71,29 @@ public class Movies implements JSONFile {
         }
     }
     
+    public List<Movie> getListTopSales() {
+    	List<Movie> sortedList = list;
+    	Collections.sort(sortedList, new Comparator<Movie>() {
+			@Override
+			public int compare(Movie o1, Movie o2) {
+				return o1.getTicketsSold() > o2.getTicketsSold() ? 1 : (o1.getTicketsSold() < o2.getTicketsSold() ? -1 : 0);
+			}
+    	});
+    	sortedList = sortedList.subList(0, 5);
+    	return sortedList;
+    }
     
+    public List<Movie> getListTopReviews() {
+    	List<Movie> sortedList = list;
+    	Collections.sort(sortedList, new Comparator<Movie>() {
+			@Override
+			public int compare(Movie o1, Movie o2) {
+				return o1.getOverallRating() > o2.getOverallRating() ? 1 : (o1.getOverallRating() < o2.getOverallRating() ? -1 : 0);
+			}
+    	});
+    	sortedList = sortedList.subList(0, 5);
+    	return sortedList;
+    }
     
     public void displayFilteredList(List<Movie.ShowingStatus> statuses) {
     	List<Movie> filteredList = getFilteredList(statuses);
