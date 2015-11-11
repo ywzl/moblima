@@ -22,15 +22,15 @@ public class Cineplex {
 
     public void displayCinemas() {
         for (int i = 0; i < getCinemas().size(); i++) {
-            System.out.println(" " + i + ": " + getCinemas().get(i).getName());
+            System.out.println((i+1) + ": " + getCinemas().get(i).getName());
         }
     }
 
-    public List<Showtime> getShowtimesForMovie(int movieIndex) {
+    public List<Showtime> getShowtimesForMovie(int movieId) {
         List<Showtime> movieShowtimes = new ArrayList<Showtime>();
         for (int i = 0; i < showtimes.size(); i++) {
             Showtime showtime = showtimes.get(i);
-            if (showtime.getMovieIndex() == movieIndex) {
+            if (showtime.getMovieId() == movieId) {
                 movieShowtimes.add(showtime);
             }
         }
@@ -49,6 +49,10 @@ public class Cineplex {
         return showtimes.get(index);
     }
     
+    public void removeShowtime(int showtimeIndex) {
+    	showtimes.remove(showtimeIndex);
+    }
+    
     public Cinema getCinema(int index) {
     	return cinemas.get(index);
     }
@@ -57,8 +61,8 @@ public class Cineplex {
     	cinemas.add(new Cinema(name, row, col));
     }
     
-    public void addShowtime(Cinema cinema, int movieIndex, Date session) {
-    	showtimes.add(new Showtime(cinema, movieIndex, session));
+    public void addShowtime(Showtime showtime) {
+    	showtimes.add(showtime);
     }
 
     /**

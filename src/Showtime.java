@@ -5,16 +5,18 @@ import java.util.Date;
 import java.util.List;
 
 public class Showtime {
-	private int movieIndex;
+	private int movieId;
 	private Date session;
+	private Cinema cinema;
 	private List<Ticket> ticketTypes;
 	private List<Booking> bookings;
 	private Seat[][] seats;
 	
-	public Showtime(Cinema cinema, int movieIndex, Date session) {
-		this.movieIndex = movieIndex;
+	public Showtime(Cinema cinema, int movieId, Date session) {
+		this.movieId = movieId;
 		this.session = session;
 		this.ticketTypes = new ArrayList<Ticket>();
+		this.cinema = cinema;
 		
 		int rows = cinema.getRows();
 		int cols = cinema.getCols();
@@ -27,12 +29,16 @@ public class Showtime {
 		}
 	}
 	
-	public int getMovieIndex() {
-		return movieIndex;
+	public int getMovieId() {
+		return movieId;
+	}
+	
+	public String getCinemaName() {
+		return cinema.getName();
 	}
 	
 	public String getSession() {
-		DateFormat df = new SimpleDateFormat("hhmm");
+		DateFormat df = new SimpleDateFormat("dd-MM EEE HH:mm");
 		return df.format(session);
 	}
 	

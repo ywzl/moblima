@@ -26,6 +26,18 @@ public class Cineplexes implements JSONFile{
 		return list;
 	}
 	
+	public void addShowtime(int cineplexIndex, Showtime showtime) {
+		Cineplex cineplex = list.get(cineplexIndex);
+		cineplex.addShowtime(showtime);
+		save(JSONFile, list);
+	}
+	
+	public void removeShowtime(int cineplexIndex, int showtimeIndex) {
+		Cineplex cineplex = list.get(cineplexIndex);
+		cineplex.removeShowtime(showtimeIndex);
+		save(JSONFile, list);
+	}
+	
 	public void addMovieListing(int cineplexIndex, int movieId) {
 		Cineplex cineplex = list.get(cineplexIndex);
 		cineplex.addMovieListing(movieId);
