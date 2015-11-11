@@ -209,6 +209,9 @@ public class MOBLIMAAdmin {
                                                                     		Ticket ticket = tickets.get(i);
                                                                     		System.out.println((i+1) + ". " + ticket.getType() + " $" + ticket.getPrice());
                                                                     	}
+                                                                    	df = new SimpleDateFormat("EEE");
+                                                                    	
+                                                                    	System.out.print("It is " + df.format(session) + ", " + holidays.isHoliday(session));
                                                                     	
                                                                     	System.out.println();
                                                                     	System.out.println("- Option -");
