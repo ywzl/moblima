@@ -1,3 +1,5 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +29,11 @@ public class Showtime {
 	
 	public int getMovieIndex() {
 		return movieIndex;
+	}
+	
+	public String getSession() {
+		DateFormat df = new SimpleDateFormat("hhmm");
+		return df.format(session);
 	}
 	
 	public void addBooking(String name, int mobile, String email, Ticket ticketType, List<Seat> seats) {

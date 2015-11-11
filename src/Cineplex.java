@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Cineplex {
@@ -50,6 +51,10 @@ public class Cineplex {
     
     public void addCinema(String name, int row, int col) {
     	cinemas.add(new Cinema(name, row, col));
+    }
+    
+    public void addShowtime(Cinema cinema, int movieIndex, Date session) {
+    	showtimes.add(new Showtime(cinema, movieIndex, session));
     }
 
     /**

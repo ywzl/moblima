@@ -12,8 +12,9 @@ public class Movies implements JSONFile {
     File JSONFile = new File("movies.json");
 
     public Movies() {
-//        list = (List<Movie>) load(JSONFile, Movielist);
-        list = new ArrayList<Movie>();
+    	list = (List<Movie>) load(JSONFile, Movielist);
+        /*
+    	list = new ArrayList<Movie>();
         
         //SPECTRE
         Movie m = new Movie();
@@ -118,6 +119,9 @@ public class Movies implements JSONFile {
         m.setCasts(casts);
         m.setShowingStatus(Movie.ShowingStatus.NOW_SHOWING);
         list.add(m);
+        
+        save(JSONFile, list);
+        */
     }
 
     public void addMovie(Movie movie) {
@@ -137,6 +141,10 @@ public class Movies implements JSONFile {
 
     public Movie getMovie(int index) {
         return list.get(index);
+    }
+    
+    public int getNewMovieId() {
+    	return list.size()+1;
     }
 
     public List<Movie> getRecentMovies() {

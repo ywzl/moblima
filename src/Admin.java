@@ -52,6 +52,18 @@ public class Admin {
 							}
 						}
 						break;
+						
+					case 1:
+						while(choice != -1) {
+							List<Showtime> showtimes = cineplex.getShowtimes();
+							for (int i=0; i<showtimes.size(); i++) {
+								Showtime showtime = showtimes.get(i);
+								String movieTitle = movies.getMovie(showtime.getMovieIndex()).getTitle();
+					            System.out.println((i + 1) + ". " + showtime.getSession() + " " + movieTitle);
+							}
+							
+							
+						}
 				}
 			}
 			
