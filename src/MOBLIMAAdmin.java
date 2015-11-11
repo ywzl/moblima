@@ -28,16 +28,18 @@ public class MOBLIMAAdmin {
             System.out.println("- MOBLIMA Admin -");
             System.out.println("Select an option below: ");
             System.out.println("1. Add new movie");
-            System.out.println("2. Add movie listing to cineplex");
-            System.out.println("3. Add showtime to cineplex");
-            System.out.println("4. Exit");
+            System.out.println("2. Cineplex Listing");
+            System.out.println("3. Exit");
             System.out.print("Select option: ");
             try {
                 option = scanner.nextInt();
+                System.out.println();
+                
                 switch (option) {
                     case 1:
                     	int newMovieId = movies.getNewMovieId();
                     	scanner.nextLine();
+                    	System.out.println();
                     	
                     	System.out.print("Title: ");
                     	String title = scanner.nextLine();
@@ -77,6 +79,126 @@ public class MOBLIMAAdmin {
                         
                         
                     case 2:
+                    	int cineplexChoice = -1;
+                    	do {
+                            System.out.println("- Cineplex Listings -");
+                            cineplexes.displayList();
+                            System.out.print("Select Cineplex no. (0 to go back): ");
+                            try {
+                            	cineplexChoice = scanner.nextInt();
+                            	System.out.println();
+                            	
+                                if (cineplexChoice > 0 && cineplexChoice <= cineplexes.getList().size()) {
+                                	cineplexChoice--;
+                                	Cineplex cineplex = cineplexes.getCineplex(cineplexChoice);
+                                	System.out.println("Cineplex chosen: " + cineplex.getName());
+
+                                	int cineplexOption = -1;
+                                	do {
+                                        System.out.println("1. Movie Listing");
+                                        System.out.println("2. Showtimes");
+                                        System.out.print("Select option (0 to go back): ");
+                                        
+                                        try {
+                                        	cineplexOption = scanner.nextInt();
+                                        	System.out.println();
+                                        	
+                                        	switch(cineplexOption) {
+                                        		case 1:
+                                        			int movieOption = -1;
+                                        			do {
+                                        				List<Movie> movieList = getMovieList(cineplex.getMovieListings());
+                                            			if (movieList.size() > 0) {
+                                            				for (int i=0; i<movieList.size(); i++) {
+                                            					System.out.println((i+1) + ". " + movieList.get(i).getTitle());
+                                            				}
+                                            			} else {
+                                            				System.out.println("No Movies Listed at this Cineplex");
+                                            			}
+                                            			
+                                            			int movieId;
+                                            			
+                                            			System.out.println();
+                                        				System.out.println("- Option -");
+                                                        System.out.println("1. Add Movie Listing");
+                                                        System.out.println("2. Remove Movie Listing");
+                                                        System.out.print("Select option (0 to go back): ");
+                                                        try {
+                                                        	movieOption = scanner.nextInt();
+                                                        	
+                                                        	switch (movieOption) {
+                                                        		case 1:
+                                                        			System.out.println("- Recent Movies -");
+                                                        			List<Movie> moviesToAdd = movies.getRecentMovies(); 
+                                                        			moviesToAdd.removeAll(movieList);
+                                                        			
+                                                        			for (int i=0; i<moviesToAdd.size(); i++) {
+                                                        				System.out.println((i+1) + ". " + moviesToAdd.get(i).getTitle());
+                                                        			}
+                                                        			
+                                                        			System.out.print("Choose movie to add: ");
+                                                        			movieId = moviesToAdd.get(scanner.nextInt()-1).getMovieId();
+                                                                    cineplexes.addMovieListing(cineplexChoice, movieId);
+                                                                    System.out.println();
+                                                                    break;
+                                                                    
+                                                        		case 2:
+                                                        			System.out.print("Choose movie to remove: ");
+                                                                    movieId = cineplex.getMovieListings().get(scanner.nextInt()-1);
+                                                                    cineplexes.removeMovieListing(cineplexChoice, movieId);
+                                                        			break;
+		                                                			
+		                                                		case 0:
+		                                                			break;
+		                                                		default:
+		                                                			System.out.println("Invalid option! Please select again!");
+		        	                                                break;
+                                                        	}
+                                                        
+                                                        	
+                                                        	
+                                                        	
+                                                        } catch (InputMismatchException inputMismatchException) {
+                                                            System.out.println("Invalid input! Please enter a number!");
+                                                            scanner.next();
+                                                        }
+                                                        
+                                                        
+                                                        
+                                        			} while (movieOption != 0);
+                                        			
+                                            		
+                                            		
+                                            		
+                                        			break;
+                                        			
+                                        		case 0:
+                                        			break;
+                                        		default:
+                                        			System.out.println("Invalid option! Please select again!");
+	                                                break;
+                                        	}
+                                        } catch (InputMismatchException inputMismatchException) {
+                                            System.out.println("Invalid input! Please enter a number!");
+                                            scanner.next();
+                                        }
+                                        
+                                        
+                                        
+                                	} while (cineplexOption != 0);
+                                	
+                                	
+                                } else if (cineplexChoice < 0 || cineplexChoice > cineplexes.getList().size()) {
+                                    System.out.println("Invalid option! Please enter a valid cineplex number.");
+                                }
+                            } catch (InputMismatchException inputMismatchException) {
+                                System.out.println("Invalid input! Please enter a number!");
+                                scanner.next();
+                            }
+                        } while (cineplexChoice != 0);
+                    	
+                    	
+                    	
                         int movieOption = -1;
                         do {
                             System.out.println("- Movie Listings -");
@@ -85,11 +207,11 @@ public class MOBLIMAAdmin {
                                 Movie movie = recentMovies.get(i);
                                 System.out.println((i + 1) + ". " + movie.getTitle());
                             }
-                            System.out.print("Select movie no. to view details (0 to go back): ");
+                            System.out.print("Select movie no. (0 to go back): ");
                             try {
                                 movieOption = scanner.nextInt();
                                 if (movieOption > 0 && movieOption <= recentMovies.size()) {
-                                    recentMovies.get(movieOption-1).displayMovieDetails();
+                                	System.out.println("Movie chosen: " + recentMovies.get(movieOption-1).getTitle());
                                     System.out.print("Press ENTER to continue.");
                                     scanner.nextLine();
                                 } else if (movieOption < 0 || movieOption > recentMovies.size()) {
@@ -114,6 +236,16 @@ public class MOBLIMAAdmin {
                 scanner.next();
             }
         } while (!exit);
+    }
+    
+    
+    public static List<Movie> getMovieList(List<Integer> movieListing) {
+    	List<Movie> movieList = new ArrayList<Movie>();
+		for (Integer id : movieListing) {
+			Movie movie = movies.getMovieById(id);
+			movieList.add(movie);
+		}
+		return movieList;
     }
     
 }

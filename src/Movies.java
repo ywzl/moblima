@@ -143,6 +143,16 @@ public class Movies implements JSONFile {
         return list.get(index);
     }
     
+    public Movie getMovieById(int id) {
+    	Movie movie = null;
+    	for (Movie m : list) {
+    		if (m.getMovieId() == id) {
+    			movie = m;
+    		}
+    	}
+    	return movie;
+    }
+    
     public int getNewMovieId() {
     	return list.size()+1;
     }

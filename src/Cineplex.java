@@ -37,8 +37,12 @@ public class Cineplex {
         return movieShowtimes;
     }
     
-    public void addMovieListing(int movieIndex) {
-    	movieListings.add(movieIndex);
+    public void addMovieListing(int movieId) {
+    	movieListings.add(movieId);
+    }
+    
+    public void removeMovieListing(Integer movieId) {
+    	movieListings.remove(movieId);
     }
 
     public Showtime getShowtime(int index) {

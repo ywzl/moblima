@@ -22,9 +22,19 @@ public class Cineplexes implements JSONFile{
 		return list.get(index);
 	}
 	
-	public void addMovieListing(int cineplexIndex, int movieIndex) {
+	public List<Cineplex> getList() {
+		return list;
+	}
+	
+	public void addMovieListing(int cineplexIndex, int movieId) {
 		Cineplex cineplex = list.get(cineplexIndex);
-		cineplex.addMovieListing(movieIndex);
+		cineplex.addMovieListing(movieId);
+		save(JSONFile, list);
+	}
+	
+	public void removeMovieListing(int cineplexIndex, Integer movieId) {
+		Cineplex cineplex = list.get(cineplexIndex);
+		cineplex.removeMovieListing(movieId);
 		save(JSONFile, list);
 	}
 	
@@ -44,7 +54,7 @@ public class Cineplexes implements JSONFile{
 	
 	public void displayList() {
 		for (int i=0; i<list.size(); i++) {
-			System.out.println(" " + i + ": " + list.get(i).getName());
+			System.out.println((i + 1) + ". " + list.get(i).getName());
 		}
 	}
 }
