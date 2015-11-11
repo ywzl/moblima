@@ -12,10 +12,10 @@ public class Showtime {
 	private List<Booking> bookings;
 	private Seat[][] seats;
 	
-	public Showtime(Cinema cinema, int movieId, Date session) {
+	public Showtime(Cinema cinema, int movieId, Date session, List<Ticket> tickets) {
 		this.movieId = movieId;
 		this.session = session;
-		this.ticketTypes = new ArrayList<Ticket>();
+		this.ticketTypes = tickets;
 		this.cinema = cinema;
 		
 		int rows = cinema.getRows();

@@ -15,14 +15,26 @@ public class Holidays implements JSONFile {
 		list = (List<Holiday>) load(JSONFile, Holidaylist);
 	}
 	
-	public void addHoliday(String name, Date date) {
-		list.add(new Holiday(name, date));
+	public void addHoliday(Holiday holiday) {
+		list.add(holiday);
+		save(JSONFile, list);
+	}
+	
+	public void setDate(int holidayIndex, Date newDate) {
+		Holiday holiday = list.get(holidayIndex);
+		holiday.setDate(newDate);
+		save(JSONFile, list);
+	}
+	
+	public void removeHoliday(int holidayIndex) {
+		list.remove(holidayIndex);
+		save(JSONFile, list);
 	}
 	
 	public void displayList() {
 		for (int i=0; i<list.size(); i++) {
 			Holiday holiday = list.get(i);
-			System.out.println(" " + i + ": " + holiday.getName() + " " + holiday.getDate());
+			System.out.println((i+1) + ": " + holiday.getName() + " " + holiday.getDateParsed());
 		}
 	}
 }

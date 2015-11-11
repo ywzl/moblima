@@ -22,7 +22,7 @@ public class Booking {
 		this.TID = XXX + df.format(new Date());
 	}
 	
-	public int getTotalAmount() {
+	public float getTotalAmount() {
 		return seats.size() * ticketType.getPrice();
 	}
 	

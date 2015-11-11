@@ -21,6 +21,7 @@ import java.util.Scanner;
 public class MOBLIMAAdmin {
     static Cineplexes cineplexes = new Cineplexes();
     static Movies movies = new Movies();
+    static Holidays holidays = new Holidays();
 
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
@@ -32,7 +33,8 @@ public class MOBLIMAAdmin {
             System.out.println("Select an option below: ");
             System.out.println("1. Add new movie");
             System.out.println("2. Cineplex Listing");
-            System.out.println("3. Exit");
+            System.out.println("3. Holiday Listing");
+            System.out.println("4. Exit");
             System.out.print("Select option: ");
             try {
                 option = scanner.nextInt();
@@ -183,10 +185,10 @@ public class MOBLIMAAdmin {
                                                                     
                                                                     scanner.nextLine();
                                                                     
-                                                                    System.out.print("Input date (ddMMyy): ");
+                                                                    System.out.print("Input date (DDMMYY): ");
                                                                     String date = scanner.nextLine();
                                                                     
-                                                                    System.out.print("Input time (HHmm): ");
+                                                                    System.out.print("Input time (HHMM): ");
                                                                     String time = scanner.nextLine();
                                                                     
                                                                     SimpleDateFormat df = new SimpleDateFormat("ddMMyyHHmm");
@@ -196,8 +198,53 @@ public class MOBLIMAAdmin {
                                                                     cineplex.displayCinemas();
                                                                     System.out.print("Cinema Choice: ");
                                                                     int cinemaIndex = scanner.nextInt()-1;
+                                                                    System.out.println();
                                                                     
-                                                                    Showtime showtime = new Showtime(cineplex.getCinema(cinemaIndex), movieId, session);
+                                                                    List<Ticket> tickets = new ArrayList<Ticket>();
+                                                                    scanner.nextLine();
+                                                                	int ticketOption = -1;
+                                                                    do {
+                                                                    	System.out.println("- Ticket types -");
+                                                                    	for (int i=0; i<tickets.size(); i++) {
+                                                                    		Ticket ticket = tickets.get(i);
+                                                                    		System.out.println((i+1) + ". " + ticket.getType() + " $" + ticket.getPrice());
+                                                                    	}
+                                                                    	
+                                                                    	System.out.println();
+                                                                    	System.out.println("- Option -");
+                                                                    	System.out.println("1. Add ticket type");
+                                                                    	System.out.println("2. Remove ticket type");
+                                                                    	System.out.println("0. Exit");
+                                                                    	System.out.print("Choice: ");
+                                                                    	ticketOption = scanner.nextInt();
+                                                                    	
+                                                                    	switch (ticketOption) {
+                                                                    		case 1:
+                                                                    			scanner.nextLine();
+                                                                    			System.out.print("Ticket type: ");
+                                                                    			String type = scanner.nextLine();
+                                                                    			
+                                                                    			System.out.print("Price: ");
+                                                                    			float price = scanner.nextFloat();
+                                                                    			tickets.add(new Ticket(type, price));
+                                                                    			
+                                                                    			break;
+                                                                    			
+                                                                    		case 2:
+                                                                    			System.out.print("Ticket to remove: ");
+                                                                    			int ticketIndex = scanner.nextInt()-1;
+                                                                    			tickets.remove(ticketIndex);
+                                                                    			break;
+                                                                    		case 0:
+                                                                			default:
+                                                                				break;
+                                                                    	}
+                                                                    	
+                                                                    	
+                                                                    } while (ticketOption != 0);
+                                                                    
+                                                                    
+                                                                    Showtime showtime = new Showtime(cineplex.getCinema(cinemaIndex), movieId, session, tickets);
                                                                     cineplexes.addShowtime(cineplexChoice, showtime);
                                                                     break;
                                                                     
@@ -246,34 +293,62 @@ public class MOBLIMAAdmin {
                                 scanner.next();
                             }
                         } while (cineplexChoice != 0);
-                    	
-                    	
-                    	
-                        int movieOption = -1;
-                        do {
-                            System.out.println("- Movie Listings -");
-                            List<Movie> recentMovies = movies.getRecentMovies();
-                            for (int i = 0; i < recentMovies.size(); i++) {
-                                Movie movie = recentMovies.get(i);
-                                System.out.println((i + 1) + ". " + movie.getTitle());
-                            }
-                            System.out.print("Select movie no. (0 to go back): ");
-                            try {
-                                movieOption = scanner.nextInt();
-                                if (movieOption > 0 && movieOption <= recentMovies.size()) {
-                                	System.out.println("Movie chosen: " + recentMovies.get(movieOption-1).getTitle());
-                                    System.out.print("Press ENTER to continue.");
-                                    scanner.nextLine();
-                                } else if (movieOption < 0 || movieOption > recentMovies.size()) {
-                                    System.out.println("Invalid option! Please enter a valid movie number.");
-                                }
+                        break;
+                        
+                    case 3:
+                    	int holidaysOption = -1;
+                    	do {
+                    		System.out.println("- Holidays Listing -");
+                        	holidays.displayList();
+                        	System.out.println();
+                        	System.out.println("- Option -");
+                        	System.out.println("1. Add Holiday");
+                        	System.out.println("2. Remove Holiday");
+                        	System.out.println("0. Exit");
+                        	System.out.print("Choice: ");
+                        	
+                        	try {
+                        		holidaysOption = scanner.nextInt();
+                        		switch (holidaysOption) {
+                        			case 1:
+                        				scanner.nextLine();
+                            			System.out.print("Holiday name: ");
+                            			String name = scanner.nextLine();
+                            			
+                                        System.out.print("Date (DDMM): ");
+                                        SimpleDateFormat df = new SimpleDateFormat("ddMM");
+                                        Date date = df.parse(scanner.nextLine());
+                                        
+                                        Holiday holiday = new Holiday(name, date);
+                                        System.out.println(holiday.getName());
+                                        holidays.addHoliday(holiday);
+                        				break;
+                        				
+                        			case 2:
+                        				System.out.print("Holiday to remove: ");
+                        				int holidayIndex = scanner.nextInt()-1;
+                        				holidays.removeHoliday(holidayIndex);
+                        				break;
+                        				
+                        			case 0:
+                        				break;
+                        			default:
+                                        System.out.println("Invalid option! Please select again!");
+                        				break;
+                        		}
+                        		
                             } catch (InputMismatchException inputMismatchException) {
                                 System.out.println("Invalid input! Please enter a number!");
                                 scanner.next();
-                            }
-                        } while (movieOption != 0);
-                        break;
-                    case 3:
+                            } catch (ParseException e) {
+                            	System.out.println("Invalid Date");
+							}
+                    	} while (holidaysOption != 0);
+                    	
+                    	
+                    	break;
+                    	
+                    case 4:
                         exit = true;
                         System.out.println("Thanks for using MOBLIMA!");
                         break;
