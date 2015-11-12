@@ -7,8 +7,8 @@ import com.google.gson.reflect.TypeToken;
 
 public class Cineplexes implements JSONFile{
 	private List<Cineplex> list;
-	File JSONFile = new File("cineplexes.json");
-	Type Cineplexlist = new TypeToken<ArrayList<Cineplex>>(){}.getType();
+	private File JSONFile = new File("cineplexes.json");
+	private Type Cineplexlist = new TypeToken<ArrayList<Cineplex>>(){}.getType();
 
 	public Cineplexes() {
 		list = (List<Cineplex>) load(JSONFile, Cineplexlist);		

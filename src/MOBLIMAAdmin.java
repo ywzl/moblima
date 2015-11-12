@@ -22,6 +22,7 @@ public class MOBLIMAAdmin {
     static Cineplexes cineplexes = new Cineplexes();
     static Movies movies = new Movies();
     static Holidays holidays = new Holidays();
+    static Tickets tickets = new Tickets();
     static StaffList staffList = new StaffList();
 
     public static void main(String args[]) {
@@ -48,7 +49,8 @@ public class MOBLIMAAdmin {
             System.out.println("1. Movies");
             System.out.println("2. Cineplexes");
             System.out.println("3. Holidays");
-            System.out.println("4. Exit");
+            System.out.println("4. Tickets");
+            System.out.println("5. Exit");
             System.out.print("Select option: ");
             try {
                 option = scanner.nextInt();
@@ -463,8 +465,39 @@ public class MOBLIMAAdmin {
 							}
                     	} while (holidaysOption != 0);
                     	break;
-                    	
+                    
                     case 4:
+                    	System.out.println("- Tickets Listing -");
+                    	int ticketIndex = -1;
+                    	
+                    	do {
+                    		tickets.displayList();
+                    		System.out.print("Choose ticket to edit (0 to exit): ");
+                    		try {
+                    			ticketIndex = scanner.nextInt();
+                    			scanner.nextLine();
+                    			if (ticketIndex >0 && ticketIndex <= tickets.getList().size()) {
+                                	Ticket ticket = tickets.getTicket(ticketIndex-1);
+                                	ticket.displayTicket();
+                                	System.out.print("Edit Price: ");
+                                	double newPrice = scanner.nextDouble();
+                                	scanner.nextLine();
+                                	
+                                	tickets.setTicketPrice(ticketIndex-1, newPrice);
+                                	System.out.println();
+                    			} else if ( ticketIndex < 0 || ticketIndex > tickets.getList().size()) {
+                    				System.out.println("Invalid Input");
+                    			}
+                            	
+                    		} catch (InputMismatchException inputMismatchException) {
+                                System.out.println("Invalid input! Please enter a number!");
+                                scanner.next();
+                            }
+                    	} while (ticketIndex != 0);
+                    	System.out.println();
+                    	break;
+                    
+                    case 5:
                         exit = true;
                         System.out.println("Thanks for using MOBLIMA!");
                         break;

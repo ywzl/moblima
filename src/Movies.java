@@ -10,8 +10,8 @@ import com.google.gson.reflect.TypeToken;
 public class Movies implements JSONFile {
 
     private List<Movie> list;
-    Type Movielist = new TypeToken<ArrayList<Movie>>() {}.getType(); // needed for gson to load into Arraylist
-    File JSONFile = new File("movies.json");
+    private Type Movielist = new TypeToken<ArrayList<Movie>>() {}.getType(); // needed for gson to load into Arraylist
+    private File JSONFile = new File("movies.json");
 
     public Movies() {
     	list = (List<Movie>) load(JSONFile, Movielist);
