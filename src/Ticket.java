@@ -1,9 +1,9 @@
 
 public class Ticket {
 	private String type;
-	private float price;
+	private double price;
 	
-	public Ticket(String type, float price) {
+	public Ticket(String type, double price) {
 		this.type = type;
 		this.price = price;
 	}
@@ -16,7 +16,7 @@ public class Ticket {
 		return type;
 	}
 	
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 

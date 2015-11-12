@@ -22,11 +22,25 @@ public class MOBLIMAAdmin {
     static Cineplexes cineplexes = new Cineplexes();
     static Movies movies = new Movies();
     static Holidays holidays = new Holidays();
+    static StaffList staffList = new StaffList();
 
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
         int option;
         boolean exit = false;
+        boolean loggedIn = false;
+        
+        do {
+            System.out.println("- Admin Log In -");
+            System.out.print("Username: ");
+            String username = scanner.nextLine();
+            System.out.print("Password: ");
+            String password = scanner.nextLine();
+            loggedIn = staffList.login(username, password);
+            if (!loggedIn) System.out.println("Incorrect Credentials!");
+            System.out.println();
+        } while (!loggedIn);
+        
         
         do {
             System.out.println("- MOBLIMA Admin -");
@@ -94,20 +108,9 @@ public class MOBLIMAAdmin {
                             		System.out.println("Cast(separate by , ): ");
                             		List<String> casts = Arrays.asList(scanner.nextLine().split(","));
                             		
-                            		// For enum, need to use capitals and _ for spaces. Not sure how to solve this
-                            		System.out.print("Rating (");
-                            		for (Movie.AgeRating rating : Movie.AgeRating.values()) {
-                            		    System.out.print(rating + " ");
-                            		}
-                            		System.out.print("): ");
-                            		Movie.AgeRating rating = Movie.AgeRating.valueOf(scanner.nextLine());
+                            		Movie.AgeRating rating = chooseRating();
                             		
-                            		System.out.print("Showing Status (");
-                            		for (Movie.ShowingStatus status : Movie.ShowingStatus.values()) {
-                            		    System.out.print(status + " ");
-                            		}
-                            		System.out.print("): ");
-                            		Movie.ShowingStatus status = Movie.ShowingStatus.valueOf(scanner.nextLine());
+                            		Movie.ShowingStatus status = chooseStatus();
                             		
                             		List<Review> reviews = new ArrayList<Review>();
                             		
@@ -226,9 +229,10 @@ public class MOBLIMAAdmin {
                                         	
                                         	switch(cineplexOption) {
                                         		case 1:
-                                        			System.out.println("- Movie Listing for " + cineplex.getName() + " -");
+                                        			
                                         			movieOption = -1;
                                         			do {
+                                        				System.out.println("- Movie Listing for " + cineplex.getName() + " -");
                                         				movieList = getMovieList(cineplex.getMovieListings());
                                         				displayMovieList(movieList);
                                             			System.out.println();
@@ -236,16 +240,18 @@ public class MOBLIMAAdmin {
                                                         System.out.println("1. Add Movie Listing");
                                                         System.out.println("2. Remove Movie Listing");
                                                         System.out.print("Select option (0 to go back): ");
-                                                        System.out.println();
                                                         try {
                                                         	movieOption = scanner.nextInt();
+                                                        	scanner.nextLine();
+                                                        	System.out.println();
                                                         	
                                                         	switch (movieOption) {
                                                         		case 1:
                                                         			System.out.println("- Recent Movies -");
-                                                        			List<Movie> moviesToAdd = movies.getRecentMovies(); 
+                                                        			List<Movie> moviesToAdd = movies.getShowingList(); 
                                                         			moviesToAdd.removeAll(movieList);
                                                         			displayMovieList(moviesToAdd);
+                                                        			if (moviesToAdd.isEmpty()) break;
                                                         			
                                                         			System.out.print("Choose movie to add: ");
                                                         			movieId = moviesToAdd.get(scanner.nextInt()-1).getMovieId();
@@ -269,6 +275,7 @@ public class MOBLIMAAdmin {
                                                             System.out.println("Invalid input! Please enter a number!");
                                                             scanner.next();
                                                         }
+                                                        System.out.println();
                                         			} while (movieOption != 0);
                                         			break;
                                         			
@@ -278,6 +285,7 @@ public class MOBLIMAAdmin {
                                         			do {
                                         				
                                         				List<Showtime> showtimes = cineplex.getShowtimes();
+                                        				if (showtimes.isEmpty()) System.out.println("No showtimes listed");
                                         				displayShowtimes(showtimes);
                                             			
                                             			System.out.println();
@@ -295,6 +303,7 @@ public class MOBLIMAAdmin {
                                                     				movieList = getMovieList(cineplex.getMovieListings());
                                                     				System.out.println();
                                                     				displayMovieList(movieList);
+                                                    				if (movieList.isEmpty()) break;
                                                     				System.out.print("Movie Choice: ");
                                                                     movieId = cineplex.getMovieListings().get(scanner.nextInt()-1);
                                                                     
@@ -313,54 +322,37 @@ public class MOBLIMAAdmin {
                                                                     cineplex.displayCinemas();
                                                                     System.out.print("Cinema Choice: ");
                                                                     int cinemaIndex = scanner.nextInt()-1;
+                                                                    scanner.nextLine();
                                                                     System.out.println();
                                                                     
                                                                     List<Ticket> tickets = new ArrayList<Ticket>();
-                                                                    scanner.nextLine();
-                                                                	int ticketOption = -1;
-                                                                    do {
-                                                                    	System.out.println("- Ticket types -");
-                                                                    	for (int i=0; i<tickets.size(); i++) {
-                                                                    		Ticket ticket = tickets.get(i);
-                                                                    		System.out.println((i+1) + ". " + ticket.getType() + " $" + ticket.getPrice());
-                                                                    	}
-                                                                    	df = new SimpleDateFormat("EEE");
+                                                                    Cinema.Suite suite = cineplex.getCinema(cinemaIndex).getSuite();
+                                                                    switch (suite) {
+                                                                    	case GVMAX: 
+                                                                    	case STANDARD:
+                                                                    		tickets= addTicketMenu(session);
+                                                                    		break;
+                                                                    		
+                                                                    	case D_BOX:
+                                                                    		tickets.add(new Ticket("D-BOX", 22.0));
+                                                                    		break;
                                                                     	
-                                                                    	System.out.print("It is " + df.format(session) + ", " + holidays.isHoliday(session));
-                                                                    	
-                                                                    	System.out.println();
-                                                                    	System.out.println("- Option -");
-                                                                    	System.out.println("1. Add ticket type");
-                                                                    	System.out.println("2. Remove ticket type");
-                                                                    	System.out.println("0. Exit");
-                                                                    	System.out.print("Choice: ");
-                                                                    	ticketOption = scanner.nextInt();
-                                                                    	
-                                                                    	switch (ticketOption) {
-                                                                    		case 1:
-                                                                    			scanner.nextLine();
-                                                                    			System.out.print("Ticket type: ");
-                                                                    			String type = scanner.nextLine();
-                                                                    			
-                                                                    			System.out.print("Price: ");
-                                                                    			float price = scanner.nextFloat();
-                                                                    			tickets.add(new Ticket(type, price));
-                                                                    			
-                                                                    			break;
-                                                                    			
-                                                                    		case 2:
-                                                                    			System.out.print("Ticket to remove: ");
-                                                                    			int ticketIndex = scanner.nextInt()-1;
-                                                                    			tickets.remove(ticketIndex);
-                                                                    			break;
-                                                                    		case 0:
-                                                                			default:
-                                                                				break;
-                                                                    	}
-                                                                    	
-                                                                    	
-                                                                    } while (ticketOption != 0);
+                                                                    	case GOLD_CLASS:
+                                                                    		tickets.add(new Ticket("Gold Class", 29.0));
+                                                                    		break;
                                                                     
+                                                                    	case GEMINI:
+                                                                    		tickets.add(new Ticket("Gemini", 18.0));
+                                                                    		break;
+                                                                    	
+                                                                    }
+                                                                    
+                                                                    System.out.println("- Ticket Types -");
+                                                                    for (int i=0; i<tickets.size(); i++) {
+                                                                    	tickets.get(i).displayTicket();
+                                                                    }
+                                                                    
+                                                                    System.out.println();
                                                                     
                                                                     Showtime showtime = new Showtime(cineplex.getCinema(cinemaIndex), movieId, session, tickets);
                                                                     cineplexes.addShowtime(cineplexChoice, showtime);
@@ -478,6 +470,146 @@ public class MOBLIMAAdmin {
         } while (!exit);
     }
     
+    public static boolean isAfterSix(Date session) {
+        SimpleDateFormat df = new SimpleDateFormat("HH");
+        Date sixPM = null;
+		try {
+			sixPM = df.parse("18");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        int t1 = (int) (session.getTime() % (24*60*60*1000L));
+        int t2 = (int) (sixPM.getTime() % (24*60*60*1000L));
+        
+        return t1 >= t2;
+    }
+    
+    public static List<Ticket> addTicketMenu(Date session) {
+    	Scanner scanner = new Scanner(System.in);
+    	List<Ticket> tickets = new ArrayList<Ticket>();
+        SimpleDateFormat df = new SimpleDateFormat("u");
+        int dayOfWeek = Integer.parseInt(df.format(session));
+        df = new SimpleDateFormat("EEE");
+        String day = df.format(session);
+        
+        Holiday holiday = holidays.isHoliday(session);
+    	int ticketOption = -1;
+    	boolean regular = true;    	
+    	boolean evening = isAfterSix(session);
+    	
+    	System.out.println("- Select Movie Type -");
+    	System.out.println("1. Regular / Digital");
+    	System.out.println("2. 3D");
+    	
+    	try {
+    		System.out.print("Choice: ");
+    		ticketOption = scanner.nextInt();
+    		scanner.nextLine();
+    		switch (ticketOption) {
+    			case 1:
+    				regular = true;
+    				break;
+    			
+    			case 2:
+    				regular = false;
+    				break;
+    			
+    			case 0:
+    			default:
+    				break;
+    		}
+    		
+    	} catch (InputMismatchException inputMismatchException) {
+            System.out.println("Invalid input! Please enter a number!");
+            scanner.next();
+        }
+    	
+    	Character ans;
+		do {
+	    	System.out.print("Blockbuster? (y/n): ");
+	    	ans = scanner.nextLine().charAt(0);
+	    	if (ans.compareTo('y') != 0 && ans.compareTo('n') != 0) System.out.println("Invalid input");
+		} while(ans.compareTo('y') != 0 && ans.compareTo('n') != 0);
+		
+		boolean blockbuster = ans == 'y' ? true : false;
+		 
+    	
+    	if (holiday != null) {
+    		if (regular) {
+    			if (blockbuster) tickets.add(new Ticket(holiday.getName() + " Standard BB", 12.0));
+    			else tickets.add(new Ticket(holiday.getName() + " Standard", 11.0));
+    		} else {
+    			if (blockbuster) tickets.add(new Ticket(holiday.getName() + " 3D BB", 16.0));
+    			else tickets.add(new Ticket(holiday.getName() + " 3D", 15.0));
+    		}
+    	} else {
+    		if (dayOfWeek <= 3) {
+    			if (regular) {
+    				if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 9.5));
+    				else tickets.add(new Ticket(day + " Standard", 8.5));
+    			} else { 
+    				if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 12.0));
+    				else tickets.add(new Ticket(day + " 3D", 11.0));
+    			}
+    		}
+    		
+    		if (dayOfWeek == 4) {
+    			if (regular) {
+    				if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 10.5));
+    				else tickets.add(new Ticket(day + " Standard", 9.5));
+    			} else {
+    				if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 12.0));
+    				else tickets.add(new Ticket(day + " 3D", 11.0));
+    			}
+    		}
+    		
+    		if (dayOfWeek == 5 && !evening) {
+    			if (regular)  {
+    				if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 10.5));
+    				else tickets.add(new Ticket(day + " Standard", 9.5));
+    			} else {
+    				if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 16.0));
+    				else tickets.add(new Ticket(day + " 3D", 15.0));
+    			}
+    		} 
+    		
+    		if (dayOfWeek == 5 && evening) {
+				if (regular) {
+					if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 12.0));
+					else tickets.add(new Ticket(day + " Standard", 11.0));
+				} else { 
+					if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 16.0));
+					else tickets.add(new Ticket(day + " 3D", 15.0));
+				}
+    		}
+    		
+    		if (dayOfWeek >= 6) {
+    			if (regular) {
+    				if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 12.0));
+    				else tickets.add(new Ticket(day + " Standard", 11.0));
+    			} else { 
+    				if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 16.0));
+    				else tickets.add(new Ticket(day + " 3D", 15.0));
+    			}
+    		}
+    		
+    		if (dayOfWeek <= 5 && !evening && regular) {
+    			if (blockbuster) tickets.add(new Ticket("Senior Citizen BB", 5.0));
+    			else tickets.add(new Ticket("Senior Citizen", 4.0));
+    		}
+    		
+    		if (dayOfWeek <= 5 && !evening) {
+    			if (regular) {
+    				if (blockbuster) tickets.add(new Ticket("Student BB", 8.0));
+    				else tickets.add(new Ticket("Student", 7.0));
+    			} else { 
+    				if (blockbuster) tickets.add(new Ticket("Student BB", 10.0));
+    				else tickets.add(new Ticket("Student", 9.0));
+    			}
+    		}
+    	}
+        return tickets;
+    }
     
     public static List<Movie> getMovieList(List<Integer> movieListing) {
     	List<Movie> movieList = new ArrayList<Movie>();
@@ -494,7 +626,7 @@ public class MOBLIMAAdmin {
 				System.out.println((i+1) + ". " + movieList.get(i).getTitle());
 			}
 		} else {
-			System.out.println("No Movies Listed at this Cineplex");
+			System.out.println("No Movies");
 		}
     }
     

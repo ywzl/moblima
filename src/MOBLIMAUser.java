@@ -17,8 +17,8 @@ public class MOBLIMAUser {
         do {
             System.out.println("- MOBLIMA -");
             System.out.println("Select an option below: ");
-            System.out.println("1. Make new booking");
-            System.out.println("2. Show movie listings");
+            System.out.println("1. Make New Booking");
+            System.out.println("2. Show Movie Details");
             System.out.println("3. Exit");
             System.out.print("Select option: ");
             try {
@@ -151,7 +151,7 @@ public class MOBLIMAUser {
                                                             	Ticket ticket = showtime.getTicket(scanner.nextInt()-1);
                                                             	scanner.nextLine();
                                                             	System.out.println("Ticket chosen: " + ticket.getType());
-                                                            	float total = ticket.getPrice() * seatsSelected.size();
+                                                            	double total = ticket.getPrice() * seatsSelected.size();
                                                             	System.out.println("Total: " + seatsSelected.size() + " x $" + ticket.getPrice() + " = $" + total);
                                                             	System.out.println();
                                                             	

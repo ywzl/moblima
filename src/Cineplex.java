@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cineplex {
-
     private String name;
     private List<Integer> movieListings;
     private List<Showtime> showtimes;
@@ -20,8 +19,9 @@ public class Cineplex {
     }
 
     public void displayCinemas() {
-        for (int i = 0; i < getCinemas().size(); i++) {
-            System.out.println((i+1) + ": " + getCinemas().get(i).getName());
+        for (int i = 0; i < cinemas.size(); i++) {
+        	Cinema cinema = cinemas.get(i);
+            System.out.println((i+1) + ": " + cinema.getName() + " [" + cinema.getSuite() + "]");
         }
     }
     
@@ -63,8 +63,8 @@ public class Cineplex {
     	return cinemas.get(index);
     }
     
-    public void addCinema(String name, int row, int col) {
-    	cinemas.add(new Cinema(name, row, col));
+    public void addCinema(String name, int row, int col, Cinema.Suite suite) {
+    	cinemas.add(new Cinema(name, row, col, suite));
     }
     
     public void addShowtime(Showtime showtime) {

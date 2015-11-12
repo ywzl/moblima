@@ -30,7 +30,7 @@ public class Booking {
 		return TID;
 	}
 	
-	public float getTotalAmount() {
+	public double getTotalAmount() {
 		return seats.size() * ticketType.getPrice();
 	}
 	

@@ -39,19 +39,17 @@ public class Holidays implements JSONFile {
 		}
 	}
 	
-	public String isHoliday(Date date) {
+	public Holiday isHoliday(Date date) {
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
+
 		cal1.setTime(date);
-		String holidayName = "Not Holiday";
 		for (Holiday holiday : list) {
 			cal2.setTime(holiday.getDate());
-			if (cal1.get(Calendar.DATE) == cal2.get(Calendar.DATE) 
-				&& cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) { 
-				holidayName = holiday.getName();
+			if (cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) || cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)-1) {
+				return holiday;
 			}
 		}
-		
-		return holidayName;
+		return null;
 	}
 }
