@@ -88,7 +88,7 @@ public class Movie {
     private String title;
     private String synopsis;
     private String director;
-    private List<String> casts;
+    private List<String> cast;
     private String genre;
     private AgeRating ageRating;
     private ShowingStatus showingStatus;
@@ -100,7 +100,7 @@ public class Movie {
         this.title = title;
         this.synopsis = synopsis;
         this.director = director;
-        this.casts = casts;
+        this.cast = casts;
         this.genre = genre;
         this.ageRating = ageRating;
         this.showingStatus = showingStatus;
@@ -115,8 +115,8 @@ public class Movie {
         System.out.print("Cast: ");
         String delimiter = "";
         DecimalFormat df = new DecimalFormat("#.#");
-        for (int i = 0; i < casts.size(); i++) {
-            System.out.print(delimiter + casts.get(i));
+        for (int i = 0; i < cast.size(); i++) {
+            System.out.print(delimiter + cast.get(i));
             delimiter = ", ";
         }
         System.out.println("\nDirector: " + director);
@@ -207,14 +207,14 @@ public class Movie {
      * @return the casts
      */
     public List<String> getCasts() {
-        return casts;
+        return cast;
     }
 
     /**
      * @param casts the casts to set
      */
     public void setCasts(List<String> casts) {
-        this.casts = casts;
+        this.cast = casts;
     }
 
     /**

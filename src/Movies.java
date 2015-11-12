@@ -58,22 +58,8 @@ public class Movies implements JSONFile {
     	save(JSONFile, list);
     }
 
-    public List<Movie> getRecentMovies() {
-        List<Movie> recentMovies = new ArrayList<>();
-        for (Movie movie : list) {
-            if (movie.getShowingStatus() != Movie.ShowingStatus.END_OF_SHOWING) {
-                recentMovies.add(movie);
-            }
-        }
-        return recentMovies;
-    }
-
-    public void displayRecentMovies() {
-        List<Movie> recentMovies = getRecentMovies();
-        for (int i = 0; i < recentMovies.size(); i++) {
-            Movie movie = recentMovies.get(i);
-            System.out.println((i + 1) + ". " + movie.getTitle());
-        }
+    public List<Movie> getList() {
+    	return list;
     }
     
     public void displayTopSales() {
@@ -124,15 +110,15 @@ public class Movies implements JSONFile {
     }
     
     // Showing list = movies that can be bought (NOW_SHOWING and PREVIEW)
-    public void displayShowingList() {
-    	List<Movie> showingList = getShowingList();
+    public void displayListShowing() {
+    	List<Movie> showingList = getListShowing();
     	for (int i=0; i<showingList.size(); i++) {
     		System.out.println((i+1) + ". " + showingList.get(i).getTitle());
     	}
     	System.out.println();
     }
     
-    public List<Movie> getShowingList() {
+    public List<Movie> getListShowing() {
     	List<Movie.ShowingStatus> statuses = new ArrayList<Movie.ShowingStatus>();
     	statuses.add(Movie.ShowingStatus.NOW_SHOWING);
     	statuses.add(Movie.ShowingStatus.PREVIEW);

@@ -7,20 +7,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Lloyd
- */
-public class MOBLIMAAdmin {
-    static Cineplexes cineplexes = new Cineplexes();
-    static Movies movies = new Movies();
+public class MOBLIMAAdmin extends MOBLIMAUser {
     static Holidays holidays = new Holidays();
     static Tickets tickets = new Tickets();
     static StaffList staffList = new StaffList();
@@ -71,6 +58,7 @@ public class MOBLIMAAdmin {
                             movieOption = scanner.nextInt();
                             System.out.println();
                             List<Movie.ShowingStatus> statuses;
+                            List<Movie> filteredList;
                             
                             switch (movieOption) {
                             	case 1:
@@ -82,14 +70,16 @@ public class MOBLIMAAdmin {
                             		System.out.println("- Now Showing -");
                             		statuses = new ArrayList<Movie.ShowingStatus>();
                             		statuses.add(Movie.ShowingStatus.NOW_SHOWING);
-                            		movies.displayFilteredList(statuses);
+                            		filteredList = movies.getFilteredList(statuses);
+                            		displayMovieList(filteredList);
                             		break;
                             		
                             	case 3:
                             		statuses = new ArrayList<Movie.ShowingStatus>();
                             		statuses.add(Movie.ShowingStatus.END_OF_SHOWING);
                             		System.out.println("- End of Showing -");
-                            		movies.displayFilteredList(statuses);
+                            		filteredList = movies.getFilteredList(statuses);
+                            		displayMovieList(filteredList);
                             		break;
                             		
                             	case 4:
@@ -260,7 +250,7 @@ public class MOBLIMAAdmin {
                                                         	switch (movieOption) {
                                                         		case 1:
                                                         			System.out.println("- Movies Showing -");
-                                                        			List<Movie> moviesToAdd = movies.getShowingList(); 
+                                                        			List<Movie> moviesToAdd = movies.getListShowing(); 
                                                         			moviesToAdd.removeAll(movieList);
                                                         			displayMovieList(moviesToAdd);
                                                         			if (moviesToAdd.isEmpty()) break;
@@ -530,26 +520,7 @@ public class MOBLIMAAdmin {
         } while (!exit);
     }
     
-    public static List<Movie> getMovieList(List<Integer> movieListing) {
-    	List<Movie> movieList = new ArrayList<Movie>();
-		for (Integer id : movieListing) {
-			Movie movie = movies.getMovieById(id);
-			movieList.add(movie);
-		}
-		return movieList;
-    }
-    
-    public static void displayMovieList(List<Movie> movieList) {
-    	if (movieList.size() > 0) {
-			for (int i=0; i<movieList.size(); i++) {
-				System.out.println((i+1) + ". " + movieList.get(i).getTitle());
-			}
-		} else {
-			System.out.println("No Movies");
-		}
-    }
-    
-    public static void displayShowtimes(List<Showtime> showtimes) {
+    private static void displayShowtimes(List<Showtime> showtimes) {
     	for (int i=0; i<showtimes.size(); i++) {
     		Showtime showtime = showtimes.get(i);
     		Movie movie = movies.getMovieById(showtime.getMovieId());
@@ -557,7 +528,7 @@ public class MOBLIMAAdmin {
     	}
     }
     
-    public static Movie.ShowingStatus chooseStatus() {
+    private static Movie.ShowingStatus chooseStatus() {
         Scanner scanner = new Scanner(System.in);
     	Movie.ShowingStatus status = null;
     	System.out.println("Select Status: ");
@@ -598,8 +569,7 @@ public class MOBLIMAAdmin {
     	return status;
     }
     
-
-    public static Movie.AgeRating chooseRating() {
+    private static Movie.AgeRating chooseRating() {
         Scanner scanner = new Scanner(System.in);
     	Movie.AgeRating rating = null;
     	System.out.println("Select Status: ");

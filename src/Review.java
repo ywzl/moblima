@@ -4,10 +4,6 @@ public class Review {
     private int rating;
     private String text;
 
-    public Review() {
-
-    }
-
     public Review(String movieGoer, int rating, String text) {
         this.movieGoer = movieGoer;
         this.rating = rating;

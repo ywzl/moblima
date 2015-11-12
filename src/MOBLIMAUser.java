@@ -235,17 +235,14 @@ public class MOBLIMAUser {
                         int movieOption = -1;
                         do {
                             System.out.println("- Movie Listings -");
-                            List<Movie> recentMovies = movies.getRecentMovies();
-                            for (int i = 0; i < recentMovies.size(); i++) {
-                                Movie movie = recentMovies.get(i);
-                                System.out.println((i + 1) + ". " + movie.getTitle());
-                            }
+                            List<Movie> movieList = movies.getList();
+                            displayMovieList(movieList);
                             System.out.print("Select movie no. to view details (0 to go back): ");
                             try {
                                 movieOption = scanner.nextInt();
-                                if (movieOption > 0 && movieOption <= recentMovies.size()) {
+                                if (movieOption > 0 && movieOption <= movieList.size()) {
                                     System.out.println("");
-                                    Movie m = recentMovies.get(movieOption - 1);
+                                    Movie m = movieList.get(movieOption - 1);
                                     m.displayMovieDetails();
                                     System.out.print("Press 1 to Add Review else press ENTER to go back: ");
 
@@ -283,7 +280,7 @@ public class MOBLIMAUser {
                                         System.out.println();
                                     }
 
-                                } else if (movieOption < 0 || movieOption > recentMovies.size()) {
+                                } else if (movieOption < 0 || movieOption > movieList.size()) {
                                     System.out.println("Invalid option! Please enter a valid movie number.");
                                 }
                             } catch (InputMismatchException inputMismatchException) {
@@ -340,12 +337,12 @@ public class MOBLIMAUser {
 				System.out.println((i+1) + ". " + movieList.get(i).getTitle());
 			}
 		} else {
-			System.out.println("No Movies Listed at this Cineplex");
+			System.out.println("No Movies");
 		}
     	System.out.println();
     }
     
-    public static void displayBooking(List<Booking> bookings) {
+    private static void displayBooking(List<Booking> bookings) {
     	if (bookings.isEmpty()) {
     		System.out.println("No bookings found");
     		System.out.println();
@@ -374,7 +371,7 @@ public class MOBLIMAUser {
     	}
     }
     
-    public static List<Booking> getPreviousBookings(int mobile) {
+    private static List<Booking> getPreviousBookings(int mobile) {
     	List<Booking> previousBookings = new ArrayList<Booking>();
     		for (Cineplex cineplex : cineplexes.getList()) {
     			for (Showtime showtime : cineplex.getShowtimes()) {

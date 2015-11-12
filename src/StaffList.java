@@ -16,11 +16,8 @@ public class StaffList implements JSONFile {
 	
 	public boolean login(String username, String password) {
 		for (Staff staff : list) {
-			
 			if (staff.getUsername().equals(username) && staff.getPassword().equals(password)) return true;
-			
 		}
-		
 		return false;
 	}
 

@@ -8,9 +8,6 @@ public class Cineplex {
     private List<Showtime> showtimes;
     private List<Cinema> cinemas;
 
-    public Cineplex() {
-    }
-
     public Cineplex(String name) {
         this.name = name;
         this.movieListings = new ArrayList<Integer>();
@@ -61,10 +58,6 @@ public class Cineplex {
     
     public Cinema getCinema(int index) {
     	return cinemas.get(index);
-    }
-    
-    public void addCinema(String name, int row, int col, Cinema.Suite suite) {
-    	cinemas.add(new Cinema(name, row, col, suite));
     }
     
     public void addShowtime(Showtime showtime) {
