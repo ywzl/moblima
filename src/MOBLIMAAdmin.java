@@ -337,36 +337,53 @@ public class MOBLIMAAdmin {
                                                                     scanner.nextLine();
                                                                     System.out.println();
                                                                     
-                                                                    List<Ticket> tickets = new ArrayList<Ticket>();
+                                                                    List<Ticket> ticketList = new ArrayList<Ticket>();
                                                                     Cinema.Suite suite = cineplex.getCinema(cinemaIndex).getSuite();
+                                                                    Holiday holiday = holidays.isHoliday(session);
+                                                                    
+                                                                    Character ans;
+                                                            		do {
+                                                            	    	System.out.print("3D? (y/n): ");
+                                                            	    	ans = scanner.nextLine().charAt(0);
+                                                            	    	if (ans.compareTo('y') != 0 && ans.compareTo('n') != 0) System.out.println("Invalid input");
+                                                            		} while(ans.compareTo('y') != 0 && ans.compareTo('n') != 0);
+                                                            		boolean threeD = ans == 'y' ? true : false;
+                                                                    
                                                                     switch (suite) {
                                                                     	case GVMAX: 
                                                                     	case STANDARD:
-                                                                    		tickets= addTicketMenu(session);
+                                                                    		ans = null;
+                                                                    		do {
+                                                                    	    	System.out.print("Blockbuster? (y/n): ");
+                                                                    	    	ans = scanner.nextLine().charAt(0);
+                                                                    	    	if (ans.compareTo('y') != 0 && ans.compareTo('n') != 0) System.out.println("Invalid input");
+                                                                    		} while(ans.compareTo('y') != 0 && ans.compareTo('n') != 0);
+                                                                    		boolean blockbuster = ans == 'y' ? true : false;
+                                                                    		ticketList = tickets.getAvailableTickets(session, holiday, threeD, blockbuster);
                                                                     		break;
                                                                     		
                                                                     	case D_BOX:
-                                                                    		tickets.add(new Ticket("D-BOX", 22.0));
+                                                                    		ticketList.add(new Ticket("D-BOX", 22.0));
                                                                     		break;
                                                                     	
                                                                     	case GOLD_CLASS:
-                                                                    		tickets.add(new Ticket("Gold Class", 29.0));
+                                                                    		ticketList.add(new Ticket("Gold Class", 29.0));
                                                                     		break;
                                                                     
                                                                     	case GEMINI:
-                                                                    		tickets.add(new Ticket("Gemini", 18.0));
+                                                                    		ticketList.add(new Ticket("Gemini", 18.0));
                                                                     		break;
                                                                     	
                                                                     }
                                                                     
                                                                     System.out.println("- Ticket Types -");
-                                                                    for (int i=0; i<tickets.size(); i++) {
-                                                                    	tickets.get(i).displayTicket();
+                                                                    for (int i=0; i<ticketList.size(); i++) {
+                                                                    	ticketList.get(i).displayTicket();
                                                                     }
                                                                     
                                                                     System.out.println();
                                                                     
-                                                                    Showtime showtime = new Showtime(cineplex.getCinema(cinemaIndex), movieId, session, tickets);
+                                                                    Showtime showtime = new Showtime(cineplex.getCinema(cinemaIndex), movieId, session, ticketList);
                                                                     cineplexes.addShowtime(cineplexChoice, showtime);
                                                                     break;
                                                                     
@@ -511,147 +528,6 @@ public class MOBLIMAAdmin {
                 scanner.next();
             }
         } while (!exit);
-    }
-    
-    public static boolean isAfterSix(Date session) {
-        SimpleDateFormat df = new SimpleDateFormat("HH");
-        Date sixPM = null;
-		try {
-			sixPM = df.parse("18");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-        int t1 = (int) (session.getTime() % (24*60*60*1000L));
-        int t2 = (int) (sixPM.getTime() % (24*60*60*1000L));
-        
-        return t1 >= t2;
-    }
-    
-    public static List<Ticket> addTicketMenu(Date session) {
-    	Scanner scanner = new Scanner(System.in);
-    	List<Ticket> tickets = new ArrayList<Ticket>();
-        SimpleDateFormat df = new SimpleDateFormat("u");
-        int dayOfWeek = Integer.parseInt(df.format(session));
-        df = new SimpleDateFormat("EEE");
-        String day = df.format(session);
-        
-        Holiday holiday = holidays.isHoliday(session);
-    	int ticketOption = -1;
-    	boolean regular = true;    	
-    	boolean evening = isAfterSix(session);
-    	
-    	System.out.println("- Select Movie Type -");
-    	System.out.println("1. Regular / Digital");
-    	System.out.println("2. 3D");
-    	
-    	try {
-    		System.out.print("Choice: ");
-    		ticketOption = scanner.nextInt();
-    		scanner.nextLine();
-    		switch (ticketOption) {
-    			case 1:
-    				regular = true;
-    				break;
-    			
-    			case 2:
-    				regular = false;
-    				break;
-    			
-    			case 0:
-    			default:
-    				break;
-    		}
-    		
-    	} catch (InputMismatchException inputMismatchException) {
-            System.out.println("Invalid input! Please enter a number!");
-            scanner.next();
-        }
-    	
-    	Character ans;
-		do {
-	    	System.out.print("Blockbuster? (y/n): ");
-	    	ans = scanner.nextLine().charAt(0);
-	    	if (ans.compareTo('y') != 0 && ans.compareTo('n') != 0) System.out.println("Invalid input");
-		} while(ans.compareTo('y') != 0 && ans.compareTo('n') != 0);
-		
-		boolean blockbuster = ans == 'y' ? true : false;
-		 
-    	
-    	if (holiday != null) {
-    		if (regular) {
-    			if (blockbuster) tickets.add(new Ticket(holiday.getName() + " Standard BB", 12.0));
-    			else tickets.add(new Ticket(holiday.getName() + " Standard", 11.0));
-    		} else {
-    			if (blockbuster) tickets.add(new Ticket(holiday.getName() + " 3D BB", 16.0));
-    			else tickets.add(new Ticket(holiday.getName() + " 3D", 15.0));
-    		}
-    	} else {
-    		if (dayOfWeek <= 3) {
-    			if (regular) {
-    				if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 9.5));
-    				else tickets.add(new Ticket(day + " Standard", 8.5));
-    			} else { 
-    				if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 12.0));
-    				else tickets.add(new Ticket(day + " 3D", 11.0));
-    			}
-    		}
-    		
-    		if (dayOfWeek == 4) {
-    			if (regular) {
-    				if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 10.5));
-    				else tickets.add(new Ticket(day + " Standard", 9.5));
-    			} else {
-    				if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 12.0));
-    				else tickets.add(new Ticket(day + " 3D", 11.0));
-    			}
-    		}
-    		
-    		if (dayOfWeek == 5 && !evening) {
-    			if (regular)  {
-    				if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 10.5));
-    				else tickets.add(new Ticket(day + " Standard", 9.5));
-    			} else {
-    				if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 16.0));
-    				else tickets.add(new Ticket(day + " 3D", 15.0));
-    			}
-    		} 
-    		
-    		if (dayOfWeek == 5 && evening) {
-				if (regular) {
-					if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 12.0));
-					else tickets.add(new Ticket(day + " Standard", 11.0));
-				} else { 
-					if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 16.0));
-					else tickets.add(new Ticket(day + " 3D", 15.0));
-				}
-    		}
-    		
-    		if (dayOfWeek >= 6) {
-    			if (regular) {
-    				if (blockbuster) tickets.add(new Ticket(day + " Standard BB", 12.0));
-    				else tickets.add(new Ticket(day + " Standard", 11.0));
-    			} else { 
-    				if (blockbuster) tickets.add(new Ticket(day + " 3D BB", 16.0));
-    				else tickets.add(new Ticket(day + " 3D", 15.0));
-    			}
-    		}
-    		
-    		if (dayOfWeek <= 5 && !evening && regular) {
-    			if (blockbuster) tickets.add(new Ticket("Senior Citizen BB", 5.0));
-    			else tickets.add(new Ticket("Senior Citizen", 4.0));
-    		}
-    		
-    		if (dayOfWeek <= 5 && !evening) {
-    			if (regular) {
-    				if (blockbuster) tickets.add(new Ticket("Student BB", 8.0));
-    				else tickets.add(new Ticket("Student", 7.0));
-    			} else { 
-    				if (blockbuster) tickets.add(new Ticket("Student BB", 10.0));
-    				else tickets.add(new Ticket("Student", 9.0));
-    			}
-    		}
-    	}
-        return tickets;
     }
     
     public static List<Movie> getMovieList(List<Integer> movieListing) {

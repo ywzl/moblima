@@ -20,6 +20,10 @@ public class Ticket {
 		return price;
 	}
 	
+	public void incPrice(double increment) {
+		this.price += increment;
+	}
+	
 	public void setPrice(double price) {
 		this.price = price;
 	}
