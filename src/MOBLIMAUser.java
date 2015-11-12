@@ -19,7 +19,8 @@ public class MOBLIMAUser {
             System.out.println("Select an option below: ");
             System.out.println("1. Make New Booking");
             System.out.println("2. Show Movie Details");
-            System.out.println("3. Exit");
+            System.out.println("3. Check Previous Bookings");
+            System.out.println("4. Exit");
             System.out.print("Select option: ");
             try {
                 option = scanner.nextInt();
@@ -167,7 +168,7 @@ public class MOBLIMAUser {
                                                             	String email = scanner.nextLine();
                                                             	String code = movie.getTitle().substring(0, 3).toUpperCase();
                                                             	
-                                                        		Booking booking = new Booking(name, mobileNo, email, ticket, seatsSelected, code);
+                                                        		Booking booking = new Booking(name, mobileNo, email, ticket, seatsSelected, code, cineplexOption-1, showtimeIndex-1);
                                                         		String TID = booking.getTID();
                                                         		cineplexes.addBooking(cineplexOption-1, showtimeIndex-1, booking);
                                                         		
@@ -276,10 +277,19 @@ public class MOBLIMAUser {
                         } while (movieOption != 0);
                         System.out.println("");
                         break;
+                        
                     case 3:
+                    	System.out.println("- Check Previous Bookings -");
+                    	System.out.print("Mobile No.: ");
+                    	int mobile = scanner.nextInt();
+                    	displayBooking(getPreviousBookings(mobile));
+                    	break;
+                       
+                    case 4:
                         exit = true;
                         System.out.println("Thanks for using MOBLIMA!");
                         break;
+                        
                     default:
                         System.out.println("Invalid option! Please select again!");
                         break;
@@ -309,5 +319,40 @@ public class MOBLIMAUser {
 			System.out.println("No Movies Listed at this Cineplex");
 		}
     	System.out.println();
+    }
+    
+    public static void displayBooking(List<Booking> bookings) {
+    	if (bookings.isEmpty()) {
+    		System.out.println("No bookings found");
+    		System.out.println();
+    		return;
+    	}
+    	for (int i=0; i<bookings.size(); i++) {
+    		Booking booking = bookings.get(i);
+    		Cineplex cineplex = cineplexes.getCineplex(booking.getCineplexIndex());
+    		Showtime showtime = cineplex.getShowtime(booking.getShowtimeIndex());
+    		String cineplexName = cineplex.getName();
+    		String cinemaName = showtime.getCinemaName();
+    		String movieTitle = movies.getMovieById(showtime.getMovieId()).getTitle();
+    		
+    		System.out.println(booking.getTID());
+    		System.out.println(cineplexName + " -" + cinemaName);
+    		System.out.println(movieTitle + " " + showtime.getSession());
+    		booking.getTicketType().displayTicket();
+    		System.out.println();
+    	}
+    }
+    
+    public static List<Booking> getPreviousBookings(int mobile) {
+    	List<Booking> previousBookings = new ArrayList<Booking>();
+    		for (Cineplex cineplex : cineplexes.getList()) {
+    			for (Showtime showtime : cineplex.getShowtimes()) {
+    				for (Booking booking : showtime.getBookings()) {
+    					if (booking.getMobile() == mobile) previousBookings.add(booking);
+    				}
+    			}
+    		}
+    	
+    	return previousBookings;
     }
 }

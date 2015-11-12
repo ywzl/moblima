@@ -38,6 +38,10 @@ public class Showtime {
 		return cinema.getName();
 	}
 	
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+	
 	public String getSession() {
 		DateFormat df = new SimpleDateFormat("dd-MM EEE HH:mm");
 		return df.format(session);

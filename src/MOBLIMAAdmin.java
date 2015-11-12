@@ -64,6 +64,7 @@ public class MOBLIMAAdmin {
                     		System.out.println("3. List [End of Showing]");
                     		System.out.println("4. Add Movie");
                     		System.out.println("5. Edit Movie");
+                    		System.out.println("6. Remove Movie");
                             System.out.print("Select option (0 to go back): ");
                             movieOption = scanner.nextInt();
                             System.out.println();
@@ -188,6 +189,15 @@ public class MOBLIMAAdmin {
                             			
                             		} while (editOption != 0);
                             		System.out.println();
+                            		break;
+                            	
+                            	case 6:
+                            		System.out.println("- Remove Movies -");
+                            		movies.displayListStatus();
+                            		System.out.print("Movie to remove: ");
+                            		movieIndex = scanner.nextInt();
+                            		scanner.nextLine();
+                            		movies.removeMovie(movieIndex-1);
                             		break;
                             		
                             	case 0:

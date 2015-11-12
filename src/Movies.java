@@ -100,6 +100,11 @@ public class Movies implements JSONFile {
     	return sortedList;
     }
     
+    public void removeMovie(int movieIndex) {
+    	list.remove(movieIndex);
+    	save(JSONFile, list);
+    }
+    
     // Showing list = movies that can be bought (NOW_SHOWING and PREVIEW)
     public void displayShowingList() {
     	List<Movie> showingList = getShowingList();
