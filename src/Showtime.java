@@ -62,8 +62,6 @@ public class Showtime {
 	}
 	
 	public void addBooking(Booking booking) {
-		bookings.add(booking);
-		
 		for (Seat seat : booking.getSeats()) {
 			assignSeat(seat.getRow(), seat.getCol());
 		}

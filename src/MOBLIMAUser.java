@@ -49,150 +49,166 @@ public class MOBLIMAUser {
                                         	if (movieIndex > 0 && movieIndex <= movieList.size()) {
                                 				int movieId = movieList.get(movieIndex-1).getMovieId();
                                 				Movie movie = movies.getMovieById(movieId);
-                                				System.out.println("- Showtimes for " + movie.getTitle() + " -");
                                 				List<Showtime> showtimes = cineplex.getShowtimesForMovie(movieId);
-                                				cineplex.displayShowtimesForMovie(movieId);
-                                                System.out.print("Select Showtime (0 to go back): ");
-                                				int showtimeIndex = -1;
-                                				do {
-                                					try {
-                                						showtimeIndex = scanner.nextInt();
-                                                    	if (showtimeIndex > 0 && showtimeIndex <= showtimes.size()) {
-                                                    		Showtime showtime = showtimes.get(showtimeIndex-1);
-                                                    		System.out.println("- " + movie.getTitle() + " " + showtime.getSession() + " at " + cineplex.getName() + " -" );
-                                                    		showtime.displaySeats();
-                                                    		
-                                                    		
-                                                            
-                                                            int seatOption = -1;
-                                                            List<Seat> seatsSelected = new ArrayList<Seat>();
-                                                            do {
-                                                            	
-                                                            	System.out.print("Seats Chosen: ");
-                                                            	if (seatsSelected.size() <= 0) System.out.print("None");
-                                                            	for (Seat seat : seatsSelected) {
-                                                            		System.out.print(seat.getSeatNum() + " ");
-                                                            	}
-                                                            	
-                                                            	System.out.println();
-                                                            	System.out.println("1. Select Seat");
-                                                                System.out.println("2. Remove Selected Seat");
-                                                                System.out.print("Select option (0 when done): ");
-                                                            	seatOption = scanner.nextInt();
-                                                            	scanner.nextLine();
-                                                            	System.out.println();
-                                                            	
-                                                            	switch (seatOption) {
-                                                            		case 1:
-                                                            			try {
-                                                            				System.out.print("Row: ");
-                                                            				char rowChar = scanner.nextLine().charAt(0);
-                                                            				int row = Character.getNumericValue(rowChar) - 10;
-                                                            				
-                                                            				System.out.print("Col: ");
-                                                                			int col = scanner.nextInt();
-                                                                			
-                                                                			boolean prevSeat = false;
-                                                                        	for (Seat seat : seatsSelected) {
-                                                                        		if (seat.getRow() == row && seat.getCol() == col) {
-                                                                        			prevSeat = true;
-                                                                        		}
-                                                                        	}
-                                                                        	
-                                                                			Seat seat = new Seat(row, col);
-                                                                			
-                                                                			if (!showtime.isSeatTaken(row, col) && !prevSeat) {
-                                                                				seatsSelected.add(seat);
-                                                                			} else {
-                                                                				System.out.println("Seat Taken");
-                                                                			}
-                                                                			System.out.println();
-                                                                			
-                                                            			} catch (InputMismatchException inputMismatchException) {
-                                                                            System.out.println("Invalid input! Please enter a seat E.g. A2!");
-                                                                            scanner.next();
-                                                                        }
-                                                            			break;
-                                                            			
-                                                            		case 2:
-                                                            			System.out.println("- Seat to remove -");
-                                                            			for (int i=0; i<seatsSelected.size(); i++) {
-                                                            				System.out.println((i+1) + ". " + seatsSelected.get(i).getSeatNum());
-                                                            			}
-                                                            			System.out.print("Seat to remove: ");
-                                                            			int seatIndex = scanner.nextInt();
-                                                            			if (seatIndex >0 && seatIndex <= seatsSelected.size()) {
-                                                            				seatsSelected.remove(seatIndex-1);
-                                                            			} else {
-                                                            				System.out.println("Invalid choice");
-                                                            			}
-                                                            			System.out.println();
-                                                            			break;
-                                                            			
-                                                            		case 0:
-                                                            			break;
-                                                            			
-                                                            		default:
-                                                            			System.out.println("Invalid option! Please select again!");
-                                                            			System.out.println();
-                                                            	}
-                                                            	if (seatsSelected.size() <= 0) {
-                                                            		System.out.println("Please select at least 1 seat");
-                                                            	}
-                                                            	
-                                                            } while (seatOption != 0 || seatsSelected.size() <= 0);
-                                                            
-                                                        	System.out.println("Seats selected: " + seatsSelected.size());
-                                                            System.out.println();
-                                                            
-                                                            System.out.println("- Tickets -");
-                                                            showtime.displayTicketTypes();
-                                                            System.out.print("Choice: ");
-                                                            try {
-                                                            	Ticket ticket = showtime.getTicket(scanner.nextInt()-1);
-                                                            	scanner.nextLine();
-                                                            	System.out.println("Ticket chosen: " + ticket.getType());
-                                                            	double total = ticket.getPrice() * seatsSelected.size();
-                                                            	System.out.println("Total: " + seatsSelected.size() + " x $" + ticket.getPrice() + " = $" + total);
-                                                            	System.out.println();
-                                                            	
-                                                            	System.out.println("- Booking Info -");
-                                                            	System.out.print("Name: ");
-                                                            	String name = scanner.nextLine();
-                                                            	
-                                                            	System.out.print("Mobile No.: ");
-                                                            	int mobileNo = scanner.nextInt();
-                                                            	scanner.nextLine();
-                                                            	
-                                                            	System.out.print("Email: ");
-                                                            	String email = scanner.nextLine();
-                                                            	String code = movie.getTitle().substring(0, 3).toUpperCase();
-                                                            	
-                                                        		Booking booking = new Booking(name, mobileNo, email, ticket, seatsSelected, code, cineplexOption-1, showtimeIndex-1);
-                                                        		String TID = booking.getTID();
-                                                        		cineplexes.addBooking(cineplexOption-1, showtimeIndex-1, booking);
-                                                        		
-                                                        		for (int i=0; i<seatsSelected.size(); i++) {
-                                                        			movies.incrementSales(movieId);
-                                                        		}
-
-                                                        		System.out.println("Booking Successful, TID: " + TID);
-                                                            	
-                                        					} catch (InputMismatchException inputMismatchException) {
-                                                                System.out.println("Invalid input! Please enter a number!");
-                                                                scanner.next();
-                                                            }
-                                                            
-                                                    	} else if (showtimeIndex != 0 && showtimeIndex > showtimes.size()){
-                                                    		System.out.println("Invalid input!");
-                                                    	}
-                                					} catch (InputMismatchException inputMismatchException) {
-                                                        System.out.println("Invalid input! Please enter a number!");
-                                                        scanner.next();
-                                                    }
-                                				} while (showtimeIndex != 0);
                                 				
-                                				
+                                				if (!showtimes.isEmpty()) {
+                                					System.out.println("- Showtimes for " + movie.getTitle() + " -");
+	                                				cineplex.displayShowtimesForMovie(movieId);
+	                                                System.out.print("Select Showtime (0 to go back): ");
+	                                				int showtimeIndex = -1;
+	                                				do {
+	                                					try {
+	                                						showtimeIndex = scanner.nextInt();
+	                                                    	if (showtimeIndex > 0 && showtimeIndex <= showtimes.size()) {
+	                                                    		Showtime showtime = showtimes.get(showtimeIndex-1);
+	                                                    		System.out.println("- " + movie.getTitle() + " " + showtime.getSession() + " at " + cineplex.getName() + " -" );
+	                                                    		showtime.displaySeats();
+	
+	                                                            int seatOption = -1;
+	                                                            List<Seat> seatsSelected = new ArrayList<Seat>();
+	                                                            do {
+	                                                            	
+	                                                            	System.out.print("Seats Chosen: ");
+	                                                            	if (seatsSelected.size() <= 0) System.out.print("None");
+	                                                            	for (Seat seat : seatsSelected) {
+	                                                            		System.out.print(seat.getSeatNum() + " ");
+	                                                            	}
+	                                                            	
+	                                                            	System.out.println();
+	                                                            	System.out.println("1. Select Seat");
+	                                                                System.out.println("2. Remove Selected Seat");
+	                                                                System.out.print("Select option (0 when done): ");
+	                                                            	seatOption = scanner.nextInt();
+	                                                            	scanner.nextLine();
+	                                                            	System.out.println();
+	                                                            	
+	                                                            	switch (seatOption) {
+	                                                            		case 1:
+	                                                            			try {
+	                                                            				System.out.print("Row: ");
+	                                                            				char rowChar = scanner.nextLine().charAt(0);
+	                                                            				int row = Character.getNumericValue(rowChar) - 10;
+	                                                            				
+	                                                            				System.out.print("Col: ");
+	                                                                			int col = scanner.nextInt();
+	                                                                			
+	                                                                			boolean prevSeat = false;
+	                                                                        	for (Seat seat : seatsSelected) {
+	                                                                        		if (seat.getRow() == row && seat.getCol() == col) {
+	                                                                        			prevSeat = true;
+	                                                                        		}
+	                                                                        	}
+	                                                                        	
+	                                                                			Seat seat = new Seat(row, col);
+	                                                                			
+	                                                                			if (!showtime.isSeatTaken(row, col) && !prevSeat) {
+	                                                                				seatsSelected.add(seat);
+	                                                                			} else {
+	                                                                				System.out.println("Seat Taken");
+	                                                                			}
+	                                                                			System.out.println();
+	                                                                			
+	                                                            			} catch (InputMismatchException inputMismatchException) {
+	                                                                            System.out.println("Invalid input! Please enter a seat E.g. A2!");
+	                                                                            scanner.next();
+	                                                                        }
+	                                                            			break;
+	                                                            			
+	                                                            		case 2:
+	                                                            			System.out.println("- Seat to remove -");
+	                                                            			for (int i=0; i<seatsSelected.size(); i++) {
+	                                                            				System.out.println((i+1) + ". " + seatsSelected.get(i).getSeatNum());
+	                                                            			}
+	                                                            			System.out.print("Seat to remove: ");
+	                                                            			int seatIndex = scanner.nextInt();
+	                                                            			if (seatIndex >0 && seatIndex <= seatsSelected.size()) {
+	                                                            				seatsSelected.remove(seatIndex-1);
+	                                                            			} else {
+	                                                            				System.out.println("Invalid choice");
+	                                                            			}
+	                                                            			System.out.println();
+	                                                            			break;
+	                                                            			
+	                                                            		case 0:
+	                                                            			break;
+	                                                            			
+	                                                            		default:
+	                                                            			System.out.println("Invalid option! Please select again!");
+	                                                            			System.out.println();
+	                                                            	}
+	                                                            	if (seatsSelected.size() <= 0) {
+	                                                            		System.out.println("Please select at least 1 seat");
+	                                                            	}
+	                                                            	
+	                                                            } while (seatOption != 0 || seatsSelected.size() <= 0);
+	                                                            
+	                                                        	System.out.println("Seats selected: " + seatsSelected.size());
+	                                                            System.out.println();
+	                                                            
+	                                                            System.out.println("- Tickets -");
+	                                                            
+	                                                            try {
+	                                                            	int ticketIndex = -1;
+	                                                            	Ticket ticket;
+	                                                            	do {
+	                                                            		showtime.displayTicketTypes();
+	                                                            		System.out.print("Choice: ");
+	                                                            		ticketIndex = scanner.nextInt();
+	                                                            		ticket = showtime.getTicket(ticketIndex-1);
+	                                                            		scanner.nextLine();
+	                                                            		
+	                                                            		if (ticketIndex <= 0 || ticketIndex > showtime.getTicketTypes().size()) {
+	                                                            			System.out.println("Invalid Choice");
+	                                                            		}
+	                                                            	} while (ticketIndex <= 0 || ticketIndex > showtime.getTicketTypes().size());
+	                                                            	
+	                                                            	System.out.println("Ticket chosen: " + ticket.getType());
+	                                                            	double total = ticket.getPrice() * seatsSelected.size();
+	                                                            	System.out.println("Total: " + seatsSelected.size() + " x $" + ticket.getPrice() + " = $" + total);
+	                                                            	System.out.println();
+	                                                            	
+	                                                            	System.out.println("- Booking Info -");
+	                                                            	System.out.print("Name: ");
+	                                                            	String name = scanner.nextLine();
+	                                                            	
+	                                                            	System.out.print("Mobile No.: ");
+	                                                            	int mobileNo = scanner.nextInt();
+	                                                            	scanner.nextLine();
+	                                                            	
+	                                                            	System.out.print("Email: ");
+	                                                            	String email = scanner.nextLine();
+	                                                            	String code = movie.getTitle().substring(0, 3).toUpperCase();
+	                                                            	
+	                                                        		Booking booking = new Booking(name, mobileNo, email, ticket, seatsSelected, code, cineplexOption-1, showtimeIndex-1);
+	                                                        		String TID = booking.getTID();
+	                                                        		cineplexes.addBooking(cineplexOption-1, showtimeIndex-1, booking);
+	                                                        		
+	                                                        		for (int i=0; i<seatsSelected.size(); i++) {
+	                                                        			movies.incrementSales(movieId);
+	                                                        		}
+	
+	                                                        		System.out.println("Booking Successful, TID: " + TID);
+	                                                        		showtimeIndex = 0;
+	                                                        		movieIndex = 0;
+	                                                            	
+	                                        					} catch (InputMismatchException inputMismatchException) {
+	                                                                System.out.println("Invalid input! Please enter a number!");
+	                                                                scanner.next();
+	                                                            }
+	                                                            
+	                                                    	} else if (showtimeIndex != 0 && showtimeIndex > showtimes.size()){
+	                                                    		System.out.println("Invalid input!");
+	                                                    	}
+	                                					} catch (InputMismatchException inputMismatchException) {
+	                                                        System.out.println("Invalid input! Please enter a number!");
+	                                                        scanner.next();
+	                                                    }
+	                                				} while (showtimeIndex != 0);
+                                				} else {
+                                					// on no showtimes
+                                					System.out.println("No showtimes");
+                                					movieIndex = 0;
+                                				}
                                         	} else {
                                         		System.out.println("Invalid input!");
                                         	}
@@ -200,7 +216,6 @@ public class MOBLIMAUser {
                                             System.out.println("Invalid input! Please enter a number!");
                                             scanner.next();
                                         }
-                            			
                             		} while (movieIndex != 0);
                             		
                             		
@@ -336,7 +351,7 @@ public class MOBLIMAUser {
     		String movieTitle = movies.getMovieById(showtime.getMovieId()).getTitle();
     		
     		System.out.println(booking.getTID());
-    		System.out.println(cineplexName + " -" + cinemaName);
+    		System.out.println(cineplexName + " - " + cinemaName);
     		System.out.println(movieTitle + " " + showtime.getSession());
     		booking.getTicketType().displayTicket();
     		System.out.println();

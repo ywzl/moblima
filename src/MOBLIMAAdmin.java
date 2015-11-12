@@ -352,6 +352,7 @@ public class MOBLIMAAdmin {
                                                                     switch (suite) {
                                                                     	case GVMAX: 
                                                                     	case STANDARD:
+                                                                    	default:
                                                                     		ans = null;
                                                                     		do {
                                                                     	    	System.out.print("Blockbuster? (y/n): ");
@@ -373,7 +374,6 @@ public class MOBLIMAAdmin {
                                                                     	case GEMINI:
                                                                     		ticketList.add(new Ticket("Gemini", 18.0));
                                                                     		break;
-                                                                    	
                                                                     }
                                                                     
                                                                     System.out.println("- Ticket Types -");
