@@ -257,7 +257,7 @@ public class MOBLIMAAdmin {
                                                         	
                                                         	switch (movieOption) {
                                                         		case 1:
-                                                        			System.out.println("- Recent Movies -");
+                                                        			System.out.println("- Movies Showing -");
                                                         			List<Movie> moviesToAdd = movies.getShowingList(); 
                                                         			moviesToAdd.removeAll(movieList);
                                                         			displayMovieList(moviesToAdd);
