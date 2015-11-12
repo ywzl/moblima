@@ -20,7 +20,9 @@ public class MOBLIMAUser {
             System.out.println("1. Make New Booking");
             System.out.println("2. Show Movie Details");
             System.out.println("3. Check Previous Bookings");
-            System.out.println("4. Exit");
+            System.out.println("4. View Top Movies by Sales");
+            System.out.println("5. View Top Movies by Rating");
+            System.out.println("6. Exit");
             System.out.print("Select option: ");
             try {
                 option = scanner.nextInt();
@@ -218,8 +220,6 @@ public class MOBLIMAUser {
                                         }
                             		} while (movieIndex != 0);
                             		
-                            		
-                            		
                             	} else if (cineplexOption < 0 || cineplexOption > cineplexes.getList().size()) {
                                     System.out.println("Invalid option! Please enter a valid movie number.");
                                 }
@@ -280,6 +280,7 @@ public class MOBLIMAUser {
                                         Review review = new Review(name, rating, reviewText);
                                         movies.addReview(m.getMovieId(), review);
                                         System.out.println("Thank you " + name + "! Your review has been submitted!");
+                                        System.out.println();
                                     }
 
                                 } else if (movieOption < 0 || movieOption > recentMovies.size()) {
@@ -290,7 +291,7 @@ public class MOBLIMAUser {
                                 scanner.next();
                             }
                         } while (movieOption != 0);
-                        System.out.println("");
+                        System.out.println();
                         break;
                         
                     case 3:
@@ -299,8 +300,16 @@ public class MOBLIMAUser {
                     	int mobile = scanner.nextInt();
                     	displayBooking(getPreviousBookings(mobile));
                     	break;
-                       
+                    	
                     case 4:
+                    	movies.displayTopSales();
+                    	break;
+                    	
+                    case 5:
+                    	movies.displayTopRated();
+                    	break;
+                       
+                    case 6:
                         exit = true;
                         System.out.println("Thanks for using MOBLIMA!");
                         break;
@@ -353,7 +362,14 @@ public class MOBLIMAUser {
     		System.out.println(booking.getTID());
     		System.out.println(cineplexName + " - " + cinemaName);
     		System.out.println(movieTitle + " " + showtime.getSession());
+    		System.out.print("Ticket: ");
     		booking.getTicketType().displayTicket();
+    		System.out.print("Seats: [ ");
+    		for (Seat seat : booking.getSeats()) {
+    			System.out.print(seat.getSeatNum() + " ");
+    		}
+    		System.out.println("]");
+    		System.out.println("Total: $" + booking.getTotalAmount());
     		System.out.println();
     	}
     }

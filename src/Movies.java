@@ -76,27 +76,45 @@ public class Movies implements JSONFile {
         }
     }
     
+    public void displayTopSales() {
+    	List<Movie> sortedList = getListTopSales();
+    	for (int i=0; i<sortedList.size(); i++) {
+    		Movie movie = sortedList.get(i);
+    		System.out.println((i+1) + ". " + movie.getTitle() + " Sales: " + movie.getTicketsSold());
+    	}
+    	System.out.println();
+    }
+    
     public List<Movie> getListTopSales() {
     	List<Movie> sortedList = list;
     	Collections.sort(sortedList, new Comparator<Movie>() {
 			@Override
 			public int compare(Movie o1, Movie o2) {
-				return o1.getTicketsSold() > o2.getTicketsSold() ? 1 : (o1.getTicketsSold() < o2.getTicketsSold() ? -1 : 0);
+				return o2.getTicketsSold() - o1.getTicketsSold();
 			}
     	});
-    	sortedList = sortedList.subList(0, 5);
+    	if (sortedList.size() > 5) sortedList = sortedList.subList(0, 5);
     	return sortedList;
     }
     
-    public List<Movie> getListTopReviews() {
+    public void displayTopRated() {
+    	List<Movie> sortedList = getListTopRated();
+    	for (int i=0; i<sortedList.size(); i++) {
+    		Movie movie = sortedList.get(i);
+    		System.out.println((i+1) + ". " + movie.getTitle() + " Rating: " + movie.getOverallRating() + "/5");
+    	}
+    	System.out.println();
+    }
+    
+    public List<Movie> getListTopRated() {
     	List<Movie> sortedList = list;
     	Collections.sort(sortedList, new Comparator<Movie>() {
 			@Override
 			public int compare(Movie o1, Movie o2) {
-				return o1.getOverallRating() > o2.getOverallRating() ? 1 : (o1.getOverallRating() < o2.getOverallRating() ? -1 : 0);
+				return (int) (o2.getOverallRating() - o1.getOverallRating());
 			}
     	});
-    	sortedList = sortedList.subList(0, 5);
+    	if (sortedList.size() > 5) sortedList = sortedList.subList(0, 5);
     	return sortedList;
     }
     

@@ -139,14 +139,18 @@ public class Movie {
                     + "/5\n" + review.getText() + "\n");
         }
     }
+    
+    public int getSummedRatings() {
+    	int summedRatings = 0;
+    	for (Review review : reviews) {
+    		summedRatings += review.getRating();
+    	}
+    	return summedRatings;
+    }
 
     public double getOverallRating() {
-        double overallRating = 0.0;
-        for (Review review : reviews) {
-            overallRating += review.getRating();
-        }
-        overallRating = overallRating / reviews.size();
-        return overallRating;
+    	if (reviews.isEmpty()) return 0;
+        return getSummedRatings() / reviews.size();
     }
     
     public void incrementSales() {
@@ -156,7 +160,6 @@ public class Movie {
     public int getTicketsSold() {
     	return ticketsSold;
     }
-    
 
     /**
      * @return the title
