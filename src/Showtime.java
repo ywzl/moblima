@@ -1,5 +1,6 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Showtime {
 		this.session = session;
 		this.ticketTypes = tickets;
 		this.cinema = cinema;
+		this.bookings = new ArrayList<Booking>();
 		
 		int rows = cinema.getRows();
 		int cols = cinema.getCols();
@@ -42,19 +44,12 @@ public class Showtime {
 	}
 	
 	public void displaySeats() {
-		System.out.println("- Seat Layout -");
-		System.out.print(" ");
-		
-		System.out.print(" ");
-		for (int i=0; i<seats.length; i++) {
-			System.out.print("  " + i + "  ");
-		} 
-		System.out.println();
+		System.out.println("- Seat Layout (X denotes taken) -");
 		
 		for (int i=0; i<seats.length; i++) {
-			System.out.print(i + " ");
+			System.out.print(seats[i][0].getRowAlphabet());
 			for (int j=0; j<seats[i].length; j++) {
-				String display = (seats[i][j].isTaken()) ? " [X] " : " [O] ";
+				String display = (seats[i][j].isTaken()) ? " [X] " : " ["+ j +"] ";
 				System.out.print(display);
 			}
 			System.out.println();
@@ -62,11 +57,10 @@ public class Showtime {
 		System.out.println();
 	}
 	
-	public void addBooking(String name, int mobile, String email, Ticket ticketType, List<Seat> seats) {
-		String XXX = "XXX";
-		Booking booking = new Booking(name, mobile, email, ticketType, seats, XXX);
+	public void addBooking(Booking booking) {
+		bookings.add(booking);
 		
-		for (Seat seat : seats) {
+		for (Seat seat : booking.getSeats()) {
 			assignSeat(seat.getRow(), seat.getCol());
 		}
 		bookings.add(booking);
@@ -76,7 +70,7 @@ public class Showtime {
 		seats[row][col].assignSeat();
 	}
 	
-	public boolean seatTaken(int row, int col) {
+	public boolean isSeatTaken(int row, int col) {
 		return seats[row][col].isTaken();
 	}
 	

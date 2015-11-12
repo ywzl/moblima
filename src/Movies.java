@@ -52,6 +52,11 @@ public class Movies implements JSONFile {
     public int getNewMovieId() {
     	return list.size()+1;
     }
+    
+    public void incrementSales(int movieId) {
+    	getMovieById(movieId).incrementSales();
+    	save(JSONFile, list);
+    }
 
     public List<Movie> getRecentMovies() {
         List<Movie> recentMovies = new ArrayList<>();

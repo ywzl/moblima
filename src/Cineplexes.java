@@ -50,10 +50,10 @@ public class Cineplexes implements JSONFile{
 		save(JSONFile, list);
 	}
 	
-	public void addBooking(int cineplexIndex, int showtimeIndex, String name, int mobile, String email, Ticket ticketType, List<Seat> seats) {
+	public void addBooking(int cineplexIndex, int showtimeIndex, Booking booking) {
 		Cineplex cineplex = list.get(cineplexIndex);
 		Showtime showtime = cineplex.getShowtime(showtimeIndex);
-		showtime.addBooking(name, mobile, email, ticketType, seats);
+		showtime.addBooking(booking);
 		save(JSONFile, list);
 	}
 	

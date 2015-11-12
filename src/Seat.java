@@ -16,6 +16,14 @@ public class Seat {
 	public boolean isTaken() {
 		return taken;
 	}
+	
+	public char getRowAlphabet() {
+		return (char) (row+65);
+	}
+	
+	public String getSeatNum() { 
+		return getRowAlphabet() + ":" + col;
+	}
 
 	/**
 	 * @return the row
