@@ -95,6 +95,22 @@ public class Movies implements JSONFile {
     	return sortedList;
     }
     
+    // Showing list = movies that can be bought (NOW_SHOWING and PREVIEW)
+    public void displayShowingList() {
+    	List<Movie> showingList = getShowingList();
+    	for (int i=0; i<showingList.size(); i++) {
+    		System.out.println((i+1) + ". " + showingList.get(i).getTitle());
+    	}
+    	System.out.println();
+    }
+    
+    public List<Movie> getShowingList() {
+    	List<Movie.ShowingStatus> statuses = new ArrayList<Movie.ShowingStatus>();
+    	statuses.add(Movie.ShowingStatus.NOW_SHOWING);
+    	statuses.add(Movie.ShowingStatus.PREVIEW);
+    	return getFilteredList(statuses);
+    }
+    
     public void displayFilteredList(List<Movie.ShowingStatus> statuses) {
     	List<Movie> filteredList = getFilteredList(statuses);
     	for (int i=0; i<filteredList.size(); i++) {

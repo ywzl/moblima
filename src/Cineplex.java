@@ -24,6 +24,13 @@ public class Cineplex {
             System.out.println((i+1) + ": " + getCinemas().get(i).getName());
         }
     }
+    
+    public void displayShowtimesForMovie(int movieId) {
+    	List<Showtime> movieShowtimes = getShowtimesForMovie(movieId);
+    	for (int i=0; i<movieShowtimes.size(); i++) {
+    		System.out.println((i+1) + ". " + movieShowtimes.get(i).getSession());
+    	}
+    }
 
     public List<Showtime> getShowtimesForMovie(int movieId) {
         List<Showtime> movieShowtimes = new ArrayList<Showtime>();

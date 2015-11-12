@@ -291,8 +291,9 @@ public class MOBLIMAAdmin {
                                                             
                                                         	switch (showtimeOption) {
                                                         		case 1:
-                                                        			System.out.println("Create Showtime for: ");
+                                                        			System.out.print("Create Showtime for: ");
                                                     				movieList = getMovieList(cineplex.getMovieListings());
+                                                    				System.out.println();
                                                     				displayMovieList(movieList);
                                                     				System.out.print("Movie Choice: ");
                                                                     movieId = cineplex.getMovieListings().get(scanner.nextInt()-1);

@@ -41,6 +41,27 @@ public class Showtime {
 		return df.format(session);
 	}
 	
+	public void displaySeats() {
+		System.out.println("- Seat Layout -");
+		System.out.print(" ");
+		
+		System.out.print(" ");
+		for (int i=0; i<seats.length; i++) {
+			System.out.print("  " + i + "  ");
+		} 
+		System.out.println();
+		
+		for (int i=0; i<seats.length; i++) {
+			System.out.print(i + " ");
+			for (int j=0; j<seats[i].length; j++) {
+				String display = (seats[i][j].isTaken()) ? " [X] " : " [O] ";
+				System.out.print(display);
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+	
 	public void addBooking(String name, int mobile, String email, Ticket ticketType, List<Seat> seats) {
 		String XXX = "XXX";
 		Booking booking = new Booking(name, mobile, email, ticketType, seats, XXX);
