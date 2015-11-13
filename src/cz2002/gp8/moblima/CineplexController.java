@@ -1,3 +1,5 @@
+package cz2002.gp8.moblima;
+
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;

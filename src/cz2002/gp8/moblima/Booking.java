@@ -1,3 +1,5 @@
+package cz2002.gp8.moblima;
+
 /**
  * Represents a Booking for a Showtime
  * Exists in a collection of Bookings for a Showtime

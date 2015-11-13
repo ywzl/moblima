@@ -1,3 +1,5 @@
+package cz2002.gp8.moblima;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,3 +1,5 @@
+package cz2002.gp8.moblima;
+
 /**
  * Representative of am instance of Cinema in MOBLIMA.
  */

@@ -1,3 +1,5 @@
+package cz2002.gp8.moblima;
+
 /**
  JSONFile interface
  Allows the Object to load and save to a JSON File
