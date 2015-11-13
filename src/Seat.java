@@ -1,27 +1,52 @@
 
+
+/**
+ *
+ * @author Lloyd
+ */
 public class Seat {
 	private int row;
 	private int col;
 	private boolean taken;
 	
-	public Seat(int row, int col) {
+    /**
+     *
+     * @param row
+     * @param col
+     */
+    public Seat(int row, int col) {
 		this.setRow(row);
 		this.setCol(col);
 	}
 	
-	public void assignSeat() {
+    /**
+     *
+     */
+    public void assignSeat() {
 		taken = true;
 	}
 	
-	public boolean isTaken() {
+    /**
+     *
+     * @return
+     */
+    public boolean isTaken() {
 		return taken;
 	}
 	
-	public char getRowAlphabet() {
+    /**
+     *
+     * @return
+     */
+    public char getRowAlphabet() {
 		return (char) (row+65);
 	}
 	
-	public String getSeatNum() { 
+    /**
+     *
+     * @return
+     */
+    public String getSeatNum() { 
 		return getRowAlphabet() + ":" + col;
 	}
 

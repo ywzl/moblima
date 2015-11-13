@@ -2,12 +2,19 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representation of a Cineplex in the MOBLIMA Application
+ */
 public class Cineplex {
     private String name;
     private List<Integer> movieListings;
     private List<Showtime> showtimes;
     private List<Cinema> cinemas;
 
+    /**
+     *
+     * @param name Name of the Cineplex
+     */
     public Cineplex(String name) {
         this.name = name;
         this.movieListings = new ArrayList<Integer>();
@@ -15,6 +22,9 @@ public class Cineplex {
         this.cinemas = new ArrayList<Cinema>();
     }
 
+    /**
+     * Method to display details of cinemas inside the cineplex.
+     */
     public void displayCinemas() {
         for (int i = 0; i < cinemas.size(); i++) {
         	Cinema cinema = cinemas.get(i);
@@ -22,6 +32,10 @@ public class Cineplex {
         }
     }
     
+    /**
+     * Method to display the Showtimes of the movie given by its movie ID.
+     * @param movieId The ID of the movie.
+     */
     public void displayShowtimesForMovie(int movieId) {
     	List<Showtime> movieShowtimes = getShowtimesForMovie(movieId);
     	for (int i=0; i<movieShowtimes.size(); i++) {
@@ -29,6 +43,11 @@ public class Cineplex {
     	}
     }
 
+    /**
+     * Get the Showtimes for a movie given its movie ID.
+     * @param movieId the ID of the movie.
+     * @return a List of all the showtimes.
+     */
     public List<Showtime> getShowtimesForMovie(int movieId) {
         List<Showtime> movieShowtimes = new ArrayList<Showtime>();
         for (int i = 0; i < showtimes.size(); i++) {
@@ -40,26 +59,52 @@ public class Cineplex {
         return movieShowtimes;
     }
     
+    /**
+     *
+     * @param movieId
+     */
     public void addMovieListing(int movieId) {
     	movieListings.add(movieId);
     }
     
+    /**
+     *
+     * @param movieId
+     */
     public void removeMovieListing(Integer movieId) {
     	movieListings.remove(movieId);
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Showtime getShowtime(int index) {
         return showtimes.get(index);
     }
     
+    /**
+     *
+     * @param showtimeIndex
+     */
     public void removeShowtime(int showtimeIndex) {
     	showtimes.remove(showtimeIndex);
     }
     
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Cinema getCinema(int index) {
     	return cinemas.get(index);
     }
     
+    /**
+     *
+     * @param showtime
+     */
     public void addShowtime(Showtime showtime) {
     	showtimes.add(showtime);
     }

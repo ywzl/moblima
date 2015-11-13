@@ -1,30 +1,59 @@
 
+
+/**
+ *
+ * @author Lloyd
+ */
 public class Ticket {
 	private String type;
 	private double price;
 	
-	public Ticket(String type, double price) {
+    /**
+     *
+     * @param type
+     * @param price
+     */
+    public Ticket(String type, double price) {
 		this.type = type;
 		this.price = price;
 	}
 	
-	public void displayTicket() {
+    /**
+     *
+     */
+    public void displayTicket() {
 		System.out.println(type + " - $" + price);
 	}
 	
-	public String getType() {
+    /**
+     *
+     * @return
+     */
+    public String getType() {
 		return type;
 	}
 	
-	public double getPrice() {
+    /**
+     *
+     * @return
+     */
+    public double getPrice() {
 		return price;
 	}
 	
-	public void incPrice(double increment) {
+    /**
+     *
+     * @param increment
+     */
+    public void incPrice(double increment) {
 		this.price += increment;
 	}
 	
-	public void setPrice(double price) {
+    /**
+     *
+     * @param price
+     */
+    public void setPrice(double price) {
 		this.price = price;
 	}
 

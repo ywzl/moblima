@@ -7,11 +7,19 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Lloyd
+ */
 public class MOBLIMAAdmin extends MOBLIMAUser {
-    static Holidays holidays = new Holidays();
-    static Tickets tickets = new Tickets();
-    static StaffList staffList = new StaffList();
+    static HolidayController holidays = new HolidayController();
+    static TicketController tickets = new TicketController();
+    static StaffController staffList = new StaffController();
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
         int option;

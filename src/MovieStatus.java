@@ -1,3 +1,8 @@
+
+/**
+ *
+ * @author Lloyd
+ */
 public class MovieStatus {
     
     /**

@@ -10,23 +10,43 @@ import java.util.Scanner;
 
 import com.google.gson.reflect.TypeToken;
 
-public class Tickets implements JSONFile {
+/**
+ *
+ * @author Lloyd
+ */
+public class TicketController implements JSONFile {
 	private List<Ticket> list;
     private Type Ticketlist = new TypeToken<ArrayList<Ticket>>() {}.getType(); // needed for gson to load into Arraylist
     private File JSONFile = new File("tickets.json");
 
-	public Tickets() {
+    /**
+     *
+     */
+    public TicketController() {
     	list = (List<Ticket>) load(JSONFile, Ticketlist);
 	}
 	
-	public Ticket getTicketType(String type) {
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public Ticket getTicketType(String type) {
 		for (Ticket ticket : list) {
 			if (ticket.getType().equals(type)) return ticket;
 		}
 		return null;
 	}
 	
-	public List<Ticket> getAvailableTickets(Date session, Holiday holiday, boolean threeD, boolean blockbuster) {
+    /**
+     *
+     * @param session
+     * @param holiday
+     * @param threeD
+     * @param blockbuster
+     * @return
+     */
+    public List<Ticket> getAvailableTickets(Date session, Holiday holiday, boolean threeD, boolean blockbuster) {
     	List<Ticket> tickets = new ArrayList<Ticket>();
         SimpleDateFormat df = new SimpleDateFormat("u");
         int dayOfWeek = Integer.parseInt(df.format(session));
@@ -62,20 +82,37 @@ public class Tickets implements JSONFile {
 		return tickets;
 	}
 	
-	public Ticket getTicket(int index) {
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Ticket getTicket(int index) {
 		return list.get(index);
 	}
 	
-	public void setTicketPrice(int ticketIndex, double price) {
+    /**
+     *
+     * @param ticketIndex
+     * @param price
+     */
+    public void setTicketPrice(int ticketIndex, double price) {
 		list.get(ticketIndex).setPrice(price);
 		save(JSONFile, list);
 	}
 	
-	public List<Ticket> getList() {
+    /**
+     *
+     * @return
+     */
+    public List<Ticket> getList() {
 		return list;
 	}
 	
-	public void displayList() {
+    /**
+     *
+     */
+    public void displayList() {
 		for (int i=0; i<list.size(); i++) {
 			System.out.print((i+1) + ". ");
 			list.get(i).displayTicket();
@@ -83,6 +120,11 @@ public class Tickets implements JSONFile {
 		System.out.println();
 	}
 	
+    /**
+     *
+     * @param session
+     * @return
+     */
     public boolean isAfterSix(Date session) {
         SimpleDateFormat df = new SimpleDateFormat("HH");
         Date sixPM = null;

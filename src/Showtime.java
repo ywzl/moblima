@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * @author Lloyd
+ */
 public class Showtime {
 	private int movieId;
 	private Date session;
@@ -12,7 +16,14 @@ public class Showtime {
 	private List<Booking> bookings;
 	private Seat[][] seats;
 	
-	public Showtime(Cinema cinema, int movieId, Date session, List<Ticket> tickets) {
+    /**
+     *
+     * @param cinema
+     * @param movieId
+     * @param session
+     * @param tickets
+     */
+    public Showtime(Cinema cinema, int movieId, Date session, List<Ticket> tickets) {
 		this.movieId = movieId;
 		this.session = session;
 		this.ticketTypes = tickets;
@@ -30,24 +41,43 @@ public class Showtime {
 		}
 	}
 	
-	public int getMovieId() {
+    /**
+     *
+     * @return
+     */
+    public int getMovieId() {
 		return movieId;
 	}
 	
-	public String getCinemaName() {
+    /**
+     *
+     * @return
+     */
+    public String getCinemaName() {
 		return cinema.getName();
 	}
 	
-	public List<Booking> getBookings() {
+    /**
+     *
+     * @return
+     */
+    public List<Booking> getBookings() {
 		return bookings;
 	}
 	
-	public String getSession() {
+    /**
+     *
+     * @return
+     */
+    public String getSession() {
 		DateFormat df = new SimpleDateFormat("dd-MM EEE HH:mm");
 		return df.format(session);
 	}
 	
-	public void displaySeats() {
+    /**
+     *
+     */
+    public void displaySeats() {
 		System.out.println("- Seat Layout (X denotes taken) -");
 		
 		for (int i=0; i<seats.length; i++) {
@@ -61,29 +91,52 @@ public class Showtime {
 		System.out.println();
 	}
 	
-	public void addBooking(Booking booking) {
+    /**
+     *
+     * @param booking
+     */
+    public void addBooking(Booking booking) {
 		for (Seat seat : booking.getSeats()) {
 			assignSeat(seat.getRow(), seat.getCol());
 		}
 		bookings.add(booking);
 	}
 	
-	public void assignSeat(int row, int col) {
+    /**
+     *
+     * @param row
+     * @param col
+     */
+    public void assignSeat(int row, int col) {
 		seats[row][col].assignSeat();
 	}
 	
-	public boolean isSeatTaken(int row, int col) {
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     */
+    public boolean isSeatTaken(int row, int col) {
 		return seats[row][col].isTaken();
 	}
 	
-	public void displayTicketTypes() {
+    /**
+     *
+     */
+    public void displayTicketTypes() {
 		for (int i=0; i<ticketTypes.size(); i++) {
 			System.out.print((i+1) + ". ");
 			ticketTypes.get(i).displayTicket();
 		}
 	}
 	
-	public Ticket getTicket(int ticketIndex) {
+    /**
+     *
+     * @param ticketIndex
+     * @return
+     */
+    public Ticket getTicket(int ticketIndex) {
 		return ticketTypes.get(ticketIndex);
 	}
 

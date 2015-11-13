@@ -2,40 +2,70 @@
 import java.text.DecimalFormat;
 import java.util.List;
 
+/**
+ *
+ * @author Lloyd
+ */
 public class Movie {
 
+    /**
+     *
+     */
     public enum AgeRating {
 
+        /**
+         *
+         */
         G {
                     @Override
                     public String toString() {
                         return "G";
                     }
                 },
+
+        /**
+         *
+         */
         PG {
                     @Override
                     public String toString() {
                         return "PG";
                     }
                 },
+
+        /**
+         *
+         */
         PG13 {
                     @Override
                     public String toString() {
                         return "PG13";
                     }
                 },
+
+        /**
+         *
+         */
         NC16 {
                     @Override
                     public String toString() {
                         return "NC16";
                     }
                 },
+
+        /**
+         *
+         */
         M18 {
                     @Override
                     public String toString() {
                         return "M18";
                     }
                 },
+
+        /**
+         *
+         */
         R21 {
                     @Override
                     public String toString() {
@@ -44,6 +74,9 @@ public class Movie {
                 }
     }
 
+    /**
+     *
+     */
     public enum ShowingStatus {
 
         /**
@@ -95,6 +128,18 @@ public class Movie {
     private List<Review> reviews;
     private int ticketsSold; 
 
+    /**
+     *
+     * @param movieId
+     * @param title
+     * @param synopsis
+     * @param director
+     * @param casts
+     * @param genre
+     * @param ageRating
+     * @param showingStatus
+     * @param reviews
+     */
     public Movie(int movieId, String title, String synopsis, String director, List<String> casts, String genre, AgeRating ageRating, ShowingStatus showingStatus, List<Review> reviews) {
         this.movieId = movieId;
         this.title = title;
@@ -108,6 +153,9 @@ public class Movie {
         this.ticketsSold = 0;
     }
 
+    /**
+     *
+     */
     public void displayMovieDetails() {
         System.out.println(title + " (" + ageRating.name() + ")");
         System.out.println("- DETAILS -");
@@ -140,6 +188,10 @@ public class Movie {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int getSummedRatings() {
     	int summedRatings = 0;
     	for (Review review : reviews) {
@@ -148,15 +200,26 @@ public class Movie {
     	return summedRatings;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getOverallRating() {
     	if (reviews.isEmpty()) return 0;
         return getSummedRatings() / reviews.size();
     }
     
+    /**
+     *
+     */
     public void incrementSales() {
     	ticketsSold++;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getTicketsSold() {
     	return ticketsSold;
     }

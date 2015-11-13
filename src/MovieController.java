@@ -7,21 +7,37 @@ import java.util.Comparator;
 import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
-public class Movies implements JSONFile {
+/**
+ *
+ * @author Lloyd
+ */
+public class MovieController implements JSONFile {
 
     private List<Movie> list;
     private Type Movielist = new TypeToken<ArrayList<Movie>>() {}.getType(); // needed for gson to load into Arraylist
     private File JSONFile = new File("movies.json");
 
-    public Movies() {
+    /**
+     *
+     */
+    public MovieController() {
     	list = (List<Movie>) load(JSONFile, Movielist);
     }
 
+    /**
+     *
+     * @param movie
+     */
     public void addMovie(Movie movie) {
         list.add(movie);
         save(JSONFile, list);
     }
     
+    /**
+     *
+     * @param movieId
+     * @param review
+     */
     public void addReview(int movieId, Review review) {
         for (Movie movie : list) {
             if (movie.getMovieId() == movieId) {
@@ -32,15 +48,30 @@ public class Movies implements JSONFile {
         save(JSONFile, list);
     }
     
+    /**
+     *
+     * @param movieIndex
+     * @param updatedMovie
+     */
     public void updateMovie(int movieIndex, Movie updatedMovie) {
     	list.set(movieIndex, updatedMovie);
     	save(JSONFile, list);
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Movie getMovie(int index) {
         return list.get(index);
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Movie getMovieById(int id) {
     	Movie movie = null;
     	for (Movie m : list) {
@@ -49,19 +80,34 @@ public class Movies implements JSONFile {
     	return movie;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getNewMovieId() {
     	return list.size()+1;
     }
     
+    /**
+     *
+     * @param movieId
+     */
     public void incrementSales(int movieId) {
     	getMovieById(movieId).incrementSales();
     	save(JSONFile, list);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Movie> getList() {
     	return list;
     }
     
+    /**
+     *
+     */
     public void displayTopSales() {
     	List<Movie> sortedList = getListTopSales();
     	for (int i=0; i<sortedList.size(); i++) {
@@ -71,6 +117,10 @@ public class Movies implements JSONFile {
     	System.out.println();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Movie> getListTopSales() {
     	List<Movie> sortedList = list;
     	Collections.sort(sortedList, new Comparator<Movie>() {
@@ -83,6 +133,9 @@ public class Movies implements JSONFile {
     	return sortedList;
     }
     
+    /**
+     *
+     */
     public void displayTopRated() {
     	List<Movie> sortedList = getListTopRated();
     	for (int i=0; i<sortedList.size(); i++) {
@@ -92,6 +145,10 @@ public class Movies implements JSONFile {
     	System.out.println();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Movie> getListTopRated() {
     	List<Movie> sortedList = list;
     	Collections.sort(sortedList, new Comparator<Movie>() {
@@ -104,13 +161,21 @@ public class Movies implements JSONFile {
     	return sortedList;
     }
     
+    /**
+     *
+     * @param movieIndex
+     */
     public void removeMovie(int movieIndex) {
     	list.remove(movieIndex);
     	save(JSONFile, list);
     }
     
     // Showing list = movies that can be bought (NOW_SHOWING and PREVIEW)
-    public void displayListShowing() {
+
+    /**
+     *
+     */
+        public void displayListShowing() {
     	List<Movie> showingList = getListShowing();
     	for (int i=0; i<showingList.size(); i++) {
     		System.out.println((i+1) + ". " + showingList.get(i).getTitle());
@@ -118,6 +183,10 @@ public class Movies implements JSONFile {
     	System.out.println();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Movie> getListShowing() {
     	List<Movie.ShowingStatus> statuses = new ArrayList<Movie.ShowingStatus>();
     	statuses.add(Movie.ShowingStatus.NOW_SHOWING);
@@ -125,6 +194,10 @@ public class Movies implements JSONFile {
     	return getFilteredList(statuses);
     }
     
+    /**
+     *
+     * @param statuses
+     */
     public void displayFilteredList(List<Movie.ShowingStatus> statuses) {
     	List<Movie> filteredList = getFilteredList(statuses);
     	for (int i=0; i<filteredList.size(); i++) {
@@ -133,6 +206,11 @@ public class Movies implements JSONFile {
     	System.out.println();
     }
     
+    /**
+     *
+     * @param statuses
+     * @return
+     */
     public List<Movie> getFilteredList(List<Movie.ShowingStatus> statuses) {
         List<Movie> filteredList = new ArrayList<Movie>();
         for (Movie movie : list) {
@@ -144,12 +222,18 @@ public class Movies implements JSONFile {
         return filteredList;
     }
 
+    /**
+     *
+     */
     public void displayList() {
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i+1) + ". " + list.get(i).getTitle());
         }
     }
     
+    /**
+     *
+     */
     public void displayListStatus() {
         for (int i = 0; i < list.size(); i++) {
         	Movie movie = list.get(i);

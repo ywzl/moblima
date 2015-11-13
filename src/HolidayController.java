@@ -7,39 +7,67 @@ import java.util.Calendar;
 
 import com.google.gson.reflect.TypeToken;
 
-public class Holidays implements JSONFile {
+/**
+ *
+ * @author Lloyd
+ */
+public class HolidayController implements JSONFile {
 	List<Holiday> list;
 	Type Holidaylist = new TypeToken<ArrayList<Holiday>>(){}.getType(); // needed for gson to load into Arraylist
 	File JSONFile = new File("holidays.json");
 
-	public Holidays() {
+    /**
+     *
+     */
+    public HolidayController() {
 		list = (List<Holiday>) load(JSONFile, Holidaylist);
 	}
 	
-	public void addHoliday(Holiday holiday) {
+    /**
+     *
+     * @param holiday
+     */
+    public void addHoliday(Holiday holiday) {
 		list.add(holiday);
 		save(JSONFile, list);
 	}
 	
-	public void setDate(int holidayIndex, Date newDate) {
+    /**
+     *
+     * @param holidayIndex
+     * @param newDate
+     */
+    public void setDate(int holidayIndex, Date newDate) {
 		Holiday holiday = list.get(holidayIndex);
 		holiday.setDate(newDate);
 		save(JSONFile, list);
 	}
 	
-	public void removeHoliday(int holidayIndex) {
+    /**
+     *
+     * @param holidayIndex
+     */
+    public void removeHoliday(int holidayIndex) {
 		list.remove(holidayIndex);
 		save(JSONFile, list);
 	}
 	
-	public void displayList() {
+    /**
+     *
+     */
+    public void displayList() {
 		for (int i=0; i<list.size(); i++) {
 			Holiday holiday = list.get(i);
 			System.out.println((i+1) + ": " + holiday.getName() + " " + holiday.getDateParsed());
 		}
 	}
 	
-	public Holiday isHoliday(Date date) {
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public Holiday isHoliday(Date date) {
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
 
