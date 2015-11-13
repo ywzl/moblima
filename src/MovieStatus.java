@@ -51,6 +51,7 @@ public class MovieStatus {
     }
 
     /**
+     * REturns movie ID of a movie
      * @return the movie_id
      */
     public int getMovie_id() {
@@ -58,6 +59,7 @@ public class MovieStatus {
     }
 
     /**
+     * Sets movie ID of a movie
      * @param movie_id the movie_id to set
      */
     public void setMovie_id(int movie_id) {
@@ -65,6 +67,7 @@ public class MovieStatus {
     }
 
     /**
+     * Returns status of a movie.
      * @return the status
      */
     public Status getStatus() {
@@ -72,7 +75,8 @@ public class MovieStatus {
     }
 
     /**
-     * @param status the status to set
+     * Sets status of a movie.
+     * @param status
      */
     public void setStatus(Status status) {
         this.status = status;

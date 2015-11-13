@@ -10,7 +10,7 @@ public class Review {
     private String text;
 
     /**
-     *
+     * This creates a review object in which each review is identified by the user who wrote the review, its rating and review text itself.
      * @param movieGoer
      * @param rating
      * @param text
@@ -22,6 +22,7 @@ public class Review {
     }
     
     /**
+     * Returns name of the user/moviegoer.
      * @return the movieGoer
      */
     public String getMovieGoer() {
@@ -29,6 +30,7 @@ public class Review {
     }
 
     /**
+     * Sets the name of the moviegoer.
      * @param movieGoer the movieGoer to set
      */
     public void setMovieGoer(String movieGoer) {
@@ -36,6 +38,7 @@ public class Review {
     }
 
     /**
+     * Sets the rating of the movie (1 to 5)
      * @param rating the rating to set
      */
     public void setRating(int rating) {
@@ -43,6 +46,7 @@ public class Review {
     }
 
     /**
+     * Returns text of a review.
      * @return the text
      */
     public String getText() {
@@ -50,6 +54,7 @@ public class Review {
     }
 
     /**
+     * Enters review text written by a user.
      * @param text the text to set
      */
     public void setText(String text) {
@@ -57,6 +62,7 @@ public class Review {
     }
 
     /**
+     * Returns rating of a movie.
      * @return the rating
      */
     public int getRating() {

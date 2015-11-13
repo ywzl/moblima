@@ -11,7 +11,7 @@ import java.util.Scanner;
 import com.google.gson.reflect.TypeToken;
 
 /**
- *
+ * Mantains the list of Ticket and contains functions to manipulate it
  * @author Lloyd
  */
 public class TicketController implements JSONFile {
@@ -20,16 +20,16 @@ public class TicketController implements JSONFile {
     private File JSONFile = new File("tickets.json");
 
     /**
-     *
+     * List of Tickets in the Database
      */
     public TicketController() {
     	list = (List<Ticket>) load(JSONFile, Ticketlist);
 	}
 	
     /**
-     *
-     * @param type
-     * @return
+     * get Ticket by the Ticket name
+     * @param type of Ticket
+     * @return Ticket with the corresponding name
      */
     public Ticket getTicketType(String type) {
 		for (Ticket ticket : list) {
@@ -39,11 +39,11 @@ public class TicketController implements JSONFile {
 	}
 	
     /**
-     *
-     * @param session
-     * @param holiday
-     * @param threeD
-     * @param blockbuster
+     * Retrieves the Availiable Tickets for that date
+     * @param session of the Showtime
+     * @param holiday true if the session is a holiday
+     * @param threeD true if the Showtime is a 3D movie
+     * @param blockbuster true if the Showtime is a blockbuster
      * @return
      */
     public List<Ticket> getAvailableTickets(Date session, Holiday holiday, boolean threeD, boolean blockbuster) {
@@ -73,28 +73,26 @@ public class TicketController implements JSONFile {
     			}
     		}
     	}
-    	/*
     	if (blockbuster) {
     		for (Ticket ticket : tickets) ticket.incPrice(1.0);
     	}
-    	*/
 		
 		return tickets;
 	}
 	
     /**
-     *
-     * @param index
-     * @return
+     * Get Ticket by index
+     * @param index of the Ticket in the list
+     * @return Ticket
      */
     public Ticket getTicket(int index) {
 		return list.get(index);
 	}
 	
     /**
-     *
-     * @param ticketIndex
-     * @param price
+     * Set Ticket Price to a certain amount
+     * @param ticketIndex of the Ticket in the list
+     * @param price Price to set the ticket to
      */
     public void setTicketPrice(int ticketIndex, double price) {
 		list.get(ticketIndex).setPrice(price);
@@ -102,15 +100,15 @@ public class TicketController implements JSONFile {
 	}
 	
     /**
-     *
-     * @return
+     * Get List of Tickets in list
+     * @return list of tickets in list
      */
     public List<Ticket> getList() {
 		return list;
 	}
 	
     /**
-     *
+     * Prints out the list with a number corresponding to index+1
      */
     public void displayList() {
 		for (int i=0; i<list.size(); i++) {
@@ -121,9 +119,9 @@ public class TicketController implements JSONFile {
 	}
 	
     /**
-     *
-     * @param session
-     * @return
+     * Checks if the date is after 6pm
+     * @param session date of the Showtime
+     * @return True if the Date is after 6pm
      */
     public boolean isAfterSix(Date session) {
         SimpleDateFormat df = new SimpleDateFormat("HH");

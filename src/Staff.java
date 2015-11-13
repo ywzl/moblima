@@ -1,7 +1,7 @@
 
 
 /**
- *
+ * This represents the admin that has a username and password
  * @author Lloyd
  */
 public class Staff {
@@ -9,7 +9,7 @@ public class Staff {
 	String password;
 	
     /**
-     *
+     *This creates a staff member with a username and password
      * @param username
      * @param password
      */
@@ -19,8 +19,8 @@ public class Staff {
 	}
 	
     /**
-     *
-     * @return
+     *This returns the username 
+     * @return username of the staff
      */
     public String getUsername() {
 		return username;
@@ -28,7 +28,7 @@ public class Staff {
 	
     /**
      *
-     * @return
+     * @return password of the staff
      */
     public String getPassword() {
 		return password;

@@ -6,7 +6,7 @@ import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
 /**
- *
+ * StaffController manages Staff object and is used to check the credentials for login
  * @author Lloyd
  */
 public class StaffController implements JSONFile {
@@ -15,17 +15,17 @@ public class StaffController implements JSONFile {
 	Type Stafflist = new TypeToken<ArrayList<Staff>>(){}.getType();
 	
     /**
-     *
+     * Loads the list of Staff from JSONFile into list
      */
     public StaffController() {
 		list = (List<Staff>) load(JSONFile, Stafflist);		
 	}
 	
     /**
-     *
-     * @param username
-     * @param password
-     * @return
+     * Checks if the login credentials are correct by going through the entire list of staff
+     * @param username of the staff logging in
+     * @param password of the staff logging in
+     * @return True if the credentials match
      */
     public boolean login(String username, String password) {
 		for (Staff staff : list) {

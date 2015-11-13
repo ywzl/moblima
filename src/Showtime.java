@@ -17,7 +17,7 @@ public class Showtime {
 	private Seat[][] seats;
 	
     /**
-     *
+     * This creates a showtime for the movieId passed in, including the date, type of tickets and creation of seats.
      * @param cinema
      * @param movieId
      * @param session
@@ -42,32 +42,32 @@ public class Showtime {
 	}
 	
     /**
-     *
-     * @return
+     * This returns the movie ID of the movie
+     * @return movie ID of the movie (int)
      */
     public int getMovieId() {
 		return movieId;
 	}
 	
     /**
-     *
-     * @return
+     * This returns the name of the cinema (e.g. Hall 1, Hall 2, etc.)
+     * @return name of cinema (string)
      */
     public String getCinemaName() {
 		return cinema.getName();
 	}
 	
     /**
-     *
-     * @return
+     * This returns a list of existing bookings made for that showtime
+     * @return list of bookings
      */
     public List<Booking> getBookings() {
 		return bookings;
 	}
 	
     /**
-     *
-     * @return
+     * This returns session time of the movie (date).
+     * @return date of movie session
      */
     public String getSession() {
 		DateFormat df = new SimpleDateFormat("dd-MM EEE HH:mm");
@@ -75,7 +75,7 @@ public class Showtime {
 	}
 	
     /**
-     *
+     * This displays the seat layout for user to choose their seats from
      */
     public void displaySeats() {
 		System.out.println("- Seat Layout (X denotes taken) -");
@@ -92,7 +92,7 @@ public class Showtime {
 	}
 	
     /**
-     *
+     * This allows the user to make a new booking for a movie.
      * @param booking
      */
     public void addBooking(Booking booking) {
