@@ -18,10 +18,10 @@ public class Showtime {
 	
     /**
      * This creates a showtime for the movieId passed in, including the date, type of tickets and creation of seats.
-     * @param cinema
-     * @param movieId
-     * @param session
-     * @param tickets
+     * @param cinema The cinema that the showtime is at
+     * @param movieId the movieId of the movie for that showtime
+     * @param session The date and time of the showtime
+     * @param tickets The tickets availiable for booking at that showtime
      */
     public Showtime(Cinema cinema, int movieId, Date session, List<Ticket> tickets) {
 		this.movieId = movieId;
@@ -93,7 +93,7 @@ public class Showtime {
 	
     /**
      * This allows the user to make a new booking for a movie.
-     * @param booking
+     * @param booking The booking to be added to the list
      */
     public void addBooking(Booking booking) {
 		for (Seat seat : booking.getSeats()) {
@@ -103,26 +103,26 @@ public class Showtime {
 	}
 	
     /**
-     *
-     * @param row
-     * @param col
+     * Assign the seat at that row and col
+     * @param row of seat
+     * @param col of col
      */
     public void assignSeat(int row, int col) {
 		seats[row][col].assignSeat();
 	}
 	
     /**
-     *
-     * @param row
-     * @param col
-     * @return
+     * Checks if the Seat is taken at that row and col
+     * @param row of the seat
+     * @param col of the seat
+     * @return True if the seat is taken
      */
     public boolean isSeatTaken(int row, int col) {
 		return seats[row][col].isTaken();
 	}
 	
     /**
-     *
+     * Displays the list of Tickets stored in the showtime
      */
     public void displayTicketTypes() {
 		for (int i=0; i<ticketTypes.size(); i++) {
@@ -132,9 +132,9 @@ public class Showtime {
 	}
 	
     /**
-     *
-     * @param ticketIndex
-     * @return
+     * Get the ticket at that index
+     * @param ticketIndex The index of the ticket to get
+     * @return the Ticket at that index
      */
     public Ticket getTicket(int ticketIndex) {
 		return ticketTypes.get(ticketIndex);
