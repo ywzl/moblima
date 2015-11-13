@@ -60,50 +60,50 @@ public class Cineplex {
     }
     
     /**
-     *
-     * @param movieId
+     * Add the movie ID to the cineplex's movielisting.
+     * @param movieId ID of the movie
      */
     public void addMovieListing(int movieId) {
     	movieListings.add(movieId);
     }
     
     /**
-     *
-     * @param movieId
+     * Remove the movie ID from the cineplex's movielisting.
+     * @param movieId ID of the movie
      */
     public void removeMovieListing(Integer movieId) {
     	movieListings.remove(movieId);
     }
 
     /**
-     *
-     * @param index
-     * @return
+     * Get Showtime by its index in the cineplex's list of showtimes.
+     * @param index index of Showtime in showtimes.
+     * @return the Showtime given by the index
      */
     public Showtime getShowtime(int index) {
         return showtimes.get(index);
     }
     
     /**
-     *
-     * @param showtimeIndex
+     * Remove Showtime by its index from the cineplex's list of showtimes.
+     * @param showtimeIndex index of Showtime in showtimes.
      */
     public void removeShowtime(int showtimeIndex) {
     	showtimes.remove(showtimeIndex);
     }
     
     /**
-     *
-     * @param index
-     * @return
+     * Get Cinema by its index in the cineplex's list of Cinemas.
+     * @param index index of Cinema in cinemas.
+     * @return the Cinema indicated by the index.
      */
     public Cinema getCinema(int index) {
     	return cinemas.get(index);
     }
     
     /**
-     *
-     * @param showtime
+     * Add a new Showtime to the cineplex's list of showtimes.
+     * @param showtime the Showtime to be added
      */
     public void addShowtime(Showtime showtime) {
     	showtimes.add(showtime);

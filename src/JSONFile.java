@@ -13,10 +13,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import com.google.gson.Gson;
 
-/**
- *
- * @author Lloyd
- */
 public interface JSONFile {
 	
 	/**

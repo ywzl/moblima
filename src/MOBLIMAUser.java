@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
- * @author Lloyd
+ * MOBLIMA User interface for the public 
  */
 public class MOBLIMAUser {
 
@@ -14,7 +13,7 @@ public class MOBLIMAUser {
     static CineplexController cineplexes = new CineplexController();
 
     /**
-     *
+     * Main method
      * @param args
      */
     public static void main(String args[]) {
@@ -333,9 +332,9 @@ public class MOBLIMAUser {
     }
 
     /**
-     *
-     * @param movieListing
-     * @return
+     * Gets the list of Movies based on a list of IDs.
+     * @param movieListing List of Movie IDs
+     * @return List of Movies given the IDs.
      */
     public static List<Movie> getMovieList(List<Integer> movieListing) {
         List<Movie> movieList = new ArrayList<Movie>();
@@ -347,8 +346,8 @@ public class MOBLIMAUser {
     }
 
     /**
-     *
-     * @param movieList
+     * Displays a list of movie and their names.
+     * @param movieList the list of movies to display
      */
     public static void displayMovieList(List<Movie> movieList) {
         if (movieList.size() > 0) {
@@ -360,7 +359,11 @@ public class MOBLIMAUser {
         }
         System.out.println();
     }
-
+    
+    /**
+     * Display a list of bookings and the booking details.
+     * @param bookings The list of bookings to display.
+     */
     private static void displayBooking(List<Booking> bookings) {
         if (bookings.isEmpty()) {
             System.out.println("No bookings found");
@@ -389,7 +392,12 @@ public class MOBLIMAUser {
             System.out.println();
         }
     }
-
+    
+    /**
+     * Get the previous booking of a user via his/her mobile number.
+     * @param mobile The mobile number of the user.
+     * @return The list of bookings by the user.
+     */
     private static List<Booking> getPreviousBookings(int mobile) {
         List<Booking> previousBookings = new ArrayList<Booking>();
         for (Cineplex cineplex : cineplexes.getList()) {

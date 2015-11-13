@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
- * @author Lloyd
+ * MOBLIMA Admin Interface for Admins
  */
 public class MOBLIMAAdmin extends MOBLIMAUser {
     static HolidayController holidays = new HolidayController();
@@ -17,7 +16,7 @@ public class MOBLIMAAdmin extends MOBLIMAUser {
     static StaffController staffList = new StaffController();
 
     /**
-     *
+     * Main method.
      * @param args
      */
     public static void main(String args[]) {
@@ -596,6 +595,9 @@ public class MOBLIMAAdmin extends MOBLIMAUser {
     	return status;
     }
     
+    /**
+     * @return the rating based on the user's input.
+     */
     private static Movie.AgeRating chooseRating() {
         Scanner scanner = new Scanner(System.in);
     	Movie.AgeRating rating = null;

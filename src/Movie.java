@@ -3,18 +3,17 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 /**
- *
- * @author Lloyd
+ * Representation of a Movie in MOBLIMA.
  */
 public class Movie {
 
     /**
-     *
+     * The collection of Age Rating.
      */
     public enum AgeRating {
 
         /**
-         *
+         * G
          */
         G {
                     @Override
@@ -24,7 +23,7 @@ public class Movie {
                 },
 
         /**
-         *
+         * PG
          */
         PG {
                     @Override
@@ -34,7 +33,7 @@ public class Movie {
                 },
 
         /**
-         *
+         * PG13
          */
         PG13 {
                     @Override
@@ -44,7 +43,7 @@ public class Movie {
                 },
 
         /**
-         *
+         * NC16
          */
         NC16 {
                     @Override
@@ -54,7 +53,7 @@ public class Movie {
                 },
 
         /**
-         *
+         * M18
          */
         M18 {
                     @Override
@@ -63,8 +62,8 @@ public class Movie {
                     }
                 },
 
-        /**
-         *
+        /** 
+         * R21
          */
         R21 {
                     @Override
@@ -75,7 +74,7 @@ public class Movie {
     }
 
     /**
-     *
+     * Collection of showing status.
      */
     public enum ShowingStatus {
 
@@ -129,16 +128,16 @@ public class Movie {
     private int ticketsSold; 
 
     /**
-     *
-     * @param movieId
-     * @param title
-     * @param synopsis
-     * @param director
-     * @param casts
-     * @param genre
-     * @param ageRating
-     * @param showingStatus
-     * @param reviews
+     * Constructor for a movie.
+     * @param movieId movie ID
+     * @param title title of the movie
+     * @param synopsis synopsis of the movie
+     * @param director director of the movie
+     * @param casts list of casts for the movie
+     * @param genre the genre of the movie
+     * @param ageRating the age rating (Movie.AgeRating) of the movie
+     * @param showingStatus the showing status (Movie.ShowingStatus) of the movie
+     * @param reviews list of reviews for the movie
      */
     public Movie(int movieId, String title, String synopsis, String director, List<String> casts, String genre, AgeRating ageRating, ShowingStatus showingStatus, List<Review> reviews) {
         this.movieId = movieId;
@@ -154,7 +153,7 @@ public class Movie {
     }
 
     /**
-     *
+     * Display the details of a movie.
      */
     public void displayMovieDetails() {
         System.out.println(title + " (" + ageRating.name() + ")");
@@ -189,8 +188,8 @@ public class Movie {
     }
     
     /**
-     *
-     * @return
+     * Get the sum of all the ratings.
+     * @return the result.
      */
     public int getSummedRatings() {
     	int summedRatings = 0;
@@ -201,8 +200,8 @@ public class Movie {
     }
 
     /**
-     *
-     * @return
+     * Get the overall ratings of a movie.
+     * @return the overall rating.
      */
     public double getOverallRating() {
     	if (reviews.isEmpty()) return 0;
@@ -210,15 +209,15 @@ public class Movie {
     }
     
     /**
-     *
+     * Increase the tickets sold.
      */
     public void incrementSales() {
     	ticketsSold++;
     }
     
     /**
-     *
-     * @return
+     * Get the number of ticket sold.
+     * @return the ticketSold
      */
     public int getTicketsSold() {
     	return ticketsSold;

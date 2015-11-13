@@ -1,55 +1,57 @@
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- *
- * @author Lloyd
+ * Representation of a Holiday in MOBLIMA.
  */
 public class Holiday {
-	private String name;
-	private Date date;
-	
+
+    private String name;
+    private Date date;
+
     /**
+     * Constructor for a Holiday
      *
-     * @param name
-     * @param date
+     * @param name Name of the Holiday.
+     * @param date Date of the Holiday
      */
     public Holiday(String name, Date date) {
-		this.name = name;
-		this.date = date;
-	}
-	
+        this.name = name;
+        this.date = date;
+    }
+
     /**
      *
-     * @return
+     * @return the name
      */
     public String getName() {
-		return name;
-	}
-	
+        return name;
+    }
+
     /**
      *
-     * @return
+     * @return the date
      */
     public Date getDate() {
-		return date;
-	}
-	
+        return date;
+    }
+
     /**
      *
-     * @param date
+     * @param date sets the date of the Holiday
      */
     public void setDate(Date date) {
-		this.date = date;
-	}
-	
+        this.date = date;
+    }
+
     /**
-     *
-     * @return
+     * Gets the date as a String.
+     * @return the date parsed.
      */
     public String getDateParsed() {
-		DateFormat df = new SimpleDateFormat("dd-MM");
-		return df.format(date);
-	}
+        DateFormat df = new SimpleDateFormat("dd-MM");
+        return df.format(date);
+    }
 }

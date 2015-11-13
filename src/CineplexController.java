@@ -5,51 +5,47 @@ import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
 
-/**
- *
- * @author Lloyd
- */
 public class CineplexController implements JSONFile{
 	private List<Cineplex> list;
 	private File JSONFile = new File("cineplexes.json");
 	private Type Cineplexlist = new TypeToken<ArrayList<Cineplex>>(){}.getType();
 
     /**
-     *
+     * Constructor for CineplexController
      */
     public CineplexController() {
 		list = (List<Cineplex>) load(JSONFile, Cineplexlist);		
 	}
 	
     /**
-     *
-     * @param cineplex
+     * Add a new Cineplex into the list.
+     * @param cineplex the Cineplex to be added
      */
     public void addCineplex(Cineplex cineplex) {
 		list.add(cineplex);
 	}
 	
     /**
-     *
-     * @param index
-     * @return
+     * Get the Cineplex by its index in the Cineplexlist
+     * @param index the index of the Cineplex
+     * @return the Cineplex with the index
      */
     public Cineplex getCineplex(int index) {
 		return list.get(index);
 	}
 	
     /**
-     *
-     * @return
+     * Get the list of all cineplexes.
+     * @return list of all cineplexes
      */
     public List<Cineplex> getList() {
 		return list;
 	}
 	
     /**
-     *
-     * @param cineplexIndex
-     * @param showtime
+     * Add a new showtime into a cineplex indicated by its index on Cineplexlist
+     * @param cineplexIndex index of Cineplex in Cineplexlist
+     * @param showtime the showtime to be added
      */
     public void addShowtime(int cineplexIndex, Showtime showtime) {
 		Cineplex cineplex = list.get(cineplexIndex);
@@ -58,9 +54,9 @@ public class CineplexController implements JSONFile{
 	}
 	
     /**
-     *
-     * @param cineplexIndex
-     * @param showtimeIndex
+     * Remove showtime from a cineplex indicated by its index on Cineplexlist and index in the Cineplex's showtime list.
+     * @param cineplexIndex index of Cineplex in Cineplexlist
+     * @param showtimeIndex the index of the showtime in the Cineplex's showtime listing
      */
     public void removeShowtime(int cineplexIndex, int showtimeIndex) {
 		Cineplex cineplex = list.get(cineplexIndex);
@@ -69,9 +65,9 @@ public class CineplexController implements JSONFile{
 	}
 	
     /**
-     *
-     * @param cineplexIndex
-     * @param movieId
+     * Add the a movie given by its id into the movielisting of the Cineplex given by its index in Cineplexlisting
+     * @param cineplexIndex index of Cineplex in Cineplexlist
+     * @param movieId ID of the movie
      */
     public void addMovieListing(int cineplexIndex, int movieId) {
 		Cineplex cineplex = list.get(cineplexIndex);
@@ -80,9 +76,9 @@ public class CineplexController implements JSONFile{
 	}
 	
     /**
-     *
-     * @param cineplexIndex
-     * @param movieId
+     * Removes a movie given by its id inside the movielisting of the Cineplex given by its index in Cineplexlisting
+     * @param cineplexIndex index of Cineplex in Cineplexlist
+     * @param movieId ID of the movie
      */
     public void removeMovieListing(int cineplexIndex, Integer movieId) {
 		Cineplex cineplex = list.get(cineplexIndex);
@@ -91,10 +87,10 @@ public class CineplexController implements JSONFile{
 	}
 	
     /**
-     *
-     * @param cineplexIndex
-     * @param showtimeIndex
-     * @param booking
+     * Adds a new booking for a given showtime in the Cineplex given by its index in Cineplexlisting
+     * @param cineplexIndex index of Cineplex in Cineplexlist
+     * @param showtimeIndex the index of the showtime in the Cineplex's showtime listing
+     * @param booking the booking to be added.
      */
     public void addBooking(int cineplexIndex, int showtimeIndex, Booking booking) {
 		Cineplex cineplex = list.get(cineplexIndex);
@@ -104,7 +100,7 @@ public class CineplexController implements JSONFile{
 	}
 	
     /**
-     *
+     * Display the list of cineplexes.
      */
     public void displayList() {
 		for (int i=0; i<list.size(); i++) {
