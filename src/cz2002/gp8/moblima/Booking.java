@@ -52,14 +52,14 @@ public class Booking {
 	
 	/**
 	 * Standard constructor for Booking
-	 * @param name
-	 * @param mobile
-	 * @param email
-	 * @param ticketType
-	 * @param seats
+	 * @param name of moviegoer
+	 * @param mobile of moviegoer
+	 * @param email of moviegoer
+	 * @param ticketType booked
+	 * @param seats list of seats booked
 	 * @param XXX code generated from the Movie Title
-	 * @param cineplexIndex
-	 * @param showtimeIndex
+	 * @param cineplexIndex index of cineplex the showtime is in
+	 * @param showtimeIndex index of showtime
 	 */
 	public Booking(String name, int mobile, String email, Ticket ticketType, List<Seat> seats, String XXX, int cineplexIndex, int showtimeIndex) {
 		this.name = name;
