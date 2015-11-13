@@ -153,7 +153,7 @@ public class Movies implements JSONFile {
     public void displayListStatus() {
         for (int i = 0; i < list.size(); i++) {
         	Movie movie = list.get(i);
-            System.out.println((i+1) + ". " + movie.getTitle() + " [" + movie.getShowingStatus() + "] -ticketsSold: " + movie.getTicketsSold());
+            System.out.println((i+1) + ". " + movie.getTitle() + " [" + movie.getShowingStatus() + "]");
         }
 		System.out.println();
     }

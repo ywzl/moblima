@@ -99,7 +99,8 @@ public class MOBLIMAAdmin extends MOBLIMAUser {
                                 	String genre = scanner.nextLine();
                                 	
                             		System.out.println("Cast(separate by , ): ");
-                            		List<String> casts = Arrays.asList(scanner.nextLine().split(","));
+                            		List<String> cast = Arrays.asList(scanner.nextLine().split(","));
+                            		for (String actor : cast) actor = actor.trim();
                             		
                             		Movie.AgeRating rating = chooseRating();
                             		
@@ -107,80 +108,88 @@ public class MOBLIMAAdmin extends MOBLIMAUser {
                             		
                             		List<Review> reviews = new ArrayList<Review>();
                             		
-                            		Movie newMovie = new Movie(newMovieId, title, synopsis, director, casts, genre, rating, status, reviews);
+                            		Movie newMovie = new Movie(newMovieId, title, synopsis, director, cast, genre, rating, status, reviews);
                                 	movies.addMovie(newMovie);
                                 	break;
                                 
                             	case 5:
                             		System.out.println("- Edit Movie -");
                             		movies.displayListStatus();
-                            		System.out.print("Select Movie to edit: ");
-                            		int movieIndex = scanner.nextInt()-1;
-                            		Movie movie = movies.getMovie(movieIndex);
-                            		int editOption = -1;
+                            		int movieIndex = -1;
                             		do {
-                            			System.out.println("- Editing: " + movie.getTitle() + " -");
-                                		System.out.println("1. Title: " + movie.getTitle());
-                                		System.out.println("2. Status: " + movie.getShowingStatus());
-                                		System.out.println("3. Rating: " + movie.getAgeRating());
-                                		System.out.println("4. Cast: " + movie.getCasts());
-                                		System.out.println("5. Director: " + movie.getDirector());
-                                		System.out.println("6. Synopsis: " + movie.getSynopsis());
-                                		System.out.print("Item to edit (0 to go back): ");
-                                		editOption = scanner.nextInt();
-                                		scanner.nextLine();
-                                		
-                                		switch (editOption) {
-                                			case 1:
-                                				System.out.print("New Title: ");
-                                				String newTitle = scanner.nextLine();
-                                				movie.setTitle(newTitle);
-                                				movies.updateMovie(movieIndex, movie);
-                                				break;
-                                				
-                                			case 2:
-                                				Movie.ShowingStatus newStatus = chooseStatus();
-                                				movie.setShowingStatus(newStatus);
-                                				movies.updateMovie(movieIndex, movie);
-                                				break;
-                                				
-                                			case 3:
-                                				Movie.AgeRating newRating = chooseRating();
-                                				movie.setAgeRating(newRating);
-                                				movies.updateMovie(movieIndex, movie);
-                                				break;
-                                				
-                                			case 4:
-                                        		System.out.println("Cast(separate by , ): ");
-                                        		List<String> newCast = Arrays.asList(scanner.nextLine().split(","));
-                                        		movie.setCasts(newCast);
-                                        		movies.updateMovie(movieIndex, movie);
-                                        		break;
-                                        		
-                                			case 5:
-                                				System.out.print("New Director: ");
-                                				String newDirector = scanner.nextLine();
-                                				movie.setTitle(newDirector);
-                                				movies.updateMovie(movieIndex, movie);
-                                				break;
-                                				
-                                			case 6:
-                                				System.out.print("New Synopsis: ");
-                                				String newSynopsis = scanner.nextLine();
-                                				movie.setTitle(newSynopsis);
-                                				movies.updateMovie(movieIndex, movie);
-                                				break;
-                                				
-                                			case 0:
-                                				break;
-                                				
-                                			default:
-                                                System.out.println("Invalid option! Please select again!");
-                                				break;
+                            			System.out.print("Select Movie to edit (0 to go back): ");
+                            			movieIndex = scanner.nextInt();
+                                		if (movieIndex > 0 && movieIndex <= movies.getList().size()) {
+		                            		Movie movie = movies.getMovie(movieIndex-1);
+		                            		int editOption = -1;
+		                            		do {
+		                            			System.out.println("- Editing: " + movie.getTitle() + " -");
+		                                		System.out.println("1. Title: " + movie.getTitle());
+		                                		System.out.println("2. Status: " + movie.getShowingStatus());
+		                                		System.out.println("3. Rating: " + movie.getAgeRating());
+		                                		System.out.println("4. Cast: " + movie.getCasts());
+		                                		System.out.println("5. Director: " + movie.getDirector());
+		                                		System.out.println("6. Synopsis: " + movie.getSynopsis());
+		                                		System.out.print("Item to edit (0 to go back): ");
+		                                		editOption = scanner.nextInt();
+		                                		scanner.nextLine();
+		                                		
+		                                		switch (editOption) {
+		                                			case 1:
+		                                				System.out.print("New Title: ");
+		                                				String newTitle = scanner.nextLine();
+		                                				movie.setTitle(newTitle);
+		                                				movies.updateMovie(movieIndex-1, movie);
+		                                				break;
+		                                				
+		                                			case 2:
+		                                				Movie.ShowingStatus newStatus = chooseStatus();
+		                                				movie.setShowingStatus(newStatus);
+		                                				movies.updateMovie(movieIndex-1, movie);
+		                                				break;
+		                                				
+		                                			case 3:
+		                                				Movie.AgeRating newRating = chooseRating();
+		                                				movie.setAgeRating(newRating);
+		                                				movies.updateMovie(movieIndex-1, movie);
+		                                				break;
+		                                				
+		                                			case 4:
+		                                        		System.out.println("Cast(separate by , ): ");
+		                                        		List<String> newCast = Arrays.asList(scanner.nextLine().split(","));
+		                                        		for (String actor : newCast) actor = actor.trim();
+		                                        		movie.setCasts(newCast);
+		                                        		movies.updateMovie(movieIndex-1, movie);
+		                                        		break;
+		                                        		
+		                                			case 5:
+		                                				System.out.print("New Director: ");
+		                                				String newDirector = scanner.nextLine();
+		                                				movie.setTitle(newDirector);
+		                                				movies.updateMovie(movieIndex-1, movie);
+		                                				break;
+		                                				
+		                                			case 6:
+		                                				System.out.print("New Synopsis: ");
+		                                				String newSynopsis = scanner.nextLine();
+		                                				movie.setTitle(newSynopsis);
+		                                				movies.updateMovie(movieIndex-1, movie);
+		                                				break;
+		                                				
+		                                			case 0:
+		                                				break;
+		                                				
+		                                			default:
+		                                                System.out.println("Invalid option! Please select again!");
+		                                				break;
+		                                		}
+		                            			
+		                            		} while (editOption != 0);
+		                            		System.out.println();
+                                		} else if (movieIndex < 0 || movieIndex > movies.getList().size()) {
+                                			System.out.println("Invalid Input");
                                 		}
-                            			
-                            		} while (editOption != 0);
-                            		System.out.println();
+                            		} while (movieIndex != 0);
                             		break;
                             	
                             	case 6:
@@ -255,9 +264,19 @@ public class MOBLIMAAdmin extends MOBLIMAUser {
                                                         			displayMovieList(moviesToAdd);
                                                         			if (moviesToAdd.isEmpty()) break;
                                                         			
-                                                        			System.out.print("Choose movie to add: ");
-                                                        			movieId = moviesToAdd.get(scanner.nextInt()-1).getMovieId();
-                                                                    cineplexes.addMovieListing(cineplexChoice, movieId);
+                                                        			
+                                                        			int movieIndex = -1;
+                                                        			do {
+                                                        				System.out.print("Choose movie to add (0 to go back): ");
+                                                        				movieIndex = scanner.nextInt();
+                                                        				if (movieIndex != 0 && movieIndex <= moviesToAdd.size()) {
+                                                        					movieId = moviesToAdd.get(movieIndex-1).getMovieId();
+                                                        					cineplexes.addMovieListing(cineplexChoice, movieId);
+                                                        					break;
+                                                        				}else if (movieIndex < 0 || movieIndex > moviesToAdd.size()) {
+                                                        					System.out.println("Invalid Choice");
+                                                        				}
+                                                        			} while (movieIndex != 0);
                                                                     System.out.println();
                                                                     break;
                                                                     
@@ -565,14 +584,14 @@ public class MOBLIMAAdmin extends MOBLIMAUser {
             System.out.println("Invalid input! Please enter a number!");
             scanner.next();
         }
-    	scanner.close();
+    	System.out.println();
     	return status;
     }
     
     private static Movie.AgeRating chooseRating() {
         Scanner scanner = new Scanner(System.in);
     	Movie.AgeRating rating = null;
-    	System.out.println("Select Status: ");
+    	System.out.println("Select Rating: ");
     	System.out.println("1. G");
     	System.out.println("2. PG");
     	System.out.println("3. PG13");
@@ -616,7 +635,7 @@ public class MOBLIMAAdmin extends MOBLIMAUser {
             System.out.println("Invalid input! Please enter a number!");
             scanner.next();
         }
-    	scanner.close();
+    	System.out.println();
     	return rating;
     }
     
