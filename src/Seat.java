@@ -1,7 +1,7 @@
 
 
 /**
- *
+ * This represents a seat in a cinema for the corresponding showtime.
  * @author Lloyd
  */
 public class Seat {
@@ -10,7 +10,7 @@ public class Seat {
 	private boolean taken;
 	
     /**
-     *
+     * Standard constructor for Seat. Creates a seat with the row and col passed in.
      * @param row
      * @param col
      */
@@ -20,37 +20,38 @@ public class Seat {
 	}
 	
     /**
-     *
+     * This assigns a seat to a user after they selected it for a booking.
      */
     public void assignSeat() {
 		taken = true;
 	}
 	
     /**
-     *
-     * @return
+     * This lets us know if a seat is taken or not.
+     * @return true if seat is taken.
      */
     public boolean isTaken() {
 		return taken;
 	}
 	
     /**
-     *
-     * @return
+     * This returns alphabet of the row instead of an integer.
+     * @return alphabet (char).
      */
     public char getRowAlphabet() {
 		return (char) (row+65);
 	}
 	
     /**
-     *
-     * @return
+     * This returns the seat number by its row (alphabet) and column.
+     * @return alphabet character for row, integer for column.
      */
     public String getSeatNum() { 
 		return getRowAlphabet() + ":" + col;
 	}
 
 	/**
+	 * Returns row of a seat.
 	 * @return the row
 	 */
 	public int getRow() {
@@ -58,13 +59,15 @@ public class Seat {
 	}
 
 	/**
-	 * @param row the row to set
+	 * Set the row of the seat.
+	 * @param row of the seat
 	 */
 	public void setRow(int row) {
 		this.row = row;
 	}
 
 	/**
+	 * Returns the column of a seat.
 	 * @return the col
 	 */
 	public int getCol() {
@@ -72,7 +75,8 @@ public class Seat {
 	}
 
 	/**
-	 * @param col the col to set
+	 * Set the column of the seat.
+	 * @param col of the seat
 	 */
 	public void setCol(int col) {
 		this.col = col;
